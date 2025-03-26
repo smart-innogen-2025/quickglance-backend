@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Relations\{HasMany, BelongsTo};
+
 class Action extends Model
 {
     protected $fillable = [
@@ -16,12 +18,12 @@ class Action extends Model
         'form' => 'array',
     ];
 
-    public function category()
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function userActions()
+    public function userActions(): HasMany
     {
         return $this->hasMany(UserAction::class);
     }
