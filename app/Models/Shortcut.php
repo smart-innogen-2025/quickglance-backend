@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\{HasMany, BelongsTo};
 
 class Shortcut extends Model
 {
-    protected $fillable = ['user_id', 'name', 'icon', 'description', 'user_action_id'];
+    protected $fillable = ['user_id', 'name', 'icon', 'description', 'gradient_start', 'gradient_end'];
 
     protected $hidden = ['created_at', 'updated_at', 'user_id'];
 

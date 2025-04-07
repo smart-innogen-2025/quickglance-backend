@@ -47,6 +47,8 @@ class ShortcutController extends Controller
                 'actions' => 'required|array',
                 'icon' => 'required|string',
                 'description' => 'required|string',
+                'gradient_start' => 'nullable|string',
+                'gradient_end' => 'nullable|string',
             ]);
 
             $shortcut = Shortcut::create([
@@ -54,6 +56,8 @@ class ShortcutController extends Controller
                 'name' => $request->name,
                 'icon' => $request->icon,
                 'description' => $request->description,
+                'gradient_start' => $request->gradientStart,
+                'gradient_end' => $request->gradientEnd,
             ]);
 
             foreach($request->actions as $action) {

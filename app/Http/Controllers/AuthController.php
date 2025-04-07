@@ -94,7 +94,7 @@ class AuthController extends Controller
                 ], 422);
             }
             // Update the user
-            $authUser->update([
+            $authUser->update([         // This still works even the php intelliphense doesn't recognize it
                 'first_name' => $request->firstName ?? $authUser->first_name,
                 'middle_name' => $request->middleName ?? $authUser->middle_name,
                 'last_name' => $request->lastName ?? $authUser->last_name,

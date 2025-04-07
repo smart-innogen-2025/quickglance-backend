@@ -31,10 +31,15 @@ class SearchController extends Controller
 
         if (array_key_exists($modelName, $modelMap)) {
             $modelClass = $modelMap[$modelName];
+
+            // Using Postgresql ILIKE on this part for better case-insensitive search
             $results = $modelClass::where('user_id', $userId)
-                                  ->where('name', 'like', "%{$query}%")
-                                  ->get();
-            return response()->json($results);
+                     ->where('name', 'ilike', '%'.$query.'%')
+                     ->get();
+    
+            return response()->json([
+                'results' => $results,
+            ]);
         } else {
             return response()->json(['error' => 'Model not found'], 404);
         }
