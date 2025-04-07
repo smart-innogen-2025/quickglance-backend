@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('icon');
             $table->string('description');
+            $table->string('gradient_start');
+            $table->string('gradient_end');
             $table->timestamps();
 
             $table->index(['user_id', 'name', 'created_at']);
