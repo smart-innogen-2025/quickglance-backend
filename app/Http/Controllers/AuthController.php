@@ -13,13 +13,14 @@ class AuthController extends Controller
 
     public function show () {
         try {
-            $users = User::with('roles')->get();
+            $authUser = Auth::user();
             return response()->json([
-                'users' => $users,
+                'message' => 'User retrieved successfully',
+                'user' => $authUser,
             ]);
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'An error occurred while fetching the user.',
+                'message' => 'An error occurred while retrieving the user.',
                 'error' => $e->getMessage(),
             ], 500);
         }
@@ -72,19 +73,19 @@ class AuthController extends Controller
 
     public function update (Request $request, $id) {
         try{
-            $user = Auth::user();
+            $authUser = Auth::user();
 
-            if($user->id != $id) {
+            if($authUser->id != $id) {
                 return response()->json([
                     'message' => 'Unauthorized',
                 ], 403);
             }
+
             $validator = validator($request->all(), [
-                'firstName' => 'required|string',
+                'firstName' => 'nullable|string',
                 'middleName'=> 'nullable|string',
-                'lastName' => 'required|string',
-                'email' => 'required|email',
-                'password' => 'nullable|string|min:6|confirmed',
+                'lastName' => 'nullable|string',
+                'email' => 'nullable|email',
             ]);
             if ($validator->fails()) {
                 return response()->json([
@@ -93,16 +94,16 @@ class AuthController extends Controller
                 ], 422);
             }
             // Update the user
-            $user->update([
-                'first_name' => $request->firstName,
-                'middle_name' => $request->middleName,
-                'last_name' => $request->lastName,
-                'email' => $request->email,
+            $authUser->update([
+                'first_name' => $request->firstName ?? $authUser->first_name,
+                'middle_name' => $request->middleName ?? $authUser->middle_name,
+                'last_name' => $request->lastName ?? $authUser->last_name,
+                'email' => $request->email ?? $authUser->email,
             ]);
 
             return response()->json([
                 'message' => 'User updated successfully',
-                'user' => $user,
+                'user' => $authUser,
             ]);
         } catch (\Exception $e) {
             return response()->json([

@@ -1,5 +1,31 @@
 # User Authentication Routes
 
+## User Show Endpoint
+
+```typescript
+{{baseurl}}/auth/user/ | Method: GET
+```
+
+### Sample Response
+
+```typescript
+{
+    "message": "User retrieved successfully",
+    "user": {
+        "id": 6,
+        "first_name": "Test",
+        "middle_name": "t1",
+        "last_name": "TestTest",
+        "email": "alex.camaddo04@gmail.com",
+        "email_verified_at": null,
+        "created_at": "2025-04-07T01:47:28.000000Z",
+        "updated_at": "2025-04-07T01:58:09.000000Z"
+    }
+}
+```
+
+---
+
 ## User Register Endpoint
 
 ```typescript
@@ -10,9 +36,9 @@
 
 ```typescript
 {
-    "first_name": "Alex",
-    "middle_name": "Mosing",
-    "last_name": "Camaddo",
+    "firstName": "Alex",
+    "middleName": "Mosing",
+    "lastName": "Camaddo",
     "email": "test@example.com",
     "password": "testpassword",
     "password_confirmation": "testpassword",
@@ -34,6 +60,43 @@
         "updated_at": "2025-03-21T01:58:51.000000Z",
         "created_at": "2025-03-21T01:58:51.000000Z",
         "id": 6
+    }
+}
+```
+
+---
+
+## User Update Credentials Endpoint
+
+```typescript
+{{baseurl}}/auth/update/{id} | Method: PUT
+```
+
+### Sample Payload
+
+```typescript
+{
+    "firstName": "Test",
+    "middleName": "t1",
+    "lastName": "TestTest"
+    // "email": "test@gmail.com"
+}
+```
+
+### Sample Response
+
+```typescript
+{
+    "message": "User updated successfully",
+    "user": {
+        "id": 6,
+        "first_name": "Test",
+        "middle_name": "t1",
+        "last_name": "TestTest",
+        "email": "alex.camaddo04@gmail.com",
+        "email_verified_at": null,
+        "created_at": "2025-04-07T01:47:28.000000Z",
+        "updated_at": "2025-04-07T01:58:09.000000Z"
     }
 }
 ```
