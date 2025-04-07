@@ -11,12 +11,25 @@ use Spatie\Permission\Models\Role;
 class AuthController extends Controller
 {
 
+    public function show () {
+        try {
+            $users = User::with('roles')->get();
+            return response()->json([
+                'users' => $users,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred while fetching the user.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
     public function register(Request $request)
     {
         $validator = validator($request->all(), [
-            'firstName' => 'required|string',
-            'middleName'=> 'string',
-            'lastName' => 'required|string',
+            'first_name' => 'required|string',
+            'middle_name'=> 'nullable|string',
+            'last_name' => 'required|string',
             'email' => 'required|email',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -30,9 +43,9 @@ class AuthController extends Controller
         
         // Create the user
         $user = User::create([
-            'firstName' => $request->firstName,
-            'middleName' => $request->middleName,
-            'lastName' => $request->lastName,
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
@@ -55,6 +68,48 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
             'user' => $user,
         ], 201); // 201 Created status code
+    }
+
+    public function update (Request $request, $id) {
+        try{
+            $user = Auth::user();
+
+            if($user->id != $id) {
+                return response()->json([
+                    'message' => 'Unauthorized',
+                ], 403);
+            }
+            $validator = validator($request->all(), [
+                'firstName' => 'required|string',
+                'middleName'=> 'nullable|string',
+                'lastName' => 'required|string',
+                'email' => 'required|email',
+                'password' => 'nullable|string|min:6|confirmed',
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'message' => 'Validation failed',
+                    'errors' => $validator->errors()
+                ], 422);
+            }
+            // Update the user
+            $user->update([
+                'first_name' => $request->firstName,
+                'middle_name' => $request->middleName,
+                'last_name' => $request->lastName,
+                'email' => $request->email,
+            ]);
+
+            return response()->json([
+                'message' => 'User updated successfully',
+                'user' => $user,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred while updating the user.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function login(Request $request)
