@@ -10,9 +10,9 @@
 
 ```typescript
 {
-    "firstName": "Alex",
-    "middleName": "Mosing",
-    "lastName": "Camaddo",
+    "first_name": "Alex",
+    "middle_name": "Mosing",
+    "last_name": "Camaddo",
     "email": "test@example.com",
     "password": "testpassword",
     "password_confirmation": "testpassword",
@@ -27,9 +27,9 @@
     "access_token": "3|rR76cqZierr9Dsa7itUTCxKpSgUdWRNO5NDCzLJg3d386c5f",
     "token_type": "Bearer",
     "user": {
-        "firstName": "Alex",
-        "middleName": "Mosing",
-        "lastName": "Camaddo",
+        "first_name": "Alex",
+        "middle_name": "Mosing",
+        "last_name": "Camaddo",
         "email": "alex.camaddo04@gmail.com",
         "updated_at": "2025-03-21T01:58:51.000000Z",
         "created_at": "2025-03-21T01:58:51.000000Z",
@@ -63,9 +63,9 @@
     "token_type": "Bearer",
     "user": {
         "id": 6,
-        "firstName": "Alex",
-        "middleName": "Mosing",
-        "lastName": "Camaddo",
+        "first_name": "Alex",
+        "middle_name": "Mosing",
+        "last_name": "Camaddo",
         "email": "alex.camaddo04@gmail.com",
         "email_verified_at": null,
         "created_at": "2025-03-21T01:58:51.000000Z",
