@@ -15,24 +15,30 @@ class ShortcutController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $authenticatedUser = Auth::user();
-        try {
-            $shortcuts = Shortcut::where("user_id", $authenticatedUser->id)->with(['userAction' => function($query) {
+{
+    $authenticatedUser = Auth::user();
+
+    try {
+        $shortcuts = Shortcut::where("user_id", $authenticatedUser->id)
+            ->with(['userAction' => function($query) {
                 $query->orderBy('order', 'asc');
-            }])->get();
+            }], ['user => function($query) {
+                $query->select('id', 'name');
+            }])
+            ->get()
+            ->toArray(); // Convert Eloquent collection to array
 
-            return response()->json([
-                'shortcuts' => $shortcuts,
-            ]);
+        return response()->json([
+            'shortcuts' => convertKeysToCamelCase($shortcuts),
+        ]);
 
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'An error occurred while fetching the shortcuts.',
-                'error' => $e->getMessage(),
-            ], 500);
-        }
+    } catch (\Exception $e) {
+        return response()->json([
+            'message' => 'An error occurred while fetching the shortcuts.',
+            'error' => $e->getMessage(),
+        ], 500);
     }
+}
 
     /**
      * Store a newly created resource in storage.

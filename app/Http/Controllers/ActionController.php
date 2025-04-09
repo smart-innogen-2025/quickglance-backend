@@ -18,7 +18,7 @@ class ActionController extends Controller
             $actions = Action::all();
 
             return response()->json([
-                'actions' => $actions,
+                'actions' => convertKeysToCamelCase($actions),
             ]);
 
         } catch (\Exception $e) {
