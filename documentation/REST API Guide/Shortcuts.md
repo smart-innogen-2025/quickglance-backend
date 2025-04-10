@@ -50,23 +50,25 @@
 
 ```typescript
 {
-    name: "Test",
-    actions: [
+    "name": "Test",
+    "actions": [
         {
-            id: 4,
-            form: "{\"test1\": \"test1\", \"test2\": \"test2\"}" // JSON String
+            "id": 4,
+            "form": "{\"test1\": \"test1\", \"test2\": \"test2\"}"
         },
         {
-            id: 5,
-            form: "{\"test1\": \"test1\", \"test2\": \"test2\"}" // JSON String
+            "id": 5,
+            "form": "{\"test1\": \"test1\", \"test2\": \"test2\"}"
         },
         {
-            id: 6,
-            form: "{\"test1\": \"test1\", \"test2\": \"test2\"}" // JSON String
+            "id": 6,
+            "form": "{\"test1\": \"test1\", \"test2\": \"test2\"}"
         }
     ],
-    icon: "icon/test",
-    description: "test description"
+    "icon": "icon/test",
+    "description": "test description",
+    "gradientStart": "#19CCDF",
+    "gradientEnd": "#0E6F79"
 }
 ```
 
@@ -74,7 +76,7 @@
 
 ```typescript
 {
-    message: "Shortcut created successfully."
+    message: "Shortcut created successfully.";
 }
 ```
 
@@ -90,6 +92,6 @@
 
 ```typescript
 {
-    message: "Shortcut deleted successfully."
+    message: "Shortcut deleted successfully.";
 }
 ```
