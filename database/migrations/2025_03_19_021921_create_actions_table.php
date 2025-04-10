@@ -12,8 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('actions', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->uuid('id')->primary();
+            $table->uuid('category_id');
+
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('cascade');
+
             $table->string('name');
             $table->string('icon');
             // $table->jsonb('form');

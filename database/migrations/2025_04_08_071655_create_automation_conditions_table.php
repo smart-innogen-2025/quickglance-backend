@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('automation_conditions', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('icon');
             $table->string('name');
             $table->string('description');

@@ -12,11 +12,26 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_actions', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->integer('order');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('action_id')->constrained()->onDelete('cascade');
-            $table->foreignId('shortcut_id')->constrained()->onDelete('cascade');
+
+            $table->uuid('user_id');
+            $table->uuid('action_id');
+            $table->uuid('shortcut_id');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->foreign('action_id')
+                ->references('id')
+                ->on('actions')
+                ->onDelete('cascade');
+            $table->foreign('shortcut_id')
+                ->references('id')
+                ->on('shortcuts')
+                ->onDelete('cascade');
+                
             $table->jsonb('inputs');
             $table->timestamps();
         

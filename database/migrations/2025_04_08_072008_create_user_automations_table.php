@@ -12,11 +12,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_automations', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('title');
             $table->string('icon');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('automation_condition_id')->constrained()->onDelete('cascade');
+
+            $table->uuid('user_id');
+            $table->uuid('automation_condition_id');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->foreign('automation_condition_id')
+                ->references('id')
+                ->on('automation_conditions')
+                ->onDelete('cascade');
+    
             $table->timestamps();
         });
     }
