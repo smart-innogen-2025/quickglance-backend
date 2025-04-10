@@ -22,8 +22,6 @@ class ShortcutController extends Controller
         $shortcuts = Shortcut::where("user_id", $authenticatedUser->id)
             ->with(['userAction' => function($query) {
                 $query->orderBy('order', 'asc');
-            }], ['user => function($query) {
-                $query->select('id', 'name');
             }])
             ->get()
             ->toArray(); // Convert Eloquent collection to array
