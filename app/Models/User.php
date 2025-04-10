@@ -51,9 +51,20 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
 
-    public function userAction()
+    public function userAction(): HasMany
     {
         return $this->hasMany(UserAction::class);
+    }
+
+    public function shortcuts(): HasMany
+    {
+        return $this->hasMany(Shortcut::class);
+    }
+
+    public function userAutomation(): HasMany
+    {
+        return $this->hasMany(UserAutomation::class);
     }
 }
