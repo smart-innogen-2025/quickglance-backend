@@ -14,17 +14,40 @@ class ShortcutController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function publicShortcuts()
 {
     $authenticatedUser = Auth::user();
 
     try {
-        $shortcuts = Shortcut::where("user_id", $authenticatedUser->id)
-            ->with(['userAction' => function($query) {
+        $shortcuts = Shortcut::where("user_id", "!=",$authenticatedUser->id)
+            ->with(['steps' => function($query) {
                 $query->orderBy('order', 'asc');
+            }])
+            ->with(['user' => function($query) {
+                // Select only the necessary columns from the User model
+                $query->select('id', 'first_name', 'middle_name', 'last_name');
             }])
             ->get()
             ->toArray(); // Convert Eloquent collection to array
+
+        // Add userName and remove user key from each shortcut
+        $shortcuts = array_map(function($shortcut) {
+            if (isset($shortcut['user'])) {
+                // Create userName
+                $shortcut['userName'] = $shortcut['user']['first_name'];
+
+                // Add middle_name if present
+                if (!empty($shortcut['user']['middle_name'])) {
+                    $shortcut['userName'] .= ' ' . $shortcut['user']['middle_name'];
+                }
+
+                $shortcut['userName'] .= ' ' . $shortcut['user']['last_name'];
+
+                // Remove the user key
+                unset($shortcut['user']);
+            }
+            return $shortcut;
+        }, $shortcuts);
 
         return response()->json([
             'shortcuts' => convertKeysToCamelCase($shortcuts),
@@ -37,6 +60,7 @@ class ShortcutController extends Controller
         ], 500);
     }
 }
+
 
     /**
      * Store a newly created resource in storage.
@@ -80,7 +104,7 @@ class ShortcutController extends Controller
                     'user_id' => $userId,
                     'action_id' => $actionData->id,
                     'shortcut_id'=> $shortcut->id,
-                    'form' => $action['form']
+                    'inputs' => $action['inputs']
                 ]);
             }
 
@@ -99,9 +123,51 @@ class ShortcutController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function personalShortcuts()
     {
-        //
+        $authenticatedUser = Auth::user();
+
+        try {
+            $shortcuts = Shortcut::where("user_id", $authenticatedUser->id)
+                ->with(['steps' => function($query) {
+                    $query->orderBy('order', 'asc');
+                }])
+                ->with(['user' => function($query) {
+                    // Select only the necessary columns from the User model
+                    $query->select('id', 'first_name', 'middle_name', 'last_name');
+                }])
+                ->get()
+                ->toArray(); // Convert Eloquent collection to array
+
+            // Add userName and remove user key from each shortcut
+            $shortcuts = array_map(function($shortcut) {
+                if (isset($shortcut['user'])) {
+                    // Create userName
+                    $shortcut['userName'] = $shortcut['user']['first_name'];
+
+                    // Add middle_name if present
+                    if (!empty($shortcut['user']['middle_name'])) {
+                        $shortcut['userName'] .= ' ' . $shortcut['user']['middle_name'];
+                    }
+
+                    $shortcut['userName'] .= ' ' . $shortcut['user']['last_name'];
+
+                    // Remove the user key
+                    unset($shortcut['user']);
+                }
+                return $shortcut;
+            }, $shortcuts);
+
+            return response()->json([
+                'shortcuts' => convertKeysToCamelCase($shortcuts),
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred while fetching the shortcuts.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     /**

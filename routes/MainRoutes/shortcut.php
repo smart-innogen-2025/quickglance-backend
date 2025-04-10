@@ -7,7 +7,8 @@ use App\Models\Shortcut,
 
 
 Route::prefix('shortcut')->middleware('auth:sanctum')->group(function () {
-    Route::get('/', [ShortcutController::class, 'index']);
+    Route::get('/', [ShortcutController::class, 'publicShortcuts']);
+    Route::get('/personal', [ShortcutController::class, 'personalShortcuts']);
     Route::post('/', [ShortcutController::class, 'store']);
     Route::delete('/{id}', [ShortcutController::class, 'destroy']);
 });
