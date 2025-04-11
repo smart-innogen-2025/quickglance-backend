@@ -36,7 +36,7 @@ class Shortcut extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function steps(): HasMany
+    public function userAction(): HasMany
     {
         return $this->hasMany(UserAction::class);
     }
