@@ -36,12 +36,16 @@ class CategoryController extends Controller
         try {
             $request->validate([
                 'name' => 'required|string',
+                'icon' => 'nullable|string',
+                'image' => 'nullable|string',
+                'gradientStart' => 'nullable|string',
+                'gradientEnd' => 'nullable|string',
             ]);
 
             $category = Category::create([
                 'name' => $request->name,
                 'icon' => $request->icon,
-                'bgImage' => $request->bgImage,
+                'image' => $request->bgImage,
             ]);
 
             // Create the associated actions
@@ -49,6 +53,8 @@ class CategoryController extends Controller
                 $category->actions()->create([
                     'name' => $actionData['name'],
                     'icon' => $actionData['icon'],
+                    'gradient_start' => $actionData['gradientStart'],
+                    'gradient_end' => $actionData['gradientEnd'],
                 ]);
             }
 

@@ -38,7 +38,9 @@ class ActionController extends Controller
             $request->validate([
                 'name' => 'required|string',
                 'categoryId' => 'required|exists:categories,id',
-                'icon' => 'required|string',
+                'icon' => 'nullable|string',
+                'gradientStart' => 'nullable|string',
+                'gradientEnd' => 'nullable|string',
             ]);
 
             $category = Category::find($request->categoryId);
@@ -52,6 +54,8 @@ class ActionController extends Controller
             $category->actions()->create([
                 'name' => $request->name,
                 'icon' => $request->icon,
+                'gradientStart' => $request->gradientStart,
+                'gradientEnd' => $request->gradientEnd,
             ]);
 
             return response()->json([
