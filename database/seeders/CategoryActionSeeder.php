@@ -406,7 +406,7 @@ class CategoryActionSeeder extends Seeder
                         'id' => '9ea3e8b8-3071-410e-b77c-987612162a5b',
                         'name' => 'Generate Visual Instructions',
                         'icon' => 'test/test-icon.svg',
-                        'gradientStart' => '#0A84FF',  // Visual blue
+                        'gradientStart' => '#0A84FF',
                         'gradientEnd' => '#064F99',
                         'inputs' => [
                             ['name' => 'Task Description', 'type' => 'text', 'multiline' => true]
@@ -416,7 +416,7 @@ class CategoryActionSeeder extends Seeder
                         'id' => '9ea3e8b8-30af-4397-a3bb-e2580b81fd96',
                         'name' => 'Predict Next Behavior',
                         'icon' => 'test/test-icon.svg',
-                        'gradientStart' => '#FF9F0A',  // Predictive orange
+                        'gradientStart' => '#FF9F0A',
                         'gradientEnd' => '#995F06',
                         'inputs' => [[
                             'name' => 'Context',
@@ -428,7 +428,7 @@ class CategoryActionSeeder extends Seeder
                         'id' => '9ea3e8b8-30ec-438e-9a8d-f964c7129ecc',
                         'name' => 'Simplify Complex Text',
                         'icon' => 'test/test-icon.svg',
-                        'gradientStart' => '#30B0C7',  // Clarity teal
+                        'gradientStart' => '#30B0C7', 
                         'gradientEnd' => '#1D6B77',
                         'inputs' => [[
                             'name' => 'Text Input',
@@ -440,7 +440,7 @@ class CategoryActionSeeder extends Seeder
                         'id' => '9ea3e8b8-313b-4302-b31c-92e302c812f4',
                         'name' => 'Assist with Voice',
                         'icon' => 'test/test-icon.svg',
-                        'gradientStart' => '#FF9500',  // Voice orange
+                        'gradientStart' => '#FF9500', 
                         'gradientEnd' => '#995900',
                         'inputs' => [[
                             'name' => 'Voice Command',
@@ -452,7 +452,7 @@ class CategoryActionSeeder extends Seeder
                         'id' => '9ea403bf-8a90-4f15-baad-ae747d839c82',
                         'name' => 'Voice to Text Message',
                         'icon' => 'test/test-icon.svg',
-                        'gradientStart' => '#5856D6',  // Vibrant purple (communication)
+                        'gradientStart' => '#5856D6', 
                         'gradientEnd' => '#AF52DE',
                         'inputs' => [
                             [
@@ -591,7 +591,7 @@ class CategoryActionSeeder extends Seeder
             $categoryId = $categoryData['id'] ?? Str::orderedUuid()->toString();
             
             $category = Category::updateOrCreate(
-                ['id' => $categoryId], // Fixed: Proper array syntax
+                ['id' => $categoryId], 
                 [
                     'name' => $categoryData['name'],
                     'image' => $categoryData['image'],
@@ -604,7 +604,7 @@ class CategoryActionSeeder extends Seeder
                 $actionId = $actionData['id'] ?? Str::orderedUuid()->toString();
                 
                 $category->actions()->updateOrCreate(
-                    ['id' => $actionId], // Fixed: Proper array syntax
+                    ['id' => $actionId], 
                     [
                         'name' => $actionData['name'],
                         'icon' => $actionData['icon'],

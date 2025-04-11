@@ -153,7 +153,7 @@ class UserSeeder extends Seeder
             [
                 'id' => '9ea403bf-8a90-4f15-baad-ae747d839c82',
                 'inputs' => [
-                    'message' => 'Hello, how are yous1213?',
+                    'message' => 'Hello, how are you?',
                     'recipient' => 'John Doe',
                 ],
             ],
@@ -348,10 +348,9 @@ protected function validateInputValue($definedInput, $value)
             }
             break;
             
-        // Add more type validations as needed
     }
 
-    return null; // No error
+    return null;
 }
 
 }
