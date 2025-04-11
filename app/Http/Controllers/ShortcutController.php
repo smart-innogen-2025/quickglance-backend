@@ -19,16 +19,37 @@ class ShortcutController extends Controller
     $authenticatedUser = Auth::user();
 
     try {
-        $shortcuts = Shortcut::where("user_id", "!=",$authenticatedUser->id)
-            ->with(['steps' => function($query) {
-                $query->orderBy('order', 'asc');
-            }])
-            ->with(['user' => function($query) {
-                // Select only the necessary columns from the User model
-                $query->select('id', 'first_name', 'middle_name', 'last_name');
-            }])
+        $shortcuts = Shortcut::where('user_id', '!=', $authenticatedUser->id)
+            ->with([
+                'userAction' => function ($query) {
+                    $query->orderBy('order', 'asc')->with('action:id,name');
+                },
+                'user:id,first_name,middle_name,last_name',
+            ])
             ->get()
-            ->toArray(); // Convert Eloquent collection to array
+            ->map(function ($shortcut) {
+                $stepsWithActionNames = $shortcut->userAction->map(function ($step) {
+                    return [
+                        'id' => $step->id,
+                        'order' => $step->order,
+                        'inputs' => $step->inputs,
+                        'action_id' => $step->action_id,
+                        'actionName' => $step->action?->name,
+                    ];
+                });
+
+                return [
+                    'id' => $shortcut->id,
+                    'user' => $shortcut->user,
+                    'name' => $shortcut->name,
+                    'icon' => $shortcut->icon,
+                    'description' => $shortcut->description,
+                    'gradient_start' => $shortcut->gradient_start,
+                    'gradient_end' => $shortcut->gradient_end,
+                    'steps' => $stepsWithActionNames,
+                ];
+            })
+            ->toArray();
 
         // Add userName and remove user key from each shortcut
         $shortcuts = array_map(function($shortcut) {
@@ -128,16 +149,37 @@ class ShortcutController extends Controller
         $authenticatedUser = Auth::user();
 
         try {
-            $shortcuts = Shortcut::where("user_id", $authenticatedUser->id)
-                ->with(['steps' => function($query) {
-                    $query->orderBy('order', 'asc');
-                }])
-                ->with(['user' => function($query) {
-                    // Select only the necessary columns from the User model
-                    $query->select('id', 'first_name', 'middle_name', 'last_name');
-                }])
+            $shortcuts = Shortcut::where('user_id', $authenticatedUser->id)
+                ->with([
+                    'userAction' => function ($query) {
+                        $query->orderBy('order', 'asc')->with('action:id,name');
+                    },
+                    'user:id,first_name,middle_name,last_name',
+                ])
                 ->get()
-                ->toArray(); // Convert Eloquent collection to array
+                ->map(function ($shortcut) {
+                    $stepsWithActionNames = $shortcut->userAction->map(function ($step) {
+                        return [
+                            'id' => $step->id,
+                            'order' => $step->order,
+                            'inputs' => $step->inputs,
+                            'action_id' => $step->action_id,
+                            'actionName' => $step->action?->name,
+                        ];
+                    });
+
+                    return [
+                        'id' => $shortcut->id,
+                        'user' => $shortcut->user,
+                        'name' => $shortcut->name,
+                        'icon' => $shortcut->icon,
+                        'description' => $shortcut->description,
+                        'gradient_start' => $shortcut->gradient_start,
+                        'gradient_end' => $shortcut->gradient_end,
+                        'steps' => $stepsWithActionNames,
+                    ];
+                })
+                ->toArray();
 
             // Add userName and remove user key from each shortcut
             $shortcuts = array_map(function($shortcut) {
