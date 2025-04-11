@@ -65,9 +65,9 @@ class UserSeeder extends Seeder
     $user1->assignRole($userRole);
     $this->createShortcut([
         'user_id' => $user1->id,
-        'name' => 'Medication Reminder',
-        'icon' => 'pills.fill',
-        'description' => 'Set up reminders for taking medications on time and track your medication schedule',
+        'name' => 'Call Emergency Services',
+        'icon' => 'cross.case.fill',
+        'description' => 'Quickly dial emergency services for immediate assistance in case of medical emergencies',
         'gradient_start' => '#FF2D55',
         'gradient_end' => '#991B33',
         'actions' => [
@@ -153,7 +153,7 @@ class UserSeeder extends Seeder
             [
                 'id' => '9ea403bf-8a90-4f15-baad-ae747d839c82',
                 'inputs' => [
-                    'message' => 'Hello, how are you?',
+                    'message' => 'Hello, how are yous1213?',
                     'recipient' => 'John Doe',
                 ],
             ],
@@ -177,7 +177,7 @@ class UserSeeder extends Seeder
         'gradient_end' => '#0E6F79',
         'actions' => [
             [
-                'id' => '9ea403bf-884f-4b96-8663-e6d860a0e337',
+                'id' => '9ea403bf-888d-4205-85f3-578b7d30e218',
                 'inputs' => [
                     'items' => ['Milk', 'Bread', 'Eggs'],
                     'deliveryAddress' => '123 Main St, Cityville',
@@ -203,7 +203,7 @@ class UserSeeder extends Seeder
         'gradient_end' => '#1E790E',
         'actions' => [
             [
-                'id' => '9ea3e8b8-2f78-4d6a-83h6-daa94dc862j5',
+                'id' => '9ea403bf-884f-4b96-8663-e6d860a0e337',
                 'inputs' => [
                     'pickupLocation' => 'Current location',
                     'destination' => 'Airport',
@@ -232,14 +232,25 @@ protected function createShortcut($data) {
                 continue;
             }
 
+            // Validate inputs against action definition
+            $validationResult = $this->validateActionInputs(
+                $actionData->inputs, 
+                $action['inputs'] ?? []
+            );
+
+            if (!$validationResult['valid']) {
+                info("Invalid inputs for action {$actionData->id}: " . json_encode($validationResult['errors']));
+                continue;
+            }
+
             $maxOrder = UserAction::where('shortcut_id', $shortcut->id)->max('order') ?? 0;
 
             UserAction::create([
                 'order' => $maxOrder + 1,
                 'user_id' => $data['user_id'],
                 'action_id' => $actionData->id,
-                'shortcut_id'=> $shortcut->id,
-                'inputs' => is_string($action['inputs']) ? json_decode($action['inputs'], true) : $action['inputs'],
+                'shortcut_id' => $shortcut->id,
+                'inputs' => $validationResult['validated_inputs'],
             ]);
         }
 
@@ -248,6 +259,99 @@ protected function createShortcut($data) {
     } catch (\Exception $e) {
         info("Error creating shortcut for user ID: " . $data['user_id'] . " - " . $e->getMessage());
     }
+}
+
+/**
+ * Validate user inputs against action's input definition
+ */
+protected function validateActionInputs($actionInputDefinition, $userInputs)
+{
+    $errors = [];
+    $validatedInputs = [];
+    $definedInputs = json_decode($actionInputDefinition, true) ?? [];
+
+    // Convert user inputs to array if they're in string format
+    $userInputs = is_string($userInputs) ? json_decode($userInputs, true) : ($userInputs ?? []);
+
+    foreach ($definedInputs as $definedInput) {
+        $inputName = $definedInput['name'] ?? null;
+        $isRequired = $definedInput['required'] ?? true;
+        
+        // Check for missing required inputs
+        if ($isRequired && !isset($userInputs[$inputName])) {
+            $errors[] = "Missing required input: {$inputName}";
+            continue;
+        }
+
+        // Only validate if input exists (optional fields may be empty)
+        if (isset($userInputs[$inputName])) {
+            $validationError = $this->validateInputValue(
+                $definedInput, 
+                $userInputs[$inputName]
+            );
+            
+            if ($validationError) {
+                $errors[] = $validationError;
+            } else {
+                $validatedInputs[$inputName] = $userInputs[$inputName];
+            }
+        } elseif (isset($definedInput['default'])) {
+            // Use default value if available
+            $validatedInputs[$inputName] = $definedInput['default'];
+        }
+    }
+
+    return [
+        'valid' => empty($errors),
+        'errors' => $errors,
+        'validated_inputs' => $validatedInputs
+    ];
+}
+
+/**
+ * Validate a single input value against its definition
+ */
+protected function validateInputValue($definedInput, $value)
+{
+    $inputName = $definedInput['name'] ?? 'unknown';
+    $type = $definedInput['type'] ?? 'text';
+
+    switch ($type) {
+        case 'number':
+            if (!is_numeric($value)) {
+                return "Input {$inputName} must be a number";
+            }
+            if (isset($definedInput['min']) && $value < $definedInput['min']) {
+                return "Input {$inputName} must be at least {$definedInput['min']}";
+            }
+            if (isset($definedInput['max']) && $value > $definedInput['max']) {
+                return "Input {$inputName} must be at most {$definedInput['max']}";
+            }
+            break;
+            
+        case 'select':
+            $options = $definedInput['options'] ?? [];
+            if (!in_array($value, $options)) {
+                return "Input {$inputName} must be one of: " . implode(', ', $options);
+            }
+            break;
+            
+        case 'array':
+            if (!is_array($value)) {
+                return "Input {$inputName} must be an array";
+            }
+            break;
+            
+        case 'time':
+            if (!preg_match('/^\d{1,2}:\d{2}(?::\d{2})?(?:\s?[AP]M)?$/i', $value)) {
+                return "Input {$inputName} must be a valid time format";
+            }
+            break;
+            
+        // Add more type validations as needed
+    }
+
+    return null; // No error
 }
 
 }

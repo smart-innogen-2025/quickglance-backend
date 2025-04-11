@@ -22,7 +22,9 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('icon');
-            // $table->jsonb('form');
+            $table->string('gradient_start')->nullable();
+            $table->string('gradient_end')->nullable();
+            $table->jsonb('inputs')->nullable();
             $table->timestamps();
 
             $table->index(['name', 'created_at']);
