@@ -14,100 +14,37 @@
 {
     "actions": [
         {
-            "id": 1,
-            "category_id": 1,
+            "id": "9ea3e8b8-2df3-493f-8edd-18f6eb2de8e6",
+            "categoryId": "9ea3e8b8-2cf7-4a9d-bc4e-18405615c0f9",
             "name": "Call Number",
-            "icon": "test/test-icon.svg",
-            "created_at": "2025-03-21T01:51:14.000000Z",
-            "updated_at": "2025-03-21T01:51:14.000000Z"
+            "icon": "phone.fill",
+            "gradientStart": "#B874E3",
+            "gradientEnd": "#65407D",
+            "inputs": "[{\"name\": \"phoneNumber\", \"type\": \"text\", \"default\": \"911\", \"required\": true}, {\"name\": \"message\", \"type\": \"text\", \"default\": \"Need immediate assistance!\", \"required\": false}]",
+            "createdAt": "2025-04-11T03:45:10.000000Z",
+            "updatedAt": "2025-04-11T03:45:10.000000Z"
         },
         {
-            "id": 2,
-            "category_id": 1,
-            "name": "Lock Phone",
-            "icon": "test/test-icon.svg",
-            "created_at": "2025-03-21T01:51:14.000000Z",
-            "updated_at": "2025-03-21T01:51:14.000000Z"
-        },
-        {
-            "id": 3,
-            "category_id": 1,
-            "name": "Open App",
-            "icon": "test/test-icon.svg",
-            "created_at": "2025-03-21T01:51:14.000000Z",
-            "updated_at": "2025-03-21T01:51:14.000000Z"
-        },
-        {
-            "id": 4,
-            "category_id": 1,
+            "id": "9ea3e8b8-2ef4-44b1-a58e-60f8af05f473",
+            "categoryId": "9ea3e8b8-2cf7-4a9d-bc4e-18405615c0f9",
             "name": "Send Message",
-            "icon": "test/test-icon.svg",
-            "created_at": "2025-03-21T01:51:14.000000Z",
-            "updated_at": "2025-03-21T01:51:14.000000Z"
+            "icon": "message.fill",
+            "gradientStart": "#0EABEF",
+            "gradientEnd": "#086289",
+            "inputs": "[{\"name\": \"Recipient\"}, {\"name\": \"Message\"}]",
+            "createdAt": "2025-04-11T03:45:10.000000Z",
+            "updatedAt": "2025-04-11T03:45:10.000000Z"
         },
         {
-            "id": 5,
-            "category_id": 1,
-            "name": "Check Reminders",
-            "icon": "test/test-icon.svg",
-            "created_at": "2025-03-21T01:51:14.000000Z",
-            "updated_at": "2025-03-21T01:51:14.000000Z"
-        },
-        {
-            "id": 6,
-            "category_id": 1,
-            "name": "Check Heart Rate",
-            "icon": "test/test-icon.svg",
-            "created_at": "2025-03-21T01:51:14.000000Z",
-            "updated_at": "2025-03-21T01:51:14.000000Z"
-        },
-        {
-            "id": 7,
-            "category_id": 2,
-            "name": "Describe Surroundings",
-            "icon": "test/test-icon.svg",
-            "created_at": "2025-03-21T01:51:14.000000Z",
-            "updated_at": "2025-03-21T01:51:14.000000Z"
-        },
-        {
-            "id": 8,
-            "category_id": 2,
-            "name": "Translate Sign Language",
-            "icon": "test/test-icon.svg",
-            "created_at": "2025-03-21T01:51:14.000000Z",
-            "updated_at": "2025-03-21T01:51:14.000000Z"
-        },
-        {
-            "id": 9,
-            "category_id": 2,
-            "name": "Generate Visual Instructions",
-            "icon": "test/test-icon.svg",
-            "created_at": "2025-03-21T01:51:14.000000Z",
-            "updated_at": "2025-03-21T01:51:14.000000Z"
-        },
-        {
-            "id": 10,
-            "category_id": 2,
-            "name": "Predict Next Behavior",
-            "icon": "test/test-icon.svg",
-            "created_at": "2025-03-21T01:51:14.000000Z",
-            "updated_at": "2025-03-21T01:51:14.000000Z"
-        },
-        {
-            "id": 11,
-            "category_id": 2,
-            "name": "Simplify Complex Text",
-            "icon": "test/test-icon.svg",
-            "created_at": "2025-03-21T01:51:14.000000Z",
-            "updated_at": "2025-03-21T01:51:14.000000Z"
-        },
-        {
-            "id": 12,
-            "category_id": 2,
-            "name": "Assist with Voice",
-            "icon": "test/test-icon.svg",
-            "created_at": "2025-03-21T01:51:14.000000Z",
-            "updated_at": "2025-03-21T01:51:14.000000Z"
+            "id": "9ea3e8b8-2eb1-4f52-ab16-f5c863a459ee",
+            "categoryId": "9ea3e8b8-2cf7-4a9d-bc4e-18405615c0f9",
+            "name": "Open App",
+            "icon": "app.fill",
+            "gradientStart": "#53D769",
+            "gradientEnd": "#2F7A3B",
+            "inputs": "[{\"name\": \"App Name\"}]",
+            "createdAt": "2025-04-11T03:45:10.000000Z",
+            "updatedAt": "2025-04-11T03:45:10.000000Z"
         }
     ]
 }
@@ -126,8 +63,10 @@
 ```typescript
 {
     "name": "test",
-    "categoryId": 1,
-    "icon": "icon/test"
+    "categoryId": "9ea3e8b8-2cf7-4a9d-bc4e-18405615c0f9",
+    "icon": "icon/test",
+    "gradientStart": "#0E6F79",
+    "gradientEnd": "#19CCDF"
 }
 ```
 
