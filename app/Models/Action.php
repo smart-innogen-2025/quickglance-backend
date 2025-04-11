@@ -12,7 +12,14 @@ class Action extends Model
     protected $fillable = [
         'name',
         'icon',
+        'gradient_start',
+        'gradient_end',
         'category_id',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
     ];
 
     public $incrementing = false;
