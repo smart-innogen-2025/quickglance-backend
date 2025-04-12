@@ -16,10 +16,10 @@ class ShortcutController extends Controller
      */
     public function publicShortcuts()
 {
-    $authenticatedUser = Auth::user();
+    $authenticatedUserId = Auth::id();
 
     try {
-        $shortcuts = Shortcut::where('user_id', '!=', $authenticatedUser->id)
+        $shortcuts = Shortcut::where('user_id', '!=', $authenticatedUserId)
             ->with([
                 'userAction' => function ($query) {
                     $query->orderBy('order', 'asc')->with('action:id,name');
@@ -146,10 +146,10 @@ class ShortcutController extends Controller
      */
     public function personalShortcuts()
     {
-        $authenticatedUser = Auth::user();
+        $authenticatedUserId = Auth::id();
 
         try {
-            $shortcuts = Shortcut::where('user_id', $authenticatedUser->id)
+            $shortcuts = Shortcut::where('user_id', $authenticatedUserId)
                 ->with([
                     'userAction' => function ($query) {
                         $query->orderBy('order', 'asc')->with('action:id,name');
