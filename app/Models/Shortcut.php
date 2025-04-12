@@ -40,4 +40,9 @@ class Shortcut extends Model
     {
         return $this->hasMany(UserAction::class);
     }
+
+    public function userAutomationShortcut(): HasMany
+    {
+        return $this->hasMany(UserAutomationShortcut::class);
+    }
 }
