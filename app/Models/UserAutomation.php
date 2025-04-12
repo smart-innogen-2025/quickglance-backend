@@ -51,4 +51,9 @@ class UserAutomation extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function userAutomationShortcut()
+    {
+        return $this->hasMany(UserAutomationShortcut::class);
+    }
 }

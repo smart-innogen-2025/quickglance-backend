@@ -11,23 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_automations', function (Blueprint $table) {
+        Schema::create('user_automation_shortcuts', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('title');
-            $table->string('icon')->nullable();
+            $table->integer('order');
+            
+            $table->uuid('user_automation_id');
+            $table->uuid('shortcut_id');
 
-            $table->uuid('user_id');
-            $table->uuid('automation_condition_id');
+            $table->foreign('user_automation_id')
+                ->references('id')
+                ->on('user_automations')
+                ->onDelete('cascade');
+            $table->foreign('shortcut_id')
+                ->references('id')
+                ->on('shortcuts')
+                ->onDelete('cascade');
 
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
-            $table->foreign('automation_condition_id')
-                ->references('id')
-                ->on('automation_conditions')
-                ->onDelete('cascade');
-    
             $table->timestamps();
         });
     }
@@ -37,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_automations');
+        Schema::dropIfExists('user_automation_shortcuts');
     }
 };
