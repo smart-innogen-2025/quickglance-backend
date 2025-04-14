@@ -33,6 +33,7 @@ class UserSeeder extends Seeder
     $superAdminRole->givePermissionTo([$approveChangesPermission, $submitChangesPermission]);
     $adminRole->givePermissionTo($submitChangesPermission);
 
+
     // Create Super-Admin User
     $superAdmin = User::create([
         'first_name' => 'Super Admin',
@@ -63,23 +64,112 @@ class UserSeeder extends Seeder
         'password' => Hash::make('password123'),
     ]);
     $user1->assignRole($userRole);
-    $this->createShortcut([
-        'user_id' => $user1->id,
-        'name' => 'Call Emergency Services',
-        'icon' => 'cross.case.fill',
-        'description' => 'Quickly dial emergency services for immediate assistance in case of medical emergencies',
-        'gradient_start' => '#FF2D55',
-        'gradient_end' => '#991B33',
-        'actions' => [
-            [
-                'id' => '9ea3e8b8-2df3-493f-8edd-18f6eb2de8e6',
-                'inputs' => [
-                    'phoneNumber' => '911',
-                    'message' => 'Need immediate assistance!',
+    $user1Shortcuts = [
+        [
+            'user_id' => $user1->id,
+            'name' => 'Call Emergency Services',
+            'icon' => 'cross.case.fill',
+            'description' => 'Quickly dial emergency services',
+            'gradient_start' => '#FF2D55',
+            'gradient_end' => '#991B33',
+            'actions' => [
+                [
+                    'id' => '9ea3e8b8-2df3-493f-8edd-18f6eb2de8e6', // Call Number
+                    'inputs' => [
+                        'phoneNumber' => '911',
+                        'message' => 'Need immediate assistance!',
+                    ],
                 ],
             ],
         ],
-    ]);
+        [
+            'user_id' => $user1->id,
+            'name' => 'Morning Medication',
+            'icon' => 'pills.fill',
+            'description' => 'Reminder to take morning prescription',
+            'gradient_start' => '#FF2D55',
+            'gradient_end' => '#991B33',
+            'actions' => [
+                [
+                    'id' => '9ea403bf-878c-4470-b514-af22633a0ff4', // Medication Reminder
+                    'inputs' => [
+                        'medicationName' => 'Blood pressure pills',
+                        'dosage' => '1 tablet',
+                        'time' => '08:00'
+                    ],
+                ],
+            ],
+        ],
+        [
+            'user_id' => $user1->id,
+            'name' => 'Nearest Hospital',
+            'icon' => 'stethoscope',
+            'description' => 'Get directions to nearest medical facility',
+            'gradient_start' => '#5AC8FA',
+            'gradient_end' => '#367896',
+            'actions' => [
+                [
+                    'id' => '9ea403bf-8810-4983-b96d-eb13d493c14d', // Navigate to Location
+                    'inputs' => [
+                        'location' => 'Nearest hospital',
+                        'mode' => 'driving'
+                    ],
+                ],
+            ],
+        ],
+        [
+            'user_id' => $user1->id,
+            'name' => 'Check Vital Signs',
+            'icon' => 'heart.fill',
+            'description' => 'Monitor your heart rate and blood pressure',
+            'gradient_start' => '#FF3B30',
+            'gradient_end' => '#992420',
+            'actions' => [
+                [
+                    'id' => '9ea3e8b8-2f78-4d6a-94e7-daa94dc556b4', // Check Heart Rate
+                    'inputs' => [],
+                ],
+            ],
+        ],
+        [
+            'user_id' => $user1->id,
+            'name' => 'Order Medicine',
+            'icon' => 'bag.fill',
+            'description' => 'Reorder prescription medications',
+            'gradient_start' => '#4CD964',
+            'gradient_end' => '#2E823C',
+            'actions' => [
+                [
+                    'id' => '9ea403bf-888d-4205-85f3-578b7d30e218', // Order Essentials
+                    'inputs' => [
+                        'items' => ['Blood pressure medication', 'Bandages'],
+                        'deliveryAddress' => 'Home address'
+                    ],
+                ],
+            ],
+        ],
+        [
+            'user_id' => $user1->id,
+            'name' => 'Doctor Appointment Ride',
+            'icon' => 'car.fill',
+            'description' => 'Book transportation for medical appointments',
+            'gradient_start' => '#007AFF',
+            'gradient_end' => '#004999',
+            'actions' => [
+                [
+                    'id' => '9ea403bf-884f-4b96-8663-e6d860a0e337', // Call Transportation
+                    'inputs' => [
+                        'pickupLocation' => 'Home',
+                        'destination' => 'Main Street Clinic'
+                    ],
+                ],
+            ],
+        ]
+    ];
+    
+    foreach ($user1Shortcuts as $shortcut) {
+        $this->createShortcut($shortcut);
+    }
 
     $user2 = User::create([
         'first_name' => 'Alex',
