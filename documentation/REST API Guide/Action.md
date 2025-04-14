@@ -67,6 +67,7 @@
     "icon": "icon/test",
     "gradientStart": "#0E6F79",
     "gradientEnd": "#19CCDF"
+    "inputs": "{\"key\": \"test\", \"label\": \"Test\", \"type\": \"text\", \"default\": \"Test Text\", \"require\": \"false\", }"
 }
 ```
 
