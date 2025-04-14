@@ -25,13 +25,15 @@ class CategoryActionSeeder extends Seeder
                         'gradientEnd' => '#65407D',
                         'inputs' => [
                             [
-                                'name' => 'phoneNumber',
+                                'key' => 'phoneNumber',
+                                'label' => 'Phone Number',
                                 'type' => 'text',
                                 'default' => '911',
                                 'required' => true
                             ],
                             [
-                                'name' => 'message',
+                                'key' => 'message',
+                                'label' => 'Message',
                                 'type' => 'text',
                                 'default' => 'Need immediate assistance!',
                                 'required' => false
@@ -45,8 +47,16 @@ class CategoryActionSeeder extends Seeder
                         'gradientStart' => '#0EABEF',
                         'gradientEnd' => '#086289',
                         'inputs' => [
-                            ['name' => 'Recipient'],
-                            ['name' => 'Message']
+                            [
+                                'key' => 'recipient',
+                                'label' => 'Recipient',
+                                'type' => 'text',
+                            ],
+                            [
+                                'key' => 'message',
+                                'label' => 'Message',
+                                'type' => 'text',
+                            ]
                         ]
                     ],
                     [
@@ -55,7 +65,13 @@ class CategoryActionSeeder extends Seeder
                         'icon' => 'app.fill',
                         'gradientStart' => '#53D769',
                         'gradientEnd' => '#2F7A3B',
-                        'inputs' => [['name' => 'App Name']]
+                        'inputs' => [
+                            [
+                                'key' => 'appName',
+                                'label' => 'App Name',
+                                'type' => 'text',
+                            ]
+                        ]
                     ],
                     [
                         // 'id' => 'd4',
@@ -64,7 +80,8 @@ class CategoryActionSeeder extends Seeder
                         'gradientStart' => '#FFCC00',
                         'gradientEnd' => '#997A00',
                         'inputs' => [[
-                            'name' => 'Brightness Level',
+                            'key' => 'brightnessLevel',
+                            'label' => 'Brightness Level',
                             'type' => 'slider',
                             'min' => 0,
                             'max' => 100,
@@ -73,12 +90,14 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         // 'id' => 'd5',
+                        'key' => 'toggleFlashlight',
                         'name' => 'Copy to Clipboard',
                         'icon' => 'doc.on.doc',
                         'gradientStart' => '#FF3B30',
                         'gradientEnd' => '#992420',
                         'inputs' => [[
-                            'name' => 'Text',
+                            'key' => 'text',
+                            'label' => 'Text',
                             'type' => 'text',
                             'default' => ''
                         ]]
@@ -99,7 +118,8 @@ class CategoryActionSeeder extends Seeder
                         'gradientStart' => '#FFCC00',
                         'gradientEnd' => '#997A00',
                         'inputs' => [[
-                            'name' => 'Time Range',
+                            'key' => 'timeRange',
+                            'label' => 'Time Range',
                             'type' => 'select',
                             'options' => ['Today', 'This Week', 'All']
                         ]]
@@ -112,19 +132,22 @@ class CategoryActionSeeder extends Seeder
                         'gradientEnd' => '#991B33',
                         'inputs' => [
                             [
-                                'name' => 'medicationName',
+                                'key' => 'medicationName',
+                                'label' => 'Medication Name',
                                 'type' => 'text',
                                 'default' => '',
                                 'required' => true
                             ],
                             [
-                                'name' => 'dosage',
+                                'key' => 'dosage',
+                                'label' => 'Dosage',
                                 'type' => 'text',
                                 'default' => '',
                                 'required' => true
                             ],
                             [
-                                'name' => 'time',
+                                'key' => 'time',
+                                'label' => 'Time',
                                 'type' => 'time',
                                 'default' => '08:00',
                                 'required' => true
@@ -147,13 +170,15 @@ class CategoryActionSeeder extends Seeder
                         'icon' => 'test/test-icon.svg',
                         'inputs' => [
                             [
-                                'name' => 'location',
+                                'key' => 'location',
+                                'label' => 'Location',
                                 'type' => 'text',
                                 'default' => 'Nearest doctor',
                                 'required' => true
                             ],
                             [
-                                'name' => 'mode',
+                                'key' => 'mode',
+                                'label' => 'Mode',
                                 'type' => 'select',
                                 'options' => ['driving', 'walking', 'transit'],
                                 'default' => 'driving',
@@ -169,13 +194,15 @@ class CategoryActionSeeder extends Seeder
                         'gradientEnd' => '#004999',
                         'inputs' => [
                             [
-                                'name' => 'pickupLocation',
+                                'key' => 'pickupLocation',
+                                'label' => 'Pickup Location',
                                 'type' => 'text',
                                 'default' => 'Current location',
                                 'required' => true
                             ],
                             [
-                                'name' => 'destination',
+                                'key' => 'destination',
+                                'label' => 'Destination',
                                 'type' => 'text',
                                 'default' => '',
                                 'required' => true
@@ -190,13 +217,15 @@ class CategoryActionSeeder extends Seeder
                         'gradientEnd' => '#2E823C',
                         'inputs' => [
                             [
-                                'name' => 'items',
+                                'key' => 'items',
+                                'label' => 'Items',
                                 'type' => 'array',
                                 'default' => [],
                                 'required' => true
                             ],
                             [
-                                'name' => 'deliveryAddress',
+                                'key' => 'deliveryAddress',
+                                'label' => 'Delivery Address',
                                 'type' => 'text',
                                 'default' => '',
                                 'required' => true
@@ -248,7 +277,8 @@ class CategoryActionSeeder extends Seeder
                         'gradientStart' => '#AF52DE',
                         'gradientEnd' => '#683286',
                         'inputs' => [[
-                            'name' => 'Sound File',
+                            'key' => 'soundFile',
+                            'label' => 'Sound File',
                             'type' => 'file',
                             'fileTypes' => ['mp3', 'wav']
                         ]]
@@ -268,7 +298,8 @@ class CategoryActionSeeder extends Seeder
                         'gradientStart' => '#FF2D55',
                         'gradientEnd' => '#991B33',
                         'inputs' => [[
-                            'name' => 'Duration (seconds)',
+                            'key' => 'duration',
+                            'label' => 'Duration (seconds)',
                             'type' => 'number',
                             'default' => 10
                         ]]
@@ -280,7 +311,8 @@ class CategoryActionSeeder extends Seeder
                         'gradientStart' => '#FF9500',
                         'gradientEnd' => '#995900',
                         'inputs' => [[
-                            'name' => 'Volume Level',
+                            'key' => 'volumeLevel',
+                            'label' => 'Volume Level',
                             'type' => 'slider',
                             'min' => 0,
                             'max' => 100,
@@ -308,7 +340,13 @@ class CategoryActionSeeder extends Seeder
                         'icon' => 'map.fill',
                         'gradientStart' => '#FF3B30',
                         'gradientEnd' => '#992420',
-                        'inputs' => [['name' => 'Location']]
+                        'inputs' => [
+                            [
+                                'key' => 'location',
+                                'label' => 'Location',
+                                'type' => 'text',
+                            ]
+                        ]
                     ],
                     [
                         // 'id' => 'l3',
@@ -317,8 +355,16 @@ class CategoryActionSeeder extends Seeder
                         'gradientStart' => '#5AC8FA',
                         'gradientEnd' => '#367896',
                         'inputs' => [
-                            ['name' => 'Start Location'],
-                            ['name' => 'End Location']
+                            [
+                                'key' => 'startLocation',
+                                'label' => 'Start Location',
+                                'type' => 'text',
+                            ],
+                            [
+                                'key' => 'endLocation',
+                                'label' => 'End Location',
+                                'type' => 'text',
+                            ]
                         ]
                     ],
                     [
@@ -328,7 +374,8 @@ class CategoryActionSeeder extends Seeder
                         'gradientStart' => '#007AFF',
                         'gradientEnd' => '#004999',
                         'inputs' => [[
-                            'name' => 'Location',
+                            'key' => 'location',
+                            'label' => 'Location',
                             'default' => 'Current'
                         ]]
                     ]
@@ -353,7 +400,13 @@ class CategoryActionSeeder extends Seeder
                         'icon' => 'clipboard.fill',
                         'gradientStart' => '#FF9500',
                         'gradientEnd' => '#995900',
-                        'inputs' => [['name' => 'Text']]
+                        'inputs' => [
+                            [
+                                'key' => 'text',
+                                'label' => 'Text',
+                                'type' => 'text',
+                            ]
+                        ]
                     ],
                     [
                         // 'id' => 'da3',
@@ -369,7 +422,13 @@ class CategoryActionSeeder extends Seeder
                         'icon' => 'qrcode',
                         'gradientStart' => '#5856D6',
                         'gradientEnd' => '#353480',
-                        'inputs' => [['name' => 'Content']]
+                        'inputs' => [
+                            [
+                                'key' => 'content',
+                                'label' => 'Content',
+                                'type' => 'text',
+                            ]
+                        ]
                     ]
                 ]
             ],
@@ -385,7 +444,8 @@ class CategoryActionSeeder extends Seeder
                         'gradientStart' => '#32D74B',
                         'gradientEnd' => '#1E8A2D',
                         'inputs' => [[
-                            'name' => 'Detail Level',
+                            'key' => 'detailLevel',
+                            'label' => 'Detail Level',
                             'type' => 'select',
                             'options' => ['Basic', 'Detailed']
                         ]]
@@ -397,7 +457,8 @@ class CategoryActionSeeder extends Seeder
                         'gradientStart' => '#BF5AF2',
                         'gradientEnd' => '#733291',
                         'inputs' => [[
-                            'name' => 'Video Input',
+                            'key' => 'videoInput',
+                            'label' => 'Video Input',
                             'type' => 'file',
                             'fileTypes' => ['mp4', 'mov']
                         ]]
@@ -409,7 +470,12 @@ class CategoryActionSeeder extends Seeder
                         'gradientStart' => '#0A84FF',
                         'gradientEnd' => '#064F99',
                         'inputs' => [
-                            ['name' => 'Task Description', 'type' => 'text', 'multiline' => true]
+                            [
+                                'key' => 'taskDescription',
+                                'label' => 'Task Description',
+                                'type' => 'text', 
+                                'multiline' => true
+                            ]
                         ]
                     ],
                     [
@@ -419,7 +485,8 @@ class CategoryActionSeeder extends Seeder
                         'gradientStart' => '#FF9F0A',
                         'gradientEnd' => '#995F06',
                         'inputs' => [[
-                            'name' => 'Context',
+                            'key' => 'context',
+                            'label' => 'Context',
                             'type' => 'text',
                             'multiline' => true
                         ]]
@@ -431,7 +498,8 @@ class CategoryActionSeeder extends Seeder
                         'gradientStart' => '#30B0C7', 
                         'gradientEnd' => '#1D6B77',
                         'inputs' => [[
-                            'name' => 'Text Input',
+                            'key' => 'textInput',
+                            'label' => 'Text Input',
                             'type' => 'text',
                             'multiline' => true
                         ]]
@@ -443,7 +511,8 @@ class CategoryActionSeeder extends Seeder
                         'gradientStart' => '#FF9500', 
                         'gradientEnd' => '#995900',
                         'inputs' => [[
-                            'name' => 'Voice Command',
+                            'key' => 'voiceCommand',
+                            'label' => 'Voice Command',
                             'type' => 'audio',
                             'fileTypes' => ['wav', 'm4a']
                         ]]
@@ -456,13 +525,15 @@ class CategoryActionSeeder extends Seeder
                         'gradientEnd' => '#AF52DE',
                         'inputs' => [
                             [
-                                'name' => 'recipient',
+                                'key' => 'recipient',
+                                'label' => 'Recipient',
                                 'type' => 'text',
                                 'default' => '',
                                 'required' => true
                             ],
                             [
-                                'name' => 'message',
+                                'key' => 'message',
+                                'label' => 'Message',
                                 'type' => 'text',
                                 'default' => 'Hello, how are you?',
                                 'required' => false,
@@ -478,12 +549,14 @@ class CategoryActionSeeder extends Seeder
                         'gradientEnd' => '#1E8A2D',
                         'inputs' => [
                             [
-                                'name' => 'Prompt',
+                                'key' => 'prompt',
+                                'label' => 'Prompt',
                                 'type' => 'text',
                                 'multiline' => true
                             ],
                             [
-                                'name' => 'Length',
+                                'key' => 'length',
+                                'label' => 'Length',
                                 'type' => 'select',
                                 'options' => ['Short', 'Medium', 'Long']
                             ]
@@ -497,12 +570,14 @@ class CategoryActionSeeder extends Seeder
                         'gradientEnd' => '#064F99',
                         'inputs' => [
                             [
-                                'name' => 'Prompt',
+                                'key' => 'prompt',
+                                'label' => 'Prompt',
                                 'type' => 'text',
                                 'multiline' => true
                             ],
                             [
-                                'name' => 'Length',
+                                'key' => 'length',
+                                'label' => 'Length',
                                 'type' => 'select',
                                 'options' => ['Short', 'Medium', 'Long']
                             ]
@@ -522,7 +597,13 @@ class CategoryActionSeeder extends Seeder
                         'icon' => 'safari',
                         'gradientStart' => '#FF2D55',
                         'gradientEnd' => '#991B33',
-                        'inputs' => [['name' => 'URL']]
+                        'inputs' => [
+                            [
+                                'key' => 'url',
+                                'label' => 'URL',
+                                'type' => 'text',
+                            ]
+                        ]
                     ],
                     [
                         // 'id' => 'w1',
@@ -530,7 +611,13 @@ class CategoryActionSeeder extends Seeder
                         'icon' => 'arrow.down.doc',
                         'gradientStart' => '#007AFF',
                         'gradientEnd' => '#004999',
-                        'inputs' => [['name' => 'URL']]
+                        'inputs' => [
+                            [
+                                'key' => 'url',
+                                'label' => 'URL',
+                                'type' => 'text',
+                            ]
+                        ]
                     ],
                     [
                         // 'id' => 'w1',
@@ -538,9 +625,15 @@ class CategoryActionSeeder extends Seeder
                         'icon' => 'square.and.arrow.up',
                         'gradientStart' => '#5AC8FA',
                         'gradientEnd' => '#367896',
-                        'inputs' => [['name' => 'URL'], 
+                        'inputs' => [
                             [
-                                'name' => 'App', 
+                                'key' => 'url',
+                                'label' => 'URL',
+                                'type' => 'text',
+                            ], 
+                            [
+                                'key' => 'app',
+                                'label' => 'App',
                                 'type' => 'select', 
                                 'options' => 
                                     [
@@ -560,20 +653,27 @@ class CategoryActionSeeder extends Seeder
                         'gradientStart' => '#FF9500',
                         'gradientEnd' => '#995900',
                         'inputs' => [
-                            ['name' => 'URL'],
+                            [
+                                'key' => 'url',
+                                'label' => 'URL',
+                                'type' => 'text',
+                            ],
                             [
                                 [
-                                    'name' => 'Platform',
+                                    'key' => 'platform',
+                                    'label' => 'Platform',
                                     'type' => 'select',
                                     'options' => ['Twitter', 'Facebook', 'Instagram'],
                                 ],
                                 [
-                                    'name' => 'Content',
+                                    'key' => 'content',
+                                    'label' => 'Content',
                                     'type' => 'text',
                                     'multiline' => true,
                                 ],
                                 [
-                                    'name' => 'Media (Optional)',
+                                    'key' => 'media',
+                                    'label' => 'Media (Optional)',
                                     'type' => 'file',
                                     'fileTypes' => ['jpg', 'png', 'mp4'],
                                     'required' => false,

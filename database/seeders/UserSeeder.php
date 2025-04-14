@@ -274,31 +274,44 @@ protected function validateActionInputs($actionInputDefinition, $userInputs)
     $userInputs = is_string($userInputs) ? json_decode($userInputs, true) : ($userInputs ?? []);
 
     foreach ($definedInputs as $definedInput) {
-        $inputName = $definedInput['name'] ?? null;
+        $inputKey = $definedInput['key'] ?? null;
+        $inputLabel = $definedInput['label'] ?? null;
         $isRequired = $definedInput['required'] ?? true;
         
         // Check for missing required inputs
-        if ($isRequired && !isset($userInputs[$inputName])) {
-            $errors[] = "Missing required input: {$inputName}";
-            continue;
+        if ($isRequired) {
+            if (!isset($userInputs[$inputKey]) && !isset($userInputs[$inputLabel])) {
+                $errors[] = "Missing required input: {$inputLabel}";
+                continue;
+            }
         }
 
         // Only validate if input exists (optional fields may be empty)
-        if (isset($userInputs[$inputName])) {
-            $validationError = $this->validateInputValue(
-                $definedInput, 
-                $userInputs[$inputName]
-            );
-            
+        if (isset($userInputs[$inputKey])) {
+            $value = $userInputs[$inputKey];
+            $validationError = $this->validateInputValue($definedInput, $value);
+
             if ($validationError) {
                 $errors[] = $validationError;
             } else {
-                $validatedInputs[$inputName] = $userInputs[$inputName];
+                // Store validated input
+                $validatedInputs[$inputKey] = $value;
             }
-        } elseif (isset($definedInput['default'])) {
+        } else if (isset($userInputs[$inputLabel])) {
+            $value = $userInputs[$inputLabel];
+            $validationError = $this->validateInputValue($definedInput, $value);
+
+            if ($validationError) {
+                $errors[] = $validationError;
+            } else {
+                // Store validated input
+                $validatedInputs[$inputLabel] = $value;
+            }
+        } else if(isset($defineInput['default'])) {
             // Use default value if available
-            $validatedInputs[$inputName] = $definedInput['default'];
+            $validatedInputs[$inputLabel] = $definedInput['default'];
         }
+
     }
 
     return [
@@ -313,38 +326,38 @@ protected function validateActionInputs($actionInputDefinition, $userInputs)
  */
 protected function validateInputValue($definedInput, $value)
 {
-    $inputName = $definedInput['name'] ?? 'unknown';
+    $inputLabel = $definedInput['label'] ?? 'unknown';
     $type = $definedInput['type'] ?? 'text';
 
     switch ($type) {
         case 'number':
             if (!is_numeric($value)) {
-                return "Input {$inputName} must be a number";
+                return "Input {$inputLabel} must be a number";
             }
             if (isset($definedInput['min']) && $value < $definedInput['min']) {
-                return "Input {$inputName} must be at least {$definedInput['min']}";
+                return "Input {$inputLabel} must be at least {$definedInput['min']}";
             }
             if (isset($definedInput['max']) && $value > $definedInput['max']) {
-                return "Input {$inputName} must be at most {$definedInput['max']}";
+                return "Input {$inputLabel} must be at most {$definedInput['max']}";
             }
             break;
             
         case 'select':
             $options = $definedInput['options'] ?? [];
             if (!in_array($value, $options)) {
-                return "Input {$inputName} must be one of: " . implode(', ', $options);
+                return "Input {$inputLabel} must be one of: " . implode(', ', $options);
             }
             break;
             
         case 'array':
             if (!is_array($value)) {
-                return "Input {$inputName} must be an array";
+                return "Input {$inputLabel} must be an array";
             }
             break;
             
         case 'time':
             if (!preg_match('/^\d{1,2}:\d{2}(?::\d{2})?(?:\s?[AP]M)?$/i', $value)) {
-                return "Input {$inputName} must be a valid time format";
+                return "Input {$inputLabel} must be a valid time format";
             }
             break;
             
