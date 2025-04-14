@@ -109,23 +109,33 @@ class ShortcutController extends Controller
                 'gradient_end' => $request->gradientEnd,
             ]);
 
-            foreach($request->actions as $action) {
+            foreach($request['actions'] as $action) {
                 $actionData = Action::find($action['id']);
-
+    
                 if (!$actionData) {
-                    return response()->json([
-                        'message' => 'Action not found.',
-                    ], 404);
+                    info("Action not found: " . $action['id']);
+                    continue;
                 }
-
+    
+                // Validate inputs against action definition
+                $validationResult = validateActionInputs(
+                    $actionData->inputs, 
+                    $action['inputs'] ?? []
+                );
+    
+                if (!$validationResult['valid']) {
+                    info("Invalid inputs for action {$actionData->id}: " . json_encode($validationResult['errors']));
+                    continue;
+                }
+    
                 $maxOrder = UserAction::where('shortcut_id', $shortcut->id)->max('order') ?? 0;
-
-                $action = UserAction::create([
+    
+                UserAction::create([
                     'order' => $maxOrder + 1,
                     'user_id' => $userId,
                     'action_id' => $actionData->id,
-                    'shortcut_id'=> $shortcut->id,
-                    'inputs' => $action['inputs']
+                    'shortcut_id' => $shortcut->id,
+                    'inputs' => $validationResult['validated_inputs'],
                 ]);
             }
 
