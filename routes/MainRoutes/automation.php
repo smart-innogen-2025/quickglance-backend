@@ -10,4 +10,7 @@ Route::prefix('automation')->middleware('auth:sanctum')->group(function () {
     Route::get('/', [AutomationController::class, 'index']);
     Route::get('/create', [AutomationController::class, 'create']);
     Route::post('/', [AutomationController::class, 'store']);
+    Route::get('/edit/{id}', [AutomationController::class, 'edit']);
+    Route::put('/{id}', [AutomationController::class, 'update']);
+    Route::delete('/{id}', [AutomationController::class, 'destroy']);
 });

@@ -154,11 +154,79 @@ class AutomationController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $userId = Auth::id();
+
+        try {
+            $automation = UserAutomation::where('user_id', operator: $userId)
+                ->where('id', operator: $id)
+                ->with([
+                    'userAutomationShortcut' => function ($query) {
+                        $query->orderBy('order', 'asc')->with('shortcut:id,name,icon,gradient_start,gradient_end');
+                    },
+                    'automationCondition:id,name,icon',
+                ])
+                ->firstOrFail();
+
+            return response()->json($automation);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error fetching automation',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $userId = Auth::id();
+
+        try {
+            $request->validate([
+                'title' => 'required|string|max:255',
+                'icon' => 'nullable|string|max:255',
+                'userShortcuts' => 'array',
+                'userShortcuts.*.id' => 'required|uuid',
+                'userShortcuts.*.order' => 'required|integer',
+            ]);
+
+            $userAutomation = UserAutomation::where('user_id', operator: $userId)
+                ->where('id', operator: $id)
+                ->firstOrFail();
+
+            $userAutomation->update([
+                'title' => $request->title,
+                'icon' => $request->icon,
+            ]);
+
+            // Update shortcuts
+            foreach($request->shortcuts as $shortcut) {
+                UserAutomationShortcut::updateOrCreate(
+                    [
+                        'user_automation_id' => $userAutomation->id,
+                        'shortcut_id' => $shortcut['id'],
+                    ],
+                    [
+                        'order' => $shortcut['order'],
+                    ]
+                );
+            }
+
+            return response()->json([
+                'message' => 'Automation updated successfully',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error updating automation',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     /**
@@ -166,6 +234,23 @@ class AutomationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $userId = Auth::id();
+
+        try {
+            $userAutomation = UserAutomation::where('user_id', operator: $userId)
+                ->where('id', operator: $id)
+                ->firstOrFail();
+
+            $userAutomation->delete();
+
+            return response()->json([
+                'message' => 'Automation deleted successfully',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error deleting automation',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 }

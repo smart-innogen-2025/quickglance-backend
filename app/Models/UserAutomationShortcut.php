@@ -42,9 +42,4 @@ class UserAutomationShortcut extends Model
     {
         return $this->belongsTo(UserAutomation::class);
     }
-
-    public function userAutomationShortcut()
-    {
-        return $this->belongsTo(UserAutomationShortcut::class);
-    }
 }
