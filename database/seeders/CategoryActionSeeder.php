@@ -757,7 +757,7 @@ class CategoryActionSeeder extends Seeder
                                     'key' => 'program_type',
                                     'label' => 'Program Type',
                                     'type' => 'select',
-                                    'options' => ['4Ps', 'Social Pension', 'Food Aid', 'Crisis Assistance'],
+                                    'options' => ['4Ps', 'Social Pension', 'Food Aid', 'Crisis Assistance', 'Employment Assistance'],
                                     'required' => true
                                 ],
                                 [
@@ -787,7 +787,7 @@ class CategoryActionSeeder extends Seeder
                                     'key' => 'service_type',
                                     'label' => 'Service Type',
                                     'type' => 'select',
-                                    'options' => ['Free WiFi', 'Digital Training', 'E-Government', 'Tech Support'],
+                                    'options' => ['Free WiFi', 'Digital Training', 'E-Government', 'Tech Support', 'Drug Price Check'],
                                     'required' => true
                                 ],
                                 [

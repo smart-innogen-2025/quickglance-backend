@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('shortcuts', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id')->nullable();
-            $table->uuid('service_id');
+            $table->uuid('service_id')->nullable();
 
             $table->foreign('user_id')
                 ->references('id')

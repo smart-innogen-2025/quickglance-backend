@@ -30,7 +30,7 @@ class ServicesSeeder extends Seeder
                         'gradient_end' => '#FF8E8E',
                         'actions' => [
                             [
-                                'action_id' => '9eadbc35-412b-41a2-b2ff-7a53316a5119',
+                                'id' => '9eadbc35-412b-41a2-b2ff-7a53316a5119',
                                 'inputs' => [
                                     'full_name' => 'Juan Dela Cruz',
                                     'disability_type' => 'Physical',
@@ -47,7 +47,7 @@ class ServicesSeeder extends Seeder
                         'gradient_end' => '#45B7AC',
                         'actions' => [
                             [
-                                'action_id' => '9eadbc35-412b-41a2-b2ff-7a53316a5119',
+                                'id' => '9eadbc35-412b-41a2-b2ff-7a53316a5119',
                                 'inputs' => [
                                     'full_name' => 'Maria Santos',
                                     'disability_type' => 'Visual',
@@ -64,7 +64,7 @@ class ServicesSeeder extends Seeder
                         'gradient_end' => '#7AB59B',
                         'actions' => [
                             [
-                                'action_id' => '9eadbc35-42f2-4d7b-accd-02dadc242f4a',
+                                'id' => '9eadbc35-42f2-4d7b-accd-02dadc242f4a',
                                 'inputs' => [
                                     'device_type' => 'Wheelchair',
                                     'medical_certificate' => true
@@ -80,7 +80,7 @@ class ServicesSeeder extends Seeder
                         'gradient_end' => '#FF8787',
                         'actions' => [
                             [
-                                'action_id' => '9eadbc35-420e-4bc5-ae05-86f182e10eca',
+                                'id' => '9eadbc35-420e-4bc5-ae05-86f182e10eca',
                                 'inputs' => [
                                     'program_type' => 'Employment Assistance',
                                     'family_members' => 3,
@@ -105,7 +105,7 @@ class ServicesSeeder extends Seeder
                         'gradient_end' => '#574FCC',
                         'actions' => [
                             [
-                                'action_id' => '9eadbc35-419e-484e-ac77-aabff6734b60',
+                                'id' => '9eadbc35-419e-484e-ac77-aabff6734b60',
                                 'inputs' => [
                                     'vaccine_type' => 'COVID-19',
                                     'preferred_date' => '2023-12-15',
@@ -122,7 +122,7 @@ class ServicesSeeder extends Seeder
                         'gradient_end' => '#FF8E8E',
                         'actions' => [
                             [
-                                'action_id' => '9eadbc35-435f-4b72-b52f-2abc5ee1c838',
+                                'id' => '9eadbc35-435f-4b72-b52f-2abc5ee1c838',
                                 'inputs' => [
                                     'assistance_type' => 'Hospital Bill',
                                     'amount_needed' => 15000
@@ -138,7 +138,7 @@ class ServicesSeeder extends Seeder
                         'gradient_end' => '#45B7AC',
                         'actions' => [
                             [
-                                'action_id' => '9eadbc35-43ca-403b-8ff6-75d4f6967017',
+                                'id' => '9eadbc35-43ca-403b-8ff6-75d4f6967017',
                                 'inputs' => [
                                     'facility_type' => 'Hospital',
                                     'current_location' => 'Quezon City'
@@ -154,7 +154,7 @@ class ServicesSeeder extends Seeder
                         'gradient_end' => '#FFB302',
                         'actions' => [
                             [
-                                'action_id' => '9eadbc35-4282-4b36-9380-1770d09a6b7e',
+                                'id' => '9eadbc35-4282-4b36-9380-1770d09a6b7e',
                                 'inputs' => [
                                     'service_type' => 'Drug Price Check',
                                     'location' => 'Manila'
@@ -178,7 +178,7 @@ class ServicesSeeder extends Seeder
                         'gradient_end' => '#574FCC',
                         'actions' => [
                             [
-                                'action_id' => '9eadbc35-420e-4bc5-ae05-86f182e10eca',
+                                'id' => '9eadbc35-420e-4bc5-ae05-86f182e10eca',
                                 'inputs' => [
                                     'program_type' => '4Ps',
                                     'family_members' => 4,
@@ -195,7 +195,7 @@ class ServicesSeeder extends Seeder
                         'gradient_end' => '#FFB302',
                         'actions' => [
                             [
-                                'action_id' => '9eadbc35-420e-4bc5-ae05-86f182e10eca',
+                                'id' => '9eadbc35-420e-4bc5-ae05-86f182e10eca',
                                 'inputs' => [
                                     'program_type' => 'Food Aid',
                                     'family_members' => 3,
@@ -212,7 +212,7 @@ class ServicesSeeder extends Seeder
                         'gradient_end' => '#FF8E8E',
                         'actions' => [
                             [
-                                'action_id' => '9eadbc35-4439-4465-921c-3ed2effa4607',
+                                'id' => '9eadbc35-4439-4465-921c-3ed2effa4607',
                                 'inputs' => [
                                     'crisis_type' => 'Financial',
                                     'urgency_level' => 'High'
@@ -236,7 +236,7 @@ class ServicesSeeder extends Seeder
                         'gradient_end' => '#574FCC',
                         'actions' => [
                             [
-                                'action_id' => '9eadbc35-4282-4b36-9380-1770d09a6b7e',
+                                'id' => '9eadbc35-4282-4b36-9380-1770d09a6b7e',
                                 'inputs' => [
                                     'service_type' => 'Free WiFi',
                                     'location' => 'Barangay Hall'
@@ -252,7 +252,7 @@ class ServicesSeeder extends Seeder
                         'gradient_end' => '#45B7AC',
                         'actions' => [
                             [
-                                'action_id' => '9eadbc35-4282-4b36-9380-1770d09a6b7e',
+                                'id' => '9eadbc35-4282-4b36-9380-1770d09a6b7e',
                                 'inputs' => [
                                     'service_type' => 'Digital Training',
                                     'location' => 'Community Center'
@@ -275,46 +275,51 @@ class ServicesSeeder extends Seeder
             ]);
 
             foreach ($serviceData['shortcuts'] as $shortcutData) {
-                $shortcut = Shortcut::create([
-                    'id' => Str::orderedUuid()->toString(),
-                    'user_id' => $serviceUser->id,
-                    'service_id' => $service->id,
-                    'name' => $shortcutData['name'],
-                    'description' => $shortcutData['description'],
-                    'icon' => $shortcutData['icon'],
-                    'gradient_start' => $shortcutData['gradient_start'],
-                    'gradient_end' => $shortcutData['gradient_end'],
-                ]);
-
-                foreach ($shortcutData['actions'] as $actionId) {
-                    $action = Action::find($actionId['action_id']);
-
-                    if (!$action) {
-                        info("Action not found: " . $actionId['action_id']);
-                        continue;
-                    }
-
-                    // Validate inputs against action definition
-                    $validationResult = validateActionInputs(
-                        $action->inputs, 
-                        $actionId['inputs'] ?? []
-                    );
-
-                    if ($validationResult !== true) {
-                        info("Validation failed for action: " . $actionId['action_id']);
-                        continue;
-                    }
-                    
-                    $order = UserAction::where('shortcut_id', $shortcut->id)->max('order') ?? 0;
-
-                    // Create the user action
-                    UserAction::create([
-                        'order' => $order + 1,
+                try {
+                    $shortcut = Shortcut::create([
                         'user_id' => $serviceUser->id,
-                        'shortcut_id' => $shortcut->id,
-                        'action_id' => $action->id,
-                        'inputs' => json_encode($actionId['inputs']),
+                        'service_id' => $service->id,
+                        'name' => $shortcutData['name'],
+                        'icon' => $shortcutData['icon'],
+                        'description' => $shortcutData['description'],
+                        'gradient_start' => $shortcutData['gradient_start'],
+                        'gradient_end' => $shortcutData['gradient_end'],
                     ]);
+            
+                    foreach($shortcutData['actions'] as $action) {
+                        $actionData = Action::find($action['id']);
+            
+                        if (!$actionData) {
+                            info("Action not found: " . $action['id']);
+                            continue;
+                        }
+            
+                        // Validate inputs against action definition
+                        $validationResult = validateActionInputs(
+                            $actionData->inputs, 
+                            $action['inputs'] ?? []
+                        );
+            
+                        if (!$validationResult['valid']) {
+                            info("Invalid inputs for action {$actionData->id}: " . json_encode($validationResult['errors']));
+                            continue;
+                        }
+            
+                        $maxOrder = UserAction::where('shortcut_id', $shortcut->id)->max('order') ?? 0;
+            
+                        UserAction::create([
+                            'order' => $maxOrder + 1,
+                            'user_id' => $serviceUser->id,
+                            'action_id' => $actionData->id,
+                            'shortcut_id' => $shortcut->id,
+                            'inputs' => $validationResult['validated_inputs'],
+                        ]);
+                    }
+            
+                    info("Shortcut created for user ID: " . $serviceUser->id);
+                   
+                } catch (\Exception $e) {
+                    info("Error creating shortcut for user IDs: " . $serviceUser->id . " - " . $e->getMessage());
                 }
 
                 // Create the user action for the shortcut
