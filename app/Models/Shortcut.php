@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\{HasMany, BelongsTo};
 
 class Shortcut extends Model
 {
-    protected $fillable = ['user_id', 'name', 'icon', 'description', 'gradient_start', 'gradient_end'];
+    protected $fillable = ['user_id', 'service_id', 'name', 'icon', 'description', 'gradient_start', 'gradient_end'];
 
     protected $hidden = ['created_at', 'updated_at', 'user_id'];
 
@@ -19,6 +19,7 @@ class Shortcut extends Model
     protected $casts = [
         'id' => 'string',
         'user_id' => 'string',
+        'service_id' => 'string',
     ];
 
     protected static function boot()
@@ -44,5 +45,10 @@ class Shortcut extends Model
     public function userAutomationShortcut(): HasMany
     {
         return $this->hasMany(UserAutomationShortcut::class);
+    }
+
+    public function service(): BelongsTo
+    {
+        return $this->belongsTo(Service::class);
     }
 }

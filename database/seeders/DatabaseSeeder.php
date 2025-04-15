@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             CategoryActionSeeder::class,
             AutomationConditionSeeder::class,
             UserSeeder::class,
+            ServicesSeeder::class,
         ]);
     }
 }

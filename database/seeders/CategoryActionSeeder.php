@@ -683,7 +683,212 @@ class CategoryActionSeeder extends Seeder
                     ],
                     
                 ]
-            ]
+                ],
+                [
+                    'id' => '9eadbc35-40c6-4356-989d-5ec15fa9890f',
+                    'name' => 'Government Services',
+                    'image' => 'categories/government.jpg',
+                    'icon' => 'icons/government.svg',
+                    'actions' => [
+                        [
+                            'id' => '9eadbc35-412b-41a2-b2ff-7a53316a5119',
+                            'name' => 'PWD ID Application',
+                            'icon' => 'person.crop.circle.badge.checkmark',
+                            'gradientStart' => '#FF6B6B',
+                            'gradientEnd' => '#FF8E8E',
+                            'inputs' => [
+                                [
+                                    'key' => 'full_name',
+                                    'label' => 'Full Name',
+                                    'type' => 'text',
+                                    'required' => true
+                                ],
+                                [
+                                    'key' => 'disability_type',
+                                    'label' => 'Disability Type',
+                                    'type' => 'select',
+                                    'options' => ['Physical', 'Visual', 'Hearing', 'Intellectual', 'Psychosocial'],
+                                    'required' => true
+                                ],
+                                [
+                                    'key' => 'contact_number',
+                                    'label' => 'Contact Number',
+                                    'type' => 'text',
+                                    'required' => true
+                                ]
+                            ]
+                        ],
+                        [
+                            'id' => '9eadbc35-419e-484e-ac77-aabff6734b60',
+                            'name' => 'Vaccination Scheduling',
+                            'icon' => 'syringe',
+                            'gradientStart' => '#6C63FF',
+                            'gradientEnd' => '#574FCC',
+                            'inputs' => [
+                                [
+                                    'key' => 'vaccine_type',
+                                    'label' => 'Vaccine Type',
+                                    'type' => 'select',
+                                    'options' => ['COVID-19', 'Flu', 'Hepatitis B', 'MMR'],
+                                    'required' => true
+                                ],
+                                [
+                                    'key' => 'preferred_date',
+                                    'label' => 'Preferred Date',
+                                    'type' => 'date',
+                                    'required' => true
+                                ],
+                                [
+                                    'key' => 'health_condition',
+                                    'label' => 'Health Condition',
+                                    'type' => 'text',
+                                    'required' => false
+                                ]
+                            ]
+                        ],
+                        [
+                            'id' => '9eadbc35-420e-4bc5-ae05-86f182e10eca',
+                            'name' => 'Social Program Registration',
+                            'icon' => 'person.3.fill',
+                            'gradientStart' => '#6C63FF',
+                            'gradientEnd' => '#574FCC',
+                            'inputs' => [
+                                [
+                                    'key' => 'program_type',
+                                    'label' => 'Program Type',
+                                    'type' => 'select',
+                                    'options' => ['4Ps', 'Social Pension', 'Food Aid', 'Crisis Assistance'],
+                                    'required' => true
+                                ],
+                                [
+                                    'key' => 'family_members',
+                                    'label' => 'Family Members',
+                                    'type' => 'number',
+                                    'min' => 1,
+                                    'max' => 10,
+                                    'required' => true
+                                ],
+                                [
+                                    'key' => 'monthly_income',
+                                    'label' => 'Monthly Income',
+                                    'type' => 'number',
+                                    'required' => true
+                                ]
+                            ]
+                        ],
+                        [
+                            'id' => '9eadbc35-4282-4b36-9380-1770d09a6b7e',
+                            'name' => 'Digital Service Request',
+                            'icon' => 'wifi',
+                            'gradientStart' => '#6C63FF',
+                            'gradientEnd' => '#574FCC',
+                            'inputs' => [
+                                [
+                                    'key' => 'service_type',
+                                    'label' => 'Service Type',
+                                    'type' => 'select',
+                                    'options' => ['Free WiFi', 'Digital Training', 'E-Government', 'Tech Support'],
+                                    'required' => true
+                                ],
+                                [
+                                    'key' => 'location',
+                                    'label' => 'Location',
+                                    'type' => 'text',
+                                    'required' => true
+                                ]
+                            ]
+                        ],
+                        [
+                            'id' => '9eadbc35-42f2-4d7b-accd-02dadc242f4a',
+                            'name' => 'Assistive Device Application',
+                            'icon' => 'accessibility',
+                            'gradientStart' => '#96CEB4',
+                            'gradientEnd' => '#7AB59B',
+                            'inputs' => [
+                                [
+                                    'key' => 'device_type',
+                                    'label' => 'Device Needed',
+                                    'type' => 'select',
+                                    'options' => ['Wheelchair', 'Hearing Aid', 'Visual Aid', 'Prosthetic'],
+                                    'required' => true
+                                ],
+                                [
+                                    'key' => 'medical_certificate',
+                                    'label' => 'Medical Certificate Required',
+                                    'type' => 'checkbox',
+                                    'required' => true
+                                ]
+                            ]
+                        ],
+                        [
+                            'id' => '9eadbc35-435f-4b72-b52f-2abc5ee1c838',
+                            'name' => 'Medical Assistance Request',
+                            'icon' => 'cross.case.fill',
+                            'gradientStart' => '#FF6B6B',
+                            'gradientEnd' => '#FF8E8E',
+                            'inputs' => [
+                                [
+                                    'key' => 'assistance_type',
+                                    'label' => 'Assistance Type',
+                                    'type' => 'select',
+                                    'options' => ['Financial Aid', 'Medication', 'Hospital Bill', 'Checkup'],
+                                    'required' => true
+                                ],
+                                [
+                                    'key' => 'amount_needed',
+                                    'label' => 'Estimated Amount',
+                                    'type' => 'number',
+                                    'required' => false
+                                ]
+                            ]
+                        ],
+                        [
+                            'id' => '9eadbc35-43ca-403b-8ff6-75d4f6967017',
+                            'name' => 'Health Facility Locator',
+                            'icon' => 'building.2.fill',
+                            'gradientStart' => '#4ECDC4',
+                            'gradientEnd' => '#45B7AC',
+                            'inputs' => [
+                                [
+                                    'key' => 'facility_type',
+                                    'label' => 'Facility Type',
+                                    'type' => 'select',
+                                    'options' => ['Hospital', 'Clinic', 'Health Center', 'Specialist'],
+                                    'required' => true
+                                ],
+                                [
+                                    'key' => 'current_location',
+                                    'label' => 'Current Location',
+                                    'type' => 'text',
+                                    'required' => false
+                                ]
+                            ]
+                        ],
+                        [
+                            'id' => '9eadbc35-4439-4465-921c-3ed2effa4607',
+                            'name' => 'Crisis Assistance',
+                            'icon' => 'exclamationmark.triangle.fill',
+                            'gradientStart' => '#FF6B6B',
+                            'gradientEnd' => '#FF8E8E',
+                            'inputs' => [
+                                [
+                                    'key' => 'crisis_type',
+                                    'label' => 'Crisis Type',
+                                    'type' => 'select',
+                                    'options' => ['Domestic', 'Financial', 'Health', 'Natural Disaster'],
+                                    'required' => true
+                                ],
+                                [
+                                    'key' => 'urgency_level',
+                                    'label' => 'Urgency Level',
+                                    'type' => 'select',
+                                    'options' => ['Low', 'Medium', 'High', 'Emergency'],
+                                    'required' => true
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
         ];
 
         foreach ($categories as $categoryData) {

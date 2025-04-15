@@ -13,11 +13,16 @@ return new class extends Migration
     {
         Schema::create('shortcuts', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id');
+            $table->uuid('user_id')->nullable();
+            $table->uuid('service_id');
 
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
+                ->onDelete('cascade');
+            $table->foreign('service_id')
+                ->references('id')
+                ->on('services')
                 ->onDelete('cascade');
 
             $table->string('name');
@@ -27,7 +32,7 @@ return new class extends Migration
             $table->string('gradient_end');
             $table->timestamps();
 
-            $table->index(['user_id', 'name', 'created_at']);
+            $table->index(['user_id', 'service_id', 'name', 'created_at']);
         });
     }
 

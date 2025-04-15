@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
     $superAdminRole = Role::create(['name' => 'super-admin']);
     $adminRole = Role::create(['name' => 'admin']);
     $userRole = Role::create(['name' => 'user']);
+    $serviceRole = Role::create(['name' => 'service-admin']);
 
     // Create Permissions
     $approveChangesPermission = Permission::create(['name' => 'approve-changes']);
@@ -56,6 +57,14 @@ class UserSeeder extends Seeder
         'password' => Hash::make('developer'),
     ]);
     $admin2->assignRole($adminRole);
+
+    $serviceAdmin = User::create([
+        'first_name' => 'Service Admin',
+        'email' => 'service-admin@example.com',
+        'password' => Hash::make('developer'),
+    ]);
+    $serviceAdmin->assignRole($serviceRole);
+
 
     $user1 = User::create([
         'first_name' => 'Mel Mathew',

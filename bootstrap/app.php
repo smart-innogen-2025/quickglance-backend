@@ -7,6 +7,9 @@ use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\QueryException;
+use Spatie\Permission\Exceptions\UnauthorizedException;
+use Spatie\Permission\Middleware\RoleMiddleware;
+use Spatie\Permission\Middleware\PermissionMiddleware;
 
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -24,6 +27,9 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->alias([
             'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
+
+            'role' => RoleMiddleware::class,
+            'permission' => PermissionMiddleware::class,
         ]);
 
         //
@@ -67,5 +73,15 @@ return Application::configure(basePath: dirname(__DIR__))
                 'code' => 404,
                 'errors' => true,
             ], 404);
+        });
+
+        // Unauthorized Exception Handler
+        $exceptions->renderable(function (UnauthorizedException $e) {
+            return response()->json([
+                'message' => 'You do not have the required role or permission to access this resource.',
+                'results' => [$e->getMessage()],
+                'code' => 403,
+                'errors' => true,
+            ], 403);
         });
     })->create();
