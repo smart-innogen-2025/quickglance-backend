@@ -41,6 +41,7 @@ return new class extends Migration
             // Separate indexes
             $table->index('user_id');
             $table->index('shortcut_id');
+            $table->index('action_id');
         
             // Optional: Index a specific key inside the jsonb form if queried frequently
             // $table->index([DB::raw("(form->>'key')")]);

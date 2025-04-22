@@ -222,12 +222,99 @@ class ShortcutController extends Controller
         }
     }
 
+    public function edit(string $id) {
+        $userId = Auth::id();
+        try{
+            $shortcut = Shortcut::where('user_id', $userId)
+                ->where('id', $id)
+                ->with([
+                    'userAction' => function ($query) {
+                        $query->orderBy('order', 'asc')
+                            ->select('id', 'order', 'action_id', 'inputs', 'shortcut_id');
+                    },
+                    'user:id,first_name,middle_name,last_name',
+                ])
+                ->first();
+
+            $categoryId = Action::where('id', $shortcut->userAction[0]->action_id)
+                                ->with('category:id')
+                                ->first()
+                                ->category
+                                ->id;
+
+            $categoryActions = Action::where('category_id', $categoryId)->get();
+
+            $shortcutArray = $shortcut->toArray();
+            $shortcutArray['categoryActions'] = $categoryActions;
+
+            return response()->json([
+                'shortcut' => convertKeysToCamelCase($shortcutArray)
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred while fetching the shortcut.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $userId = Auth::id();
+        try {
+            UserAction::where('user_id', $userId)
+                ->where('shortcut_id', $id)
+                ->delete();
+
+                $request->validate([
+                    'actions' => 'required|array',
+                    'actions.*.id' => 'required|string',
+                    'actions.*.inputs' => 'required|string'
+                ]);
+
+                foreach($request['actions'] as $action) {
+                    $actionData = Action::find($action['id']);
+        
+                    if (!$actionData) {
+                        info("Action not found: " . $action['id']);
+                        continue;
+                    }
+        
+                    // Validate inputs against action definition
+                    $validationResult = validateActionInputs(
+                        $actionData->inputs, 
+                        $action['inputs'] ?? []
+                    );
+        
+                    if (!$validationResult['valid']) {
+                        info("Invalid inputs for action {$actionData->id}: " . json_encode($validationResult['errors']));
+                        continue;
+                    }
+        
+                    $maxOrder = UserAction::where('shortcut_id', $id)->max('order') ?? 0;
+        
+                    UserAction::create([
+                        'order' => $maxOrder + 1,
+                        'user_id' => $userId,
+                        'action_id' => $actionData->id,
+                        'shortcut_id' => $id,
+                        'inputs' => $validationResult['validated_inputs'],
+                    ]);
+                }
+
+                return response()->json([
+                    'message' => 'Shortcut updated successfully.',
+                ], 200);
+                
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred while updating the shortcut.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     /**
