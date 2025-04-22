@@ -72,19 +72,20 @@
 {
     "shortcuts": [
         {
-            "id": "9ea408af-6a52-4def-a0fa-b656211df15e",
-            "name": "Medication Reminder",
-            "icon": "pills.fill",
-            "description": "Set up reminders for taking medications on time and track your medication schedule",
-            "gradientStart": "#FF2D55",
-            "gradientEnd": "#991B33",
+            "id": "9ebc3b98-301d-4772-8ba6-c6025e660024",
+            "order": 1,
+            "name": "Tests",
+            "icon": "assets/icon/test",
+            "description": "Test description",
+            "gradientStart": "#0E6F79",
+            "gradientEnd": "#19CCDF",
             "steps": [
                 {
-                    "id": "9ea408af-6c2e-41e4-889a-31ba87fb9af7",
+                    "id": "9ebc3c18-26e8-42ad-a007-8aec996686df",
                     "order": 1,
                     "inputs": {
                         "message": "Need immediate assistance!",
-                        "phoneNumber": "911"
+                        "phoneNumber": "91112"
                     },
                     "actionId": "9ea3e8b8-2df3-493f-8edd-18f6eb2de8e6",
                     "actionName": "Call Number"
@@ -147,6 +148,7 @@
 ```
 
 ### Sample Response
+
 ```typescript
 {
     "shortcut": {
@@ -209,11 +211,13 @@
 ---
 
 ## Update Endpoint
+
 ```typescript
 {{base_url}}/shortcut/${id} | Method: PUT
 ```
 
 ### Sample Payload
+
 ```typescript
 {
     "actions": [
@@ -222,7 +226,7 @@
             "inputs": "{\"phoneNumber\": \"91112\", \"message\": \"Need immediate assistance!\"}"
         },
         {
-            "id": "9ea403bf-8810-4983-b96d-eb13d493c14d",         
+            "id": "9ea403bf-8810-4983-b96d-eb13d493c14d",
             "inputs": "{\"location\": \"Nearest doctors\", \"mode\": \"driving\"}"
         },
         {

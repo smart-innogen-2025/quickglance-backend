@@ -95,9 +95,13 @@ class ServiceController extends Controller
 
             if ($request->has('shortcuts')) {
                 foreach ($request->shortcuts as $shortcutData) {
+                    $shortcutMaxOrder = Shortcut::where('user_id', $userId)
+                        ->where('service_id', $service->id)
+                        ->max('order');
                     Shortcut::create([
                         'user_id' => $userId,
                         'service_id' => $service->id,
+                        'order' => $shortcutMaxOrder + 1,
                         'name' => $shortcutData['name'],
                         'icon' => $shortcutData['icon'],
                         'description' => $shortcutData['description'],

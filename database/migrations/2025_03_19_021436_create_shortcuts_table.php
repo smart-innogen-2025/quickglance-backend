@@ -24,7 +24,8 @@ return new class extends Migration
                 ->references('id')
                 ->on('services')
                 ->onDelete('cascade');
-
+            
+            $table->integer('order');
             $table->string('name');
             $table->string('icon');
             $table->string('description');

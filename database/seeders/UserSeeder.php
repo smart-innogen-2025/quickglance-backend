@@ -314,8 +314,10 @@ class UserSeeder extends Seeder
 
 protected function createShortcut($data) {
     try {
+        $shortcutMaxOrder = Shortcut::where('user_id', $data['user_id'])->max('order') ?? 0;
         $shortcut = Shortcut::create([
             'user_id' => $data['user_id'],
+            'order' => $shortcutMaxOrder + 1,
             'name' => $data['name'],
             'icon' => $data['icon'],
             'description' => $data['description'],

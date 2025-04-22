@@ -276,9 +276,13 @@ class ServicesSeeder extends Seeder
 
             foreach ($serviceData['shortcuts'] as $shortcutData) {
                 try {
+                    $shortcutMaxOrder = Shortcut::where('user_id', $serviceUser->id)
+                        ->where('service_id', $service->id)
+                        ->max('order') ?? 0;
                     $shortcut = Shortcut::create([
                         'user_id' => $serviceUser->id,
                         'service_id' => $service->id,
+                        'order' => $shortcutMaxOrder + 1,
                         'name' => $shortcutData['name'],
                         'icon' => $shortcutData['icon'],
                         'description' => $shortcutData['description'],

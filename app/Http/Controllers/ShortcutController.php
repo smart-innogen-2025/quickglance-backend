@@ -20,6 +20,7 @@ class ShortcutController extends Controller
 
     try {
         $shortcuts = Shortcut::where('user_id', '!=', $authenticatedUserId)
+            ->where('service_id', null)
             ->with([
                 'userAction' => function ($query) {
                     $query->orderBy('order', 'asc')->with('action:id,name');
@@ -160,6 +161,7 @@ class ShortcutController extends Controller
 
         try {
             $shortcuts = Shortcut::where('user_id', $authenticatedUserId)
+                ->orderBy('order', 'asc')
                 ->with([
                     'userAction' => function ($query) {
                         $query->orderBy('order', 'asc')->with('action:id,name');
@@ -181,6 +183,7 @@ class ShortcutController extends Controller
                     return [
                         'id' => $shortcut->id,
                         'user' => $shortcut->user,
+                        'order' => $shortcut->order,
                         'name' => $shortcut->name,
                         'icon' => $shortcut->icon,
                         'description' => $shortcut->description,
@@ -265,15 +268,39 @@ class ShortcutController extends Controller
     {
         $userId = Auth::id();
         try {
+            $request->validate([
+                'name' => 'required|string',
+                'icon' => 'nullable|string',
+                'description' => 'required|string',
+                'gradient_start' => 'nullable|string',
+                'gradient_end' => 'nullable|string',
+                'actions' => 'required|array',
+                'actions.*.id' => 'required|string',
+                'actions.*.inputs' => 'required|string'
+            ]);
+
+            $shortcut = Shortcut::where('user_id', $userId)
+                ->where('id', $id)
+                ->where('id', $id)
+                ->first();
+
+            if(!$shortcut) {
+                return response()->json([
+                    'message' => 'Shortcut not found.',
+                ], 404);
+            }
+
+            $shortcut->update([
+                'name' => $request->name,
+                'icon' => $request->icon,
+                'description' => $request->description,
+                'gradient_start' => $request->gradientStart,
+                'gradient_end' => $request->gradientEnd,
+            ]);
+
             UserAction::where('user_id', $userId)
                 ->where('shortcut_id', $id)
                 ->delete();
-
-                $request->validate([
-                    'actions' => 'required|array',
-                    'actions.*.id' => 'required|string',
-                    'actions.*.inputs' => 'required|string'
-                ]);
 
                 foreach($request['actions'] as $action) {
                     $actionData = Action::find($action['id']);
