@@ -15,12 +15,21 @@ class ShortcutController extends Controller
      * Display a listing of the resource.
      */
     public function publicShortcuts()
-{
+    {
     $authenticatedUserId = Auth::id();
 
     try {
-        $shortcuts = Shortcut::where('user_id', '!=', $authenticatedUserId)
-            ->where('service_id', null)
+        $installedShortcutIds = Shortcut::where('user_id', $authenticatedUserId)
+            ->whereNotNull('original_shortcut_id')
+            ->pluck('original_shortcut_id')
+            ->toArray();
+
+        $shortcuts = [];
+
+        // Get user shortcuts (non-service shortcuts from other users)
+        $userShortcuts = Shortcut::where('user_id', '!=', $authenticatedUserId)
+            ->whereNull('service_id')
+            ->whereNotIn('id', $installedShortcutIds) // Exclude already installed
             ->with([
                 'userAction' => function ($query) {
                     $query->orderBy('order', 'asc')->with('action:id,name');
@@ -39,9 +48,15 @@ class ShortcutController extends Controller
                     ];
                 });
 
+                $userName = $shortcut->user->first_name;
+                if (!empty($shortcut->user->middle_name)) {
+                    $userName .= ' ' . $shortcut->user->middle_name;
+                }
+                $userName .= ' ' . $shortcut->user->last_name;
+
                 return [
                     'id' => $shortcut->id,
-                    'user' => $shortcut->user,
+                    'userName' => $userName,
                     'name' => $shortcut->name,
                     'icon' => $shortcut->icon,
                     'description' => $shortcut->description,
@@ -52,36 +67,51 @@ class ShortcutController extends Controller
             })
             ->toArray();
 
-        // Add userName and remove user key from each shortcut
-        $shortcuts = array_map(function($shortcut) {
-            if (isset($shortcut['user'])) {
-                // Create userName
-                $shortcut['userName'] = $shortcut['user']['first_name'];
+            // Get service shortcuts
+            $serviceShortcuts = Shortcut::whereNotNull('service_id')
+                ->with([
+                    'userAction' => function ($query) {
+                        $query->orderBy('order', 'asc')->with('action:id,name');
+                    },
+                    'service:id,name',
+                ])
+                ->get()
+                ->map(function ($shortcut) {
+                    $stepsWithActionNames = $shortcut->userAction->map(function ($step) {
+                        return [
+                            'id' => $step->id,
+                            'order' => $step->order,
+                            'inputs' => $step->inputs,
+                            'action_id' => $step->action_id,
+                            'actionName' => $step->action?->name,
+                        ];
+                    });
 
-                // Add middle_name if present
-                if (!empty($shortcut['user']['middle_name'])) {
-                    $shortcut['userName'] .= ' ' . $shortcut['user']['middle_name'];
-                }
+                    return [
+                        'id' => $shortcut->id,
+                        'serviceName' => $shortcut->service->name,
+                        'name' => $shortcut->name,
+                        'icon' => $shortcut->icon,
+                        'description' => $shortcut->description,
+                        'gradient_start' => $shortcut->gradient_start,
+                        'gradient_end' => $shortcut->gradient_end,
+                        'steps' => $stepsWithActionNames,
+                    ];
+                })
+                ->toArray();
 
-                $shortcut['userName'] .= ' ' . $shortcut['user']['last_name'];
+            $shortcuts['users'] = convertKeysToCamelCase($userShortcuts);
+            $shortcuts['services'] = convertKeysToCamelCase($serviceShortcuts);
 
-                // Remove the user key
-                unset($shortcut['user']);
-            }
-            return $shortcut;
-        }, $shortcuts);
+            return response()->json(['shortcuts' => $shortcuts], 200);
 
-        return response()->json([
-            'shortcuts' => convertKeysToCamelCase($shortcuts),
-        ]);
-
-    } catch (\Exception $e) {
-        return response()->json([
-            'message' => 'An error occurred while fetching the shortcuts.',
-            'error' => $e->getMessage(),
-        ], 500);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred while fetching the shortcuts.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
-}
 
 
     /**
@@ -94,50 +124,55 @@ class ShortcutController extends Controller
 
             $request->validate([
                 'name' => 'required|string',
-                'actions' => 'required|array',
+                'actions' => 'nullable|array',
                 'icon' => 'required|string',
                 'description' => 'required|string',
                 'gradient_start' => 'nullable|string',
                 'gradient_end' => 'nullable|string',
             ]);
 
+            $shortcutMaxOrder = Shortcut::where('user_id', $userId)->max('order') ?? 0;
+
             $shortcut = Shortcut::create([
                 'user_id' => $userId,
                 'name' => $request->name,
                 'icon' => $request->icon,
+                'order' => $shortcutMaxOrder + 1,
                 'description' => $request->description,
                 'gradient_start' => $request->gradientStart,
                 'gradient_end' => $request->gradientEnd,
             ]);
 
-            foreach($request['actions'] as $action) {
-                $actionData = Action::find($action['id']);
-    
-                if (!$actionData) {
-                    info("Action not found: " . $action['id']);
-                    continue;
+            if($shortcut['actions']) {
+                foreach($request['actions'] as $action) {
+                    $actionData = Action::find($action['id']);
+        
+                    if (!$actionData) {
+                        info("Action not found: " . $action['id']);
+                        continue;
+                    }
+        
+                    // Validate inputs against action definition
+                    $validationResult = validateActionInputs(
+                        $actionData->inputs, 
+                        $action['inputs'] ?? []
+                    );
+        
+                    if (!$validationResult['valid']) {
+                        info("Invalid inputs for action {$actionData->id}: " . json_encode($validationResult['errors']));
+                        continue;
+                    }
+        
+                    $maxOrder = UserAction::where('shortcut_id', $shortcut->id)->max('order') ?? 0;
+        
+                    UserAction::create([
+                        'order' => $maxOrder + 1,
+                        'user_id' => $userId,
+                        'action_id' => $actionData->id,
+                        'shortcut_id' => $shortcut->id,
+                        'inputs' => $validationResult['validated_inputs'],
+                    ]);
                 }
-    
-                // Validate inputs against action definition
-                $validationResult = validateActionInputs(
-                    $actionData->inputs, 
-                    $action['inputs'] ?? []
-                );
-    
-                if (!$validationResult['valid']) {
-                    info("Invalid inputs for action {$actionData->id}: " . json_encode($validationResult['errors']));
-                    continue;
-                }
-    
-                $maxOrder = UserAction::where('shortcut_id', $shortcut->id)->max('order') ?? 0;
-    
-                UserAction::create([
-                    'order' => $maxOrder + 1,
-                    'user_id' => $userId,
-                    'action_id' => $actionData->id,
-                    'shortcut_id' => $shortcut->id,
-                    'inputs' => $validationResult['validated_inputs'],
-                ]);
             }
 
             return response()->json([
@@ -225,6 +260,120 @@ class ShortcutController extends Controller
         }
     }
 
+    public function publicShow(string $id)
+    {
+        try {
+            $shortcut = Shortcut::where('id', $id)
+                ->with([
+                    'userAction' => function ($query) {
+                        $query->orderBy('order', 'asc')
+                            ->select('id', 'order', 'action_id', 'inputs', 'shortcut_id')
+                            ->whereNotNull('action_id');
+                    },
+                    'user:id,first_name,middle_name,last_name',
+                ])
+                ->withCount(['userAction'])
+                ->first();
+
+            if ($shortcut && $shortcut->user_action_count === 0) {
+                $shortcut->unsetRelation('userAction');
+
+            }
+
+            if (!$shortcut) {
+                return response()->json([
+                    'message' => "Shortcut not found or the user don't own the shortcut.",
+                ], 404);
+            }
+
+            $userName = $shortcut->user->first_name;
+                if (!empty($shortcut->user->middle_name)) {
+                    $userName .= ' ' . $shortcut->user->middle_name;
+                }
+                $userName .= ' ' . $shortcut->user->last_name;
+
+                $shortcut =  [
+                    'id' => $shortcut->id,
+                    'userName' => $userName,
+                    'name' => $shortcut->name,
+                    'icon' => $shortcut->icon,
+                    'description' => $shortcut->description,
+                    'gradient_start' => $shortcut->gradient_start,
+                    'gradient_end' => $shortcut->gradient_end,
+                    'user_action' => $shortcut->userAction,
+                ];
+
+            return response()->json([
+                'shortcut' => convertKeysToCamelCase($shortcut),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred while fetching the shortcut.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+
+    }
+
+    public function publicInstall(Request $request) {
+        $userId = Auth::id();
+        try {
+            $shortcut = Shortcut::where('id', $request->shortcutId)
+                ->with([
+                    'userAction' => function ($query) {
+                        $query->orderBy('order', 'asc')
+                            ->select('id', 'order', 'action_id', 'inputs', 'shortcut_id')
+                            ->whereNotNull('action_id');
+                    },
+                    'user:id,first_name,middle_name,last_name',
+                ])
+                ->first();
+        
+            if (!$shortcut) {
+                return response()->json([
+                    'message' => "Shortcut not found.",
+                ], 404);
+            }
+
+            $shortcutMaxOrder = Shortcut::where('user_id', $userId)->max('order') ?? 0;
+
+            $installedShortcut = Shortcut::create([
+                'user_id' => $userId,
+                'order' => $shortcutMaxOrder + 1,
+                'name' => $shortcut->name,
+                'icon' => $shortcut->icon,
+                'description' => $shortcut->description,
+                'gradient_start' => $shortcut->gradient_start,
+                'gradient_end' => $shortcut->gradient_end,
+                'original_shortcut_id' => $shortcut->id,
+            ]);
+
+            
+
+            foreach ($shortcut->userAction as $action) {
+
+                $userActionMaxOrder = UserAction::where('user_id', $userId)->where('shortcut_id', $installedShortcut->id)->max('order') ?? 0;
+
+                UserAction::create([
+                    'order' => $userActionMaxOrder + 1,
+                    'user_id' => $userId,
+                    'action_id' => $action->action_id,
+                    'shortcut_id' => $installedShortcut->id,
+                    'inputs' => $action->inputs,
+                ]);
+            }
+
+            return response()->json([
+                'message' => 'Shortcut installed successfully.',
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred while installing the shortcut.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
     public function edit(string $id) {
         $userId = Auth::id();
         try{
@@ -233,22 +382,39 @@ class ShortcutController extends Controller
                 ->with([
                     'userAction' => function ($query) {
                         $query->orderBy('order', 'asc')
-                            ->select('id', 'order', 'action_id', 'inputs', 'shortcut_id');
+                            ->select('id', 'order', 'action_id', 'inputs', 'shortcut_id')
+                            ->whereNotNull('action_id');
                     },
                     'user:id,first_name,middle_name,last_name',
                 ])
+                ->withCount(['userAction'])
                 ->first();
 
-            $categoryId = Action::where('id', $shortcut->userAction[0]->action_id)
+            if ($shortcut && $shortcut->user_action_count === 0) {
+                $shortcut->unsetRelation('userAction');
+            }
+
+            if (!$shortcut) {
+                return response()->json([
+                    'message' => "Shortcut not found or the user don't own the shortcut.",
+                ], 404);
+            }
+
+            if (!$shortcut->userAction) {
+                $categoryId = Action::where('id', $shortcut->userAction[0]->action_id)
                                 ->with('category:id')
                                 ->first()
                                 ->category
                                 ->id;
 
-            $categoryActions = Action::where('category_id', $categoryId)->get();
+                $categoryActions = Action::where('category_id', $categoryId)->get();
+            }
 
             $shortcutArray = $shortcut->toArray();
-            $shortcutArray['categoryActions'] = $categoryActions;
+            
+            if (isset($categoryActions)) {
+                $shortcutArray['categoryActions'] = $categoryActions;
+            }
 
             return response()->json([
                 'shortcut' => convertKeysToCamelCase($shortcutArray)

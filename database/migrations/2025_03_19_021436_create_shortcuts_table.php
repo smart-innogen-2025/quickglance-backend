@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id')->nullable();
             $table->uuid('service_id')->nullable();
+            $table->uuid('original_shortcut_id')->nullable();
 
             $table->foreign('user_id')
                 ->references('id')

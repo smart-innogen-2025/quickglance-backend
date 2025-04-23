@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Relations\{HasMany, BelongsTo};
 
 class Shortcut extends Model
 {
-    protected $fillable = ['user_id', 'service_id', 'order', 'name', 'icon', 'description', 'gradient_start', 'gradient_end'];
+    protected $fillable = ['user_id', 'service_id', 'original_shortcut_id', 'order', 'name', 'icon', 'description', 'gradient_start', 'gradient_end'];
 
-    protected $hidden = ['created_at', 'updated_at', 'user_id'];
+    protected $hidden = ['created_at', 'updated_at', 'user_id', 'original_shortcut_id'];
 
     public $incrementing = false;
     protected $keyType = 'string';
@@ -20,6 +20,7 @@ class Shortcut extends Model
         'id' => 'string',
         'user_id' => 'string',
         'service_id' => 'string',
+        'original_shortcut_id' => 'string',
     ];
 
     protected static function boot()
