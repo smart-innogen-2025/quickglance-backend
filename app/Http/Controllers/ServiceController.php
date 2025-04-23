@@ -15,46 +15,7 @@ class ServiceController extends Controller
     public function index()
     {
         try {
-            $services = Service::with(['shortcuts' => function ($query) {
-                $query->with(['userAction' => function ($query) {
-                    $query->orderBy('order', 'asc')->with('action:id,name');
-                }]);
-            }])->get()
-            ->map(function ($service) {
-                $shortcuts = $service->shortcuts->map(function ($shortcut) {
-                    $stepsWithActionNames = $shortcut->userAction->map(function ($step) {
-                        return [
-                            'id' => $step->id,
-                            'order' => $step->order,
-                            'inputs' => $step->inputs,
-                            'action_id' => $step->action_id,
-                            'actionName' => $step->action?->name,
-                        ];
-                    });
-
-
-
-                    return [
-                        'id' => $shortcut->id,
-                        'serviceName' => $shortcut->service->name,
-                        'name' => $shortcut->name,
-                        'icon' => $shortcut->icon,
-                        'description' => $shortcut->description,
-                        'gradient_start' => $shortcut->gradient_start,
-                        'gradient_end' => $shortcut->gradient_end,
-                        'steps' => $stepsWithActionNames,
-                    ];
-                });
-
-                return [
-                    'id' => $service->id,
-                    'name' => $service->name,
-                    'description' => $service->description,
-                    'website_link' => $service->website_link,
-                    'imageKey' => $service->image_key,
-                    'shortcuts' => $shortcuts,
-                ];
-            })->toArray();
+            $services = Service::all()->toArray();
 
             return response()->json([
                 'message' => 'Services fetched successfully',
@@ -129,7 +90,23 @@ class ServiceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try {
+            $shortcuts = Shortcut::where('service_id', $id)->get();
+
+            if ($shortcuts->isEmpty()) {
+                return response()->json([
+                    'message' => 'No shortcuts found for this service category',
+                ], 404);
+            }
+            return response()->json([
+                'shortcuts' => convertKeysToCamelCase($shortcuts->toArray()),
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error fetching service',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     /**
