@@ -24,8 +24,6 @@ class ShortcutController extends Controller
             ->pluck('original_shortcut_id')
             ->toArray();
 
-        $shortcuts = [];
-
         // Get user shortcuts (non-service shortcuts from other users)
         $userShortcuts = Shortcut::where('user_id', '!=', $authenticatedUserId)
             ->whereNull('service_id')
@@ -67,43 +65,10 @@ class ShortcutController extends Controller
             })
             ->toArray();
 
-            // Get service shortcuts
-            $serviceShortcuts = Shortcut::whereNotNull('service_id')
-                ->with([
-                    'userAction' => function ($query) {
-                        $query->orderBy('order', 'asc')->with('action:id,name');
-                    },
-                    'service:id,name',
-                ])
-                ->get()
-                ->map(function ($shortcut) {
-                    $stepsWithActionNames = $shortcut->userAction->map(function ($step) {
-                        return [
-                            'id' => $step->id,
-                            'order' => $step->order,
-                            'inputs' => $step->inputs,
-                            'action_id' => $step->action_id,
-                            'actionName' => $step->action?->name,
-                        ];
-                    });
 
-                    return [
-                        'id' => $shortcut->id,
-                        'serviceName' => $shortcut->service->name,
-                        'name' => $shortcut->name,
-                        'icon' => $shortcut->icon,
-                        'description' => $shortcut->description,
-                        'gradient_start' => $shortcut->gradient_start,
-                        'gradient_end' => $shortcut->gradient_end,
-                        'steps' => $stepsWithActionNames,
-                    ];
-                })
-                ->toArray();
 
-            $shortcuts['users'] = convertKeysToCamelCase($userShortcuts);
-            $shortcuts['services'] = convertKeysToCamelCase($serviceShortcuts);
 
-            return response()->json(['shortcuts' => $shortcuts], 200);
+            return response()->json(['shortcuts' => $userShortcuts], 200);
 
         } catch (\Exception $e) {
             return response()->json([

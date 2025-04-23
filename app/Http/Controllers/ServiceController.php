@@ -32,9 +32,11 @@ class ServiceController extends Controller
                         ];
                     });
 
+
+
                     return [
                         'id' => $shortcut->id,
-                        'user' => $shortcut->user,
+                        'serviceName' => $shortcut->service->name,
                         'name' => $shortcut->name,
                         'icon' => $shortcut->icon,
                         'description' => $shortcut->description,
