@@ -100,13 +100,10 @@ class ServiceController extends Controller
                 ], 404);
             }
             return response()->json([
-                "id" => $service->id,
-                "name" => $service->name,
-                "description" => $service->description,
-                "websiteLink" => $service->website_link,
-                "imageKey" => $service->image_key,
-                "shortcuts" => convertKeysToCamelCase($shortcuts->toArray()),
-
+                "service" => [
+                    ...convertKeysToCamelCase($service->toArray()),
+                    "shortcuts" => convertKeysToCamelCase($shortcuts->toArray()),
+                ]
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
