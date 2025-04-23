@@ -20,7 +20,7 @@ class ServicesSeeder extends Seeder
                 'name' => 'NCDA',
                 'description' => 'The National Council on Disability Affairs (NCDA) is the government agency mandated to formulate policies and coordinate the activities of all agencies concerning disability issues and concerns.',
                 'website_link' => 'https://www.ncda.gov.ph',
-                'image' => 'services/NCDA.png',
+                'image' => 'ncda',
                 'shortcuts' => [
                     [
                         'name' => 'PWD ID Application',
@@ -95,7 +95,7 @@ class ServicesSeeder extends Seeder
                 'name' => 'DOH',
                 'description' => 'The Department of Health (DOH) is the principal health agency in the Philippines responsible for ensuring access to basic public health services by all Filipinos.',
                 'website_link' => 'https://doh.gov.ph',
-                'image' => 'services/DOH.png',
+                'image' => 'doh',
                 'shortcuts' => [
                     [
                         'name' => 'Vaccination Schedule',
@@ -168,7 +168,7 @@ class ServicesSeeder extends Seeder
                 'name' => 'DSWD',
                 'description' => 'The Department of Social Welfare and Development (DSWD) is the primary government agency mandated to develop, implement and coordinate social protection and poverty-reduction solutions for and with the poor, vulnerable and disadvantaged.',
                 'website_link' => 'https://www.dswd.gov.ph',
-                'image' => 'services/DSWD.png',
+                'image' => 'dswd',
                 'shortcuts' => [
                     [
                         'name' => '4Ps Registration',
@@ -226,7 +226,7 @@ class ServicesSeeder extends Seeder
                 'name' => 'DICT',
                 'description' => 'The Department of Information and Communications Technology (DICT) is the executive department responsible for the planning, development, and promotion of the country\'s ICT agenda.',
                 'website_link' => 'https://dict.gov.ph',
-                'image' => 'services/DICT.png',
+                'image' => 'dict',
                 'shortcuts' => [
                     [
                         'name' => 'Free WiFi Access',
