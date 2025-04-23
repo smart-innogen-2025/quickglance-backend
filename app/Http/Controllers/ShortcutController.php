@@ -251,11 +251,21 @@ class ShortcutController extends Controller
                 ], 404);
             }
 
+            
+
             $userName = $shortcut->user->first_name;
                 if (!empty($shortcut->user->middle_name)) {
                     $userName .= ' ' . $shortcut->user->middle_name;
                 }
                 $userName .= ' ' . $shortcut->user->last_name;
+
+                $stepsWithActionNames = $shortcut->userAction->map(function ($step) {
+                    return [
+                        'userActionId' => $step->id,
+                        'actionName' => $step->action?->name,
+                        'actionId' => $step->action_id,
+                    ];
+                });
 
                 $shortcut =  [
                     'id' => $shortcut->id,
@@ -265,7 +275,7 @@ class ShortcutController extends Controller
                     'description' => $shortcut->description,
                     'gradient_start' => $shortcut->gradient_start,
                     'gradient_end' => $shortcut->gradient_end,
-                    'user_action' => $shortcut->userAction,
+                    'steps' => $stepsWithActionNames
                 ];
 
             return response()->json([
