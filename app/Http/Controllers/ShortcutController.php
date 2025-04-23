@@ -68,7 +68,7 @@ class ShortcutController extends Controller
 
 
 
-            return response()->json(['shortcuts' => $userShortcuts], 200);
+            return response()->json(['shortcuts' => convertKeysToCamelCase($userShortcuts)], 200);
 
         } catch (\Exception $e) {
             return response()->json([
