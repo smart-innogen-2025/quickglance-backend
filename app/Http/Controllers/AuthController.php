@@ -16,7 +16,7 @@ class AuthController extends Controller
             $authUser = Auth::user();
             return response()->json([
                 'message' => 'User retrieved successfully',
-                'user' => $authUser,
+                'user' => convertKeysToCamelCase($authUser->toArray()),
             ]);
         } catch (\Exception $e) {
             return response()->json([
