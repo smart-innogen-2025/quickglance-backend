@@ -91,6 +91,7 @@ class ServiceController extends Controller
     public function show(string $id)
     {
         try {
+            $service = Service::findOrFail($id);
             $shortcuts = Shortcut::where('service_id', $id)->get();
 
             if ($shortcuts->isEmpty()) {
@@ -99,7 +100,13 @@ class ServiceController extends Controller
                 ], 404);
             }
             return response()->json([
-                'shortcuts' => convertKeysToCamelCase($shortcuts->toArray()),
+                "id" => $service->id,
+                "name" => $service->name,
+                "description" => $service->description,
+                "websiteLink" => $service->website_link,
+                "imageKey" => $service->image_key,
+                "shortcuts" => convertKeysToCamelCase($shortcuts->toArray()),
+
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
