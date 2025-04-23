@@ -899,7 +899,7 @@ class CategoryActionSeeder extends Seeder
                 ['id' => $categoryId], 
                 [
                     'name' => $categoryData['name'],
-                    'image' => $categoryData['image'],
+                    'image_key' => $categoryData['image'],
                     'icon' => $categoryData['icon'] ?? null
                 ]
             );

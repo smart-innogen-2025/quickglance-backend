@@ -271,7 +271,7 @@ class ServicesSeeder extends Seeder
                 'name' => $serviceData['name'],
                 'description' => $serviceData['description'],
                 'website_link' => $serviceData['website_link'],
-                'image' => $serviceData['image'],
+                'image_key' => $serviceData['image'],
             ]);
 
             foreach ($serviceData['shortcuts'] as $shortcutData) {

@@ -49,7 +49,7 @@ class ServiceController extends Controller
                     'name' => $service->name,
                     'description' => $service->description,
                     'website_link' => $service->website_link,
-                    'image' => $service->image,
+                    'imageKey' => $service->image_key,
                     'shortcuts' => $shortcuts,
                 ];
             })->toArray();
@@ -77,7 +77,7 @@ class ServiceController extends Controller
                 'name' => 'required|string|max:255',
                 'description' => 'nullable|string|max:255',
                 'websiteLink' => 'nullable|url|max:255',
-                'image' => 'nullable|string|max:255',
+                'imageKey' => 'nullable|string|max:255',
                 'shortcuts' => 'array',
                 'shortcuts.*.name' => 'required|string|max:255',
                 'shortcuts.*.icon' => 'required|string|max:255',
@@ -90,7 +90,7 @@ class ServiceController extends Controller
                 'name' => $request->name,
                 'description' => $request->description,
                 'website_link' => $request->websiteLink,
-                'image' => $request->image,
+                'image_key' => $request->imageKey,
             ]);
 
             if ($request->has('shortcuts')) {

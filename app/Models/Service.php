@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\{HasMany};
 
 class Service extends Model
 {
-    protected $fillable = ['name', 'description', 'website_link', 'image'];
+    protected $fillable = ['name', 'description', 'website_link', 'image_key'];
 
     protected $hidden = ['created_at', 'updated_at'];
 

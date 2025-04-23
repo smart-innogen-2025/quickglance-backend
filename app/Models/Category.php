@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
-    protected $fillable = ['name', 'icon', 'image'];
+    protected $fillable = ['name', 'icon', 'image_key'];
 
     protected $hidden = ['created_at', 'updated_at'];
 

@@ -37,7 +37,7 @@ class CategoryController extends Controller
             $request->validate([
                 'name' => 'required|string',
                 'icon' => 'nullable|string',
-                'image' => 'nullable|string',
+                'imageKey' => 'nullable|string',
                 'gradientStart' => 'nullable|string',
                 'gradientEnd' => 'nullable|string',
             ]);
@@ -45,7 +45,7 @@ class CategoryController extends Controller
             $category = Category::create([
                 'name' => $request->name,
                 'icon' => $request->icon,
-                'image' => $request->bgImage,
+                'image_key' => $request->imageKey,
             ]);
 
             // Create the associated actions
