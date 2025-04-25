@@ -14,7 +14,7 @@ class CategoryActionSeeder extends Seeder
             [
                 'id' => '9ea3e8b8-2cf7-4a9d-bc4e-18405615c0f9',
                 'name' => 'Device Actions',
-                'image' => 'categories/device.jpg',
+                'image' => 'device',
                 'icon' => 'icons/device.svg',
                 'actions' => [
                     [
@@ -237,7 +237,7 @@ class CategoryActionSeeder extends Seeder
             [
                 // 'id' => 'connectivity',
                 'name' => 'Connectivity',
-                'image' => 'categories/connectivity.jpg',
+                'image' => 'connectivity',
                 'actions' => [
                     [
                         // 'id' => 'c1',
@@ -268,7 +268,7 @@ class CategoryActionSeeder extends Seeder
             [
                 // 'id' => 'media',
                 'name' => 'Media',
-                'image' => 'categories/media.jpg',
+                'image' => 'media',
                 'actions' => [
                     [
                         // 'id' => 'm1',
@@ -324,7 +324,7 @@ class CategoryActionSeeder extends Seeder
             [
                 // 'id' => 'location',
                 'name' => 'Location',
-                'image' => 'categories/location.jpg',
+                'image' => 'location',
                 'actions' => [
                     [
                         // 'id' => 'l1',
@@ -384,7 +384,7 @@ class CategoryActionSeeder extends Seeder
             [
                 // 'id' => 'data',
                 'name' => 'Data',
-                'image' => 'categories/data.jpg',
+                'image' => 'data',
                 'actions' => [
                     [
                         // 'id' => 'da1',
@@ -435,7 +435,7 @@ class CategoryActionSeeder extends Seeder
             [
                 'id' => '9ea3e8b8-2fb8-4143-a217-3a98b15de4aa',
                 'name' => 'AI Assistant',
-                'image' => 'categories/ai.jpg',
+                'image' => 'ai',
                 'actions' => [
                     [
                         'id' => '9ea3e8b8-2ff6-4438-af78-06fbdbf9eb9d',
@@ -589,7 +589,7 @@ class CategoryActionSeeder extends Seeder
             [
                 // 'id' => 'web',
                 'name' => 'Web & Sharing',
-                'image' => 'categories/web.jpg',
+                'image' => 'web',
                 'actions' => [
                     [
                         // 'id' => 'w1',
@@ -687,7 +687,7 @@ class CategoryActionSeeder extends Seeder
                 [
                     'id' => '9eadbc35-40c6-4356-989d-5ec15fa9890f',
                     'name' => 'Government Services',
-                    'image' => 'categories/government.jpg',
+                    'image' => 'government',
                     'icon' => 'icons/government.svg',
                     'actions' => [
                         [
