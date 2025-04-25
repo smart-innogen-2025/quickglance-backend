@@ -17,7 +17,7 @@ class CategoryController extends Controller
             $categories = Category::with('actions')->get();
 
             return response()->json([
-                'categories' => $categories,
+                'categories' => convertKeysToCamelCase($categories),
             ]);
 
         } catch (\Exception $e) {
