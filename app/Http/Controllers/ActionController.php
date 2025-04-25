@@ -18,7 +18,16 @@ class ActionController extends Controller
             $actions = Action::all();
 
             return response()->json([
-                'actions' => convertKeysToCamelCase($actions),
+                'actions' => $actions->map(function ($action) {
+                    $actionArray = $action->toArray();
+                    
+                    // Parse inputs field if it exists
+                    if (isset($actionArray['inputs'])) {
+                        $actionArray['inputs'] = json_decode($actionArray['inputs'], true) ?: [];
+                    }
+                    
+                    return convertKeysToCamelCase($actionArray);
+                })->toArray(),
             ]);
 
         } catch (\Exception $e) {
