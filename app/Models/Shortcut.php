@@ -11,7 +11,7 @@ class Shortcut extends Model
 {
     protected $fillable = ['user_id', 'service_id', 'original_shortcut_id', 'order', 'name', 'icon', 'description', 'gradient_start', 'gradient_end'];
 
-    protected $hidden = ['created_at', 'updated_at', 'user_id', 'original_shortcut_id'];
+    protected $hidden = ['created_at', 'updated_at', 'user_id'];
 
     public $incrementing = false;
     protected $keyType = 'string';

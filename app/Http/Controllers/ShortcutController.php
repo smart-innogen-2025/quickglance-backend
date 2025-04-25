@@ -19,15 +19,12 @@ class ShortcutController extends Controller
     $authenticatedUserId = Auth::id();
 
     try {
-        $installedShortcutIds = Shortcut::where('user_id', $authenticatedUserId)
-            ->whereNotNull('original_shortcut_id')
-            ->pluck('original_shortcut_id')
-            ->toArray();
 
         // Get user shortcuts (non-service shortcuts from other users)
-        $userShortcuts = Shortcut::where('user_id', '!=', $authenticatedUserId)
-            ->whereNull('service_id')
-            ->whereNotIn('id', $installedShortcutIds) // Exclude already installed
+        $userShortcuts = Shortcut::
+            // where('user_id', $authenticatedUserId)
+            whereNull('service_id')
+            // ->whereNotIn('id', $installedShortcutIds) // Exclude already installed
             ->with([
                 'userAction' => function ($query) {
                     $query->orderBy('order', 'asc')->with('action:id,name');
@@ -52,6 +49,18 @@ class ShortcutController extends Controller
                 }
                 $userName .= ' ' . $shortcut->user->last_name;
 
+
+                $installedShortcutIds = Shortcut::where('user_id', Auth::id())
+                ->whereNotNull('original_shortcut_id')
+                ->pluck('original_shortcut_id')
+                ->toArray();
+
+                if (in_array($shortcut->id, $installedShortcutIds)) {
+                    $isInstalled = true;
+                } else {
+                    $isInstalled = false;
+                }
+
                 return [
                     'id' => $shortcut->id,
                     'userName' => $userName,
@@ -61,6 +70,7 @@ class ShortcutController extends Controller
                     'gradient_start' => $shortcut->gradient_start,
                     'gradient_end' => $shortcut->gradient_end,
                     'steps' => $stepsWithActionNames,
+                    'isInstalled' => $isInstalled,
                 ];
             })
             ->toArray();

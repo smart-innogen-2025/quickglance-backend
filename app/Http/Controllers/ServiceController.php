@@ -92,13 +92,51 @@ class ServiceController extends Controller
     {
         try {
             $service = Service::findOrFail($id);
-            $shortcuts = Shortcut::where('service_id', $id)->get();
+            $shortcuts = Shortcut::where('service_id', $id)->with(['userAction' => function ($query) {
+                $query->orderBy('order', 'asc')->with('action:id,name');
+            }])->get()
+            ->map(function ($shortcut) {
+                $stepsWithActionNames = $shortcut->userAction->map(function ($step) {
+                    return [
+                        'id' => $step->id,
+                        'order' => $step->order,
+                        'inputs' => $step->inputs,
+                        'action_id' => $step->action_id,
+                        'actionName' => $step->action?->name,
+                    ];
+                });
+
+                $installedShortcutIds = Shortcut::where('user_id', Auth::id())
+                ->whereNotNull('original_shortcut_id')
+                ->pluck('original_shortcut_id')
+                ->toArray();
+
+                if (in_array($shortcut->id, $installedShortcutIds)) {
+                    $isInstalled = true;
+                } else {
+                    $isInstalled = false;
+                }
+                
+                return [
+                    'id' => $shortcut->id,
+                    'name' => $shortcut->name,
+                    'icon' => $shortcut->icon,
+                    'description' => $shortcut->description,
+                    'gradientStart' => $shortcut->gradient_start,
+                    'gradientEnd' => $shortcut->gradient_end,
+                    'steps' => $stepsWithActionNames,
+                    'isInstalled' => $isInstalled,
+                ];
+            });
 
             if ($shortcuts->isEmpty()) {
                 return response()->json([
                     'message' => 'No shortcuts found for this service category',
                 ], 404);
             }
+
+            
+
             return response()->json([
                 "service" => [
                     ...convertKeysToCamelCase($service->toArray()),
