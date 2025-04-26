@@ -17,7 +17,20 @@ class CategoryController extends Controller
             $categories = Category::with('actions')->get();
 
             return response()->json([
-                'categories' => convertKeysToCamelCase($categories),
+                // Parse inputs fielf of actions key if it exists
+                'categories' => $categories->map(function ($category) {
+                    $categoryArray = $category->toArray();
+
+                    $categoryArray['actions'] = $category->actions->map(function ($action) {
+                        $actionArray = $action->toArray();
+                        if (isset($actionArray['inputs'])) {
+                            $actionArray['inputs'] = json_decode($actionArray['inputs'], true) ?: [];
+                        }
+                        return convertKeysToCamelCase($actionArray);
+                    })->toArray();
+                    
+                    return convertKeysToCamelCase($categoryArray);
+                })->toArray(),
             ]);
 
         } catch (\Exception $e) {
