@@ -99,7 +99,7 @@ class ShortcutController extends Controller
 
             $request->validate([
                 'name' => 'required|string',
-                'actions' => 'nullable|array',
+                'steps' => 'nullable|array',
                 'icon' => 'required|string',
                 'description' => 'required|string',
                 'gradient_start' => 'nullable|string',
@@ -118,19 +118,19 @@ class ShortcutController extends Controller
                 'gradient_end' => $request->gradientEnd,
             ]);
 
-            if($shortcut['actions']) {
-                foreach($request['actions'] as $action) {
-                    $actionData = Action::find($action['id']);
+            if($request['steps']) {
+                foreach($request['steps'] as $step) {
+                    $actionData = Action::find($step['actionId']);
         
                     if (!$actionData) {
-                        info("Action not found: " . $action['id']);
+                        info("Action not found: " . $step['actionId']);
                         continue;
                     }
         
                     // Validate inputs against action definition
                     $validationResult = validateActionInputs(
                         $actionData->inputs, 
-                        $action['inputs'] ?? []
+                        $step['inputs'] ?? []
                     );
         
                     if (!$validationResult['valid']) {
@@ -425,9 +425,9 @@ class ShortcutController extends Controller
                 'description' => 'required|string',
                 'gradient_start' => 'nullable|string',
                 'gradient_end' => 'nullable|string',
-                'actions' => 'required|array',
-                'actions.*.id' => 'required|string',
-                'actions.*.inputs' => 'required|string'
+                'steps' => 'required|array',
+                'steps.*.actionId' => 'required|string',
+                'steps.*.inputs' => 'required|string'
             ]);
 
             $shortcut = Shortcut::where('user_id', $userId)
@@ -453,18 +453,18 @@ class ShortcutController extends Controller
                 ->where('shortcut_id', $id)
                 ->delete();
 
-                foreach($request['actions'] as $action) {
-                    $actionData = Action::find($action['id']);
+                foreach($request['steps'] as $step) {
+                    $actionData = Action::find($step['actionId']);
         
                     if (!$actionData) {
-                        info("Action not found: " . $action['id']);
+                        info("Action not found: " . $step['actionId']);
                         continue;
                     }
         
                     // Validate inputs against action definition
                     $validationResult = validateActionInputs(
                         $actionData->inputs, 
-                        $action['inputs'] ?? []
+                        $step['inputs'] ?? []
                     );
         
                     if (!$validationResult['valid']) {
