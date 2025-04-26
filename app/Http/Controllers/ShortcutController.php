@@ -395,14 +395,17 @@ class ShortcutController extends Controller
                 $categoryActions = Action::where('category_id', $categoryId)->get();
             }
 
-            $shortcutArray = $shortcut->toArray();
+            $shortcutArray = convertKeysToCamelCase($shortcut->toArray());
+
+            $shortcutArray['steps'] = $shortcutArray['userAction'];
+            unset($shortcutArray['userAction']);    
             
             if (isset($categoryActions)) {
                 $shortcutArray['categoryActions'] = $categoryActions;
             }
-
+            
             return response()->json([
-                'shortcut' => convertKeysToCamelCase($shortcutArray)
+                'shortcut' => $shortcutArray
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -431,7 +434,6 @@ class ShortcutController extends Controller
             ]);
 
             $shortcut = Shortcut::where('user_id', $userId)
-                ->where('id', $id)
                 ->where('id', $id)
                 ->first();
 
