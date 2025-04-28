@@ -26,58 +26,60 @@ if (!function_exists('convertKeysToCamelCase')) {
  */
 function validateActionInputs($actionInputDefinition, $userInputs)
 {
-    $errors = [];
-    $validatedInputs = [];
-    $definedInputs = json_decode($actionInputDefinition, true) ?? [];
+    $errors           = [];
+    $validatedInputs  = [];
 
-    // Convert user inputs to array if they're in string format
-    $userInputs = is_string($userInputs) ? json_decode($userInputs, true) : ($userInputs ?? []);
+    // 1) Decode the definitions & incoming inputs
+    $definedInputs = is_string($actionInputDefinition)
+        ? json_decode($actionInputDefinition, true) ?? []
+        : ($actionInputDefinition ?? []);
 
-    foreach ($definedInputs as $definedInput) {
-        $inputKey = $definedInput['key'] ?? null;
-        $inputLabel = $definedInput['label'] ?? null;
-        $isRequired = $definedInput['required'] ?? true;
-        
-        // Check for missing required inputs
-        if ($isRequired) {
-            if (!isset($userInputs[$inputKey]) && !isset($userInputs[$inputLabel])) {
-                $errors[] = "Missing required input: {$inputLabel}";
-                continue;
-            }
+    $userInputs = is_string($userInputs)
+        ? (json_decode($userInputs, true) ?? [])
+        : ($userInputs ?? []);
+
+    foreach ($definedInputs as $def) {
+        $key       = $def['key']     ?? null;
+        $label     = $def['label']   ?? $key;
+        $required  = $def['required'] ?? false;
+
+        // 2) Missing required?
+        if ($required && ! array_key_exists($key, $userInputs)) {
+            $errors[] = "Missing required input: {$label}";
+            continue;
         }
 
-        // Only validate if input exists (optional fields may be empty)
-        if (isset($userInputs[$inputKey])) {
-            $value = $userInputs[$inputKey];
-            $validationError = validateInputValue($definedInput, $value);
-
-            if ($validationError) {
-                $errors[] = $validationError;
-            } else {
-                // Store validated input
-                $validatedInputs[$inputKey] = $value;
-            }
-        } else if (isset($userInputs[$inputLabel])) {
-            $value = $userInputs[$inputLabel];
-            $validationError = validateInputValue($definedInput, $value);
-
-            if ($validationError) {
-                $errors[] = $validationError;
-            } else {
-                // Store validated input
-                $validatedInputs[$inputLabel] = $value;
-            }
-        } else if(isset($defineInput['default'])) {
-            // Use default value if available
-            $validatedInputs[$inputLabel] = $definedInput['default'];
+        // 3) Pick the value (user‐supplied takes priority)
+        if (array_key_exists($key, $userInputs)) {
+            $value = $userInputs[$key];
+        } elseif (array_key_exists($label, $userInputs)) {
+            $value = $userInputs[$label];
+        } elseif (array_key_exists('default', $def)) {
+            $value = $def['default'];
+        } else {
+            // nothing to validate or store
+            continue;
         }
 
+        // 4) Allow explicit nulls
+        if ($value === null) {
+            $validatedInputs[$key] = null;
+            continue;
+        }
+
+        // 5) Otherwise run through your existing validator
+        $validationError = validateInputValue($def, $value);
+        if ($validationError) {
+            $errors[] = $validationError;
+        } else {
+            $validatedInputs[$key] = $value;
+        }
     }
 
     return [
-        'valid' => empty($errors),
-        'errors' => $errors,
-        'validated_inputs' => $validatedInputs
+        'valid'            => empty($errors),
+        'errors'           => $errors,
+        'validated_inputs' => $validatedInputs,
     ];
 }
 
