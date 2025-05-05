@@ -21,6 +21,7 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea3e8b8-2df3-493f-8edd-18f6eb2de8e6',
                         'name'          => 'Call Number',
                         'icon'          => 'phone.fill',
+                        'androidIcon'   => 'call',
                         'gradientStart' => '#B874E3',
                         'gradientEnd'   => '#65407D',
                         'inputs'        => [
@@ -44,6 +45,7 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea3e8b8-2ef4-44b1-a58e-60f8af05f473',
                         'name'          => 'Send Message',
                         'icon'          => 'message.fill',
+                        'androidIcon'   => 'chatbubble-ellipses',
                         'gradientStart' => '#0EABEF',
                         'gradientEnd'   => '#086289',
                         'inputs'        => [
@@ -63,6 +65,7 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea3e8b8-2eb1-4f52-ab16-f5c863a459ee',
                         'name'          => 'Open App',
                         'icon'          => 'app.fill',
+                        'androidIcon'   => 'apps',
                         'gradientStart' => '#53D769',
                         'gradientEnd'   => '#2F7A3B',
                         'inputs'        => [
@@ -77,6 +80,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id' => 'd4',
                         'name'          => 'Set Brightness',
                         'icon'          => 'sun.max.fill',
+                        'androidIcon'   => 'sunny',
                         'gradientStart' => '#FFCC00',
                         'gradientEnd'   => '#997A00',
                         'inputs'        => [[
@@ -93,6 +97,7 @@ class CategoryActionSeeder extends Seeder
                         'key'           => 'toggleFlashlight',
                         'name'          => 'Copy to Clipboard',
                         'icon'          => 'doc.on.doc',
+                        'androidIcon'   => 'documents-sharp',
                         'gradientStart' => '#FF3B30',
                         'gradientEnd'   => '#992420',
                         'inputs'        => [[
@@ -107,6 +112,7 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea3e8b8-2e6c-4cce-8fc8-580cffdcf013',
                         'name'          => 'Lock Phone',
                         'icon'          => 'test/test-icon.svg',
+                        'androidIcon'   => null,
                         'gradientStart' => '#8E8E93',
                         'gradientEnd'   => '#555558',
                         'inputs'        => [],
@@ -115,6 +121,7 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea3e8b8-2f35-48f1-9006-e20576a2a460',
                         'name'          => 'Check Reminders',
                         'icon'          => 'test/test-icon.svg',
+                        'androidIcon'   => null,
                         'gradientStart' => '#FFCC00',
                         'gradientEnd'   => '#997A00',
                         'inputs'        => [[
@@ -128,6 +135,7 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea403bf-878c-4470-b514-af22633a0ff4',
                         'name'          => 'Medication Reminder',
                         'icon'          => 'test/test-icon.svg',
+                        'androidIcon'   => null,
                         'gradientStart' => '#FF2D55',
                         'gradientEnd'   => '#991B33',
                         'inputs'        => [
@@ -148,7 +156,7 @@ class CategoryActionSeeder extends Seeder
                             [
                                 'key'      => 'time',
                                 'label'    => 'Time',
-                                'type'     => 'text',  // changed from "time"
+                                'type'     => 'text',  // changed from 'time'
                                 'default'  => '08:00',
                                 'required' => true,
                             ],
@@ -158,6 +166,7 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea3e8b8-2f78-4d6a-94e7-daa94dc556b4',
                         'name'          => 'Check Heart Rate',
                         'icon'          => 'test/test-icon.svg',
+                        'androidIcon'   => null,
                         'gradientStart' => '#FF3B30',
                         'gradientEnd'   => '#992420',
                         'inputs'        => [],
@@ -166,6 +175,7 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea403bf-8810-4983-b96d-eb13d493c14d',
                         'name'          => 'Navigate to Location',
                         'icon'          => 'test/test-icon.svg',
+                        'androidIcon'   => null,
                         'gradientStart' => '#5AC8FA',
                         'gradientEnd'   => '#367896',
                         'inputs'        => [
@@ -190,6 +200,7 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea403bf-884f-4b96-8663-e6d860a0e337',
                         'name'          => 'Call Transportation',
                         'icon'          => 'test/test-icon.svg',
+                        'androidIcon'   => null,
                         'gradientStart' => '#007AFF',
                         'gradientEnd'   => '#004999',
                         'inputs'        => [
@@ -213,13 +224,14 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea403bf-888d-4205-85f3-578b7d30e218',
                         'name'          => 'Order Essentials',
                         'icon'          => 'test/test-icon.svg',
+                        'androidIcon'   => null,
                         'gradientStart' => '#4CD964',
                         'gradientEnd'   => '#2E823C',
                         'inputs'        => [
                             [
                                 'key'      => 'items',
                                 'label'    => 'Items',
-                                'type'     => 'text',  // changed from "array"
+                                'type'     => 'text',  // changed from 'array'
                                 'default'  => [],
                                 'required' => true,
                             ],
@@ -243,6 +255,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id'            => 'c1',
                         'name'          => 'Toggle WiFi',
                         'icon'          => 'wifi',
+                        'androidIcon'   => 'wifi',
                         'gradientStart' => '#34AADC',
                         'gradientEnd'   => '#1F6583',
                         'inputs'        => [],
@@ -251,6 +264,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id'            => 'c2',
                         'name'          => 'Toggle Bluetooth',
                         'icon'          => 'antenna.radiowaves.left.and.right',
+                        'androidIcon'   => 'bluetooth',
                         'gradientStart' => '#007AFF',
                         'gradientEnd'   => '#004999',
                         'inputs'        => [],
@@ -259,6 +273,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id'            => 'c3',
                         'name'          => 'Toggle Airplane Mode',
                         'icon'          => 'airplane',
+                        'androidIcon'   => 'airplane',
                         'gradientStart' => '#FF9500',
                         'gradientEnd'   => '#995900',
                         'inputs'        => [],
@@ -274,6 +289,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id' => 'm1',
                         'name'          => 'Play Sound',
                         'icon'          => 'speaker.wave.3.fill',
+                        'androidIcon'   => 'play-circle-sharp',
                         'gradientStart' => '#AF52DE',
                         'gradientEnd'   => '#683286',
                         'inputs'        => [
@@ -289,6 +305,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id' => 'm2',
                         'name'          => 'Get Recent Photo',
                         'icon'          => 'photo.fill',
+                        'androidIcon'   => 'camera',
                         'gradientStart' => '#64D2FF',
                         'gradientEnd'   => '#3C7E99',
                         'inputs'        => [],         // no inputs
@@ -297,6 +314,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id' => 'm3',
                         'name'          => 'Record Audio',
                         'icon'          => 'mic.fill',
+                        'androidIcon'   => 'mic',
                         'gradientStart' => '#FF2D55',
                         'gradientEnd'   => '#991B33',
                         'inputs'        => [
@@ -312,6 +330,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id' => 'm4',
                         'name'          => 'Set Volume',
                         'icon'          => 'speaker.wave.2.fill',
+                        'androidIcon'   => 'volume-high',
                         'gradientStart' => '#FF9500',
                         'gradientEnd'   => '#995900',
                         'inputs'        => [
@@ -336,6 +355,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id' => 'l1',
                         'name'          => 'Get Current Location',
                         'icon'          => 'location.fill',
+                        'androidIcon'   => 'location',
                         'gradientStart' => '#4CD964',
                         'gradientEnd'   => '#2E823C',
                         'inputs'        => [],
@@ -344,6 +364,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id' => 'l2',
                         'name'          => 'Open Maps',
                         'icon'          => 'map.fill',
+                        'androidIcon'   => 'map',
                         'gradientStart' => '#FF3B30',
                         'gradientEnd'   => '#992420',
                         'inputs'        => [
@@ -358,6 +379,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id' => 'l3',
                         'name'          => 'Get Distance Between',
                         'icon'          => 'arrow.triangle.swap',
+                        'androidIcon'   => 'git-compare-sharp',
                         'gradientStart' => '#5AC8FA',
                         'gradientEnd'   => '#367896',
                         'inputs'        => [
@@ -377,6 +399,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id' => 'l4',
                         'name'          => 'Get Weather',
                         'icon'          => 'cloud.sun.fill',
+                        'androidIcon'   => 'cloudy-night',
                         'gradientStart' => '#007AFF',
                         'gradientEnd'   => '#004999',
                         'inputs'        => [
@@ -389,79 +412,55 @@ class CategoryActionSeeder extends Seeder
                         ],
                     ],
                 ],
-            ],            
+            ],
             [
-                // 'id' => 'media',
-                'name'        => 'Media',
-                'image'       => 'media',
-                'actions'     => [
+                // 'id' => 'data',
+                'name' => 'Data',
+                'image' => 'category-bg/data.jpg',
+                'icon' => 'icons/data.svg',
+                'actions' => [
                     [
-                        // 'id' => 'm1',
-                        'name'         => 'Play Sound',
-                        'icon'         => 'speaker.wave.3.fill',
-                        'gradientStart'=> '#AF52DE',
-                        'gradientEnd'  => '#683286',
-                        'inputs'       => [
-                            [
-                                'key'       => 'soundFile',
-                                'label'     => 'Sound File',
-                                'type'      => 'file',
-                                'fileTypes' => ['mp3', 'wav'],
-                            ],
-                        ],
-                        'config'       => [
-                            'soundFile' => '',
+                        // 'id' => 'da1',
+                        'name' => 'Get Clipboard',
+                        'icon' => 'doc.on.clipboard',
+                        'androidIcon' => 'document',
+                        'gradientStart' => '#8E8E93',
+                        'gradientEnd' => '#555558',
+                        'inputs' => [],
+                    ],
+                    [
+                        // 'id' => 'da2',
+                        'name' => 'Set Clipboard',
+                        'icon' => 'clipboard.fill',
+                        'androidIcon' => 'clipboard',
+                        'gradientStart' => '#FF9500',
+                        'gradientEnd' => '#995900',
+                        'inputs' => [
+                            ['name' => 'Text'],
                         ],
                     ],
                     [
-                        // 'id' => 'm2',
-                        'name'         => 'Get Recent Photo',
-                        'icon'         => 'photo.fill',
-                        'gradientStart'=> '#64D2FF',
-                        'gradientEnd'  => '#3C7E99',
-                        'inputs'       => [],
-                        'config'       => [],
+                        // 'id' => 'da3',
+                        'name' => 'Get Battery Level',
+                        'icon' => 'battery.100',
+                        'androidIcon' => 'battery-full',
+                        'gradientStart' => '#4CD964',
+                        'gradientEnd' => '#2E823C',
+                        'inputs' => [],
                     ],
                     [
-                        // 'id' => 'm3',
-                        'name'         => 'Record Audio',
-                        'icon'         => 'mic.fill',
-                        'gradientStart'=> '#FF2D55',
-                        'gradientEnd'  => '#991B33',
-                        'inputs'       => [
-                            [
-                                'key'     => 'duration',
-                                'label'   => 'Duration (seconds)',
-                                'type'    => 'number',
-                                'default' => 10,
-                            ],
-                        ],
-                        'config'       => [
-                            'duration' => 10,
-                        ],
-                    ],
-                    [
-                        // 'id' => 'm4',
-                        'name'         => 'Set Volume',
-                        'icon'         => 'speaker.wave.2.fill',
-                        'gradientStart'=> '#FF9500',
-                        'gradientEnd'  => '#995900',
-                        'inputs'       => [
-                            [
-                                'key'     => 'volumeLevel',
-                                'label'   => 'Volume Level',
-                                'type'    => 'slider',
-                                'min'     => 0,
-                                'max'     => 100,
-                                'default' => 50,
-                            ],
-                        ],
-                        'config'       => [
-                            'volumeLevel' => 50,
+                        // 'id' => 'da4',
+                        'name' => 'Generate QR Code',
+                        'icon' => 'qrcode',
+                        'androidIcon' => 'qr-code',
+                        'gradientStart' => '#5856D6',
+                        'gradientEnd' => '#353480',
+                        'inputs' => [
+                            ['name' => 'Content'],
                         ],
                     ],
                 ],
-            ],            
+            ],                           
             [
                 'id'    => '9ea3e8b8-2fb8-4143-a217-3a98b15de4aa',
                 'name'  => 'AI Assistant',
@@ -471,6 +470,7 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea3e8b8-2ff6-4438-af78-06fbdbf9eb9d',
                         'name'          => 'Describe Surroundings',
                         'icon'          => 'test/test-icon.svg',
+                        'androidIcon'   => null,
                         'gradientStart' => '#32D74B',
                         'gradientEnd'   => '#1E8A2D',
                         'inputs'        => [[
@@ -484,6 +484,7 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea3e8b8-3034-4ad0-90c9-60006cfe4979',
                         'name'          => 'Translate Sign Language',
                         'icon'          => 'test/test-icon.svg',
+                        'androidIcon'   => null,
                         'gradientStart' => '#BF5AF2',
                         'gradientEnd'   => '#733291',
                         'inputs'        => [[
@@ -497,6 +498,7 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea3e8b8-3071-410e-b77c-987612162a5b',
                         'name'          => 'Generate Visual Instructions',
                         'icon'          => 'test/test-icon.svg',
+                        'androidIcon'   => null,
                         'gradientStart' => '#0A84FF',
                         'gradientEnd'   => '#064F99',
                         'inputs'        => [[
@@ -510,6 +512,7 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea3e8b8-30af-4397-a3bb-e2580b81fd96',
                         'name'          => 'Predict Next Behavior',
                         'icon'          => 'test/test-icon.svg',
+                        'androidIcon'   => null,
                         'gradientStart' => '#FF9F0A',
                         'gradientEnd'   => '#995F06',
                         'inputs'        => [[
@@ -523,6 +526,7 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea3e8b8-30ec-438e-9a8d-f964c7129ecc',
                         'name'          => 'Simplify Complex Text',
                         'icon'          => 'test/test-icon.svg',
+                        'androidIcon'   => null,
                         'gradientStart' => '#30B0C7',
                         'gradientEnd'   => '#1D6B77',
                         'inputs'        => [[
@@ -536,12 +540,13 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea3e8b8-313b-4302-b31c-92e302c812f4',
                         'name'          => 'Assist with Voice',
                         'icon'          => 'test/test-icon.svg',
+                        'androidIcon'   => null,
                         'gradientStart' => '#FF9500',
                         'gradientEnd'   => '#995900',
                         'inputs'        => [[
                             'key'       => 'voiceCommand',
                             'label'     => 'Voice Command',
-                            'type'      => 'file',        // changed from "audio"
+                            'type'      => 'file',        // changed from 'audio'
                             'fileTypes' => ['wav', 'm4a'],
                         ]],
                     ],
@@ -549,6 +554,7 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea403bf-8a90-4f15-baad-ae747d839c82',
                         'name'          => 'Voice to Text Message',
                         'icon'          => 'test/test-icon.svg',
+                        'androidIcon'   => null,
                         'gradientStart' => '#5856D6',
                         'gradientEnd'   => '#AF52DE',
                         'inputs'        => [
@@ -573,6 +579,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id' => 'ai1',
                         'name'          => 'Text Completion',
                         'icon'          => 'text.bubble.fill',
+                        'androidIcon'   => 'chatbox',
                         'gradientStart' => '#32D74B',
                         'gradientEnd'   => '#1E8A2D',
                         'inputs'        => [
@@ -594,6 +601,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id' => 'ai2',
                         'name'          => 'Summarize Text',
                         'icon'          => 'doc.text.magnifyingglass',
+                        'androidIcon'   => 'file-tray-full',
                         'gradientStart' => '#0A84FF',
                         'gradientEnd'   => '#064F99',
                         'inputs'        => [
@@ -611,6 +619,94 @@ class CategoryActionSeeder extends Seeder
                             ],
                         ],
                     ],
+                    [
+                        'name' => 'Summarize Text',
+                        'icon' => 'doc.text.magnifyingglass',
+                        'androidIcon' => 'file-tray-full',
+                        'gradientStart' => '#0A84FF',
+                        'gradientEnd' => '#064F99',
+                        'inputs' => [
+                            [
+                                'key' => 'text',
+                                'label' => 'Text',
+                                'type' => 'text',
+                                'multiline' => true,
+                            ],
+                        ],
+                    ],
+                    [
+                        'name' => 'Image Description',
+                        'icon' => 'photo.fill.on.rectangle.fill',
+                        'androidIcon' => 'reader',
+                        'gradientStart' => '#BF5AF2',
+                        'gradientEnd' => '#733291',
+                        'inputs' => [
+                            [
+                                'key' => 'image',
+                                'label' => 'Image',
+                                'type' => 'file',
+                                'fileTypes' => ['jpg', 'png', 'heic'],
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Sentiment Analysis',
+                        'icon' => 'face.smiling',
+                        'androidIcon' => 'happy',
+                        'gradientStart' => '#FF375F',
+                        'gradientEnd' => '#992139',
+                        'inputs' => [
+                            [
+                                'key' => 'text',
+                                'label' => 'Text',
+                                'type' => 'text',
+                                'multiline' => true,
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Language Translation',
+                        'icon' => 'globe',
+                        'androidIcon' => 'language',
+                        'gradientStart' => '#30B0C7',
+                        'gradientEnd' => '#1D6B77',
+                        'inputs' => [
+                            [
+                                'key' => 'text',
+                                'label' => 'Text',
+                                'type' => 'text',
+                                'multiline' => true,
+                            ],
+                            [
+                                'key' => 'targetLanguage',
+                                'label' => 'Target Language',
+                                'type' => 'select',
+                                'options' => [
+                                    'English',
+                                    'Spanish',
+                                    'French',
+                                    'German',
+                                    'Japanese',
+                                    'Chinese',
+                                    ],
+                            ]
+                        ]
+                    ],
+                    [
+                        'name' => 'Voice Recognition',
+                        'icon' => 'waveform',
+                        'androidIcon' => 'mic-circle',
+                        'gradientStart' => '#FF9F0A',
+                        'gradientEnd' => '#995F06',
+                        'inputs' => [
+                            [
+                                'key' => 'audio',
+                                'label' => 'Audio',
+                                'type' => 'file',
+                                'fileTypes' => ['mp3', 'wav', 'm4a'],
+                            ]
+                        ]
+                    ]
                 ],
             ],            
             [
@@ -622,6 +718,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id'            => 'w1',
                         'name'          => 'Open URL',
                         'icon'          => 'safari',
+                        'androidIcon'   => 'globe',
                         'gradientStart' => '#FF2D55',
                         'gradientEnd'   => '#991B33',
                         'inputs'        => [
@@ -636,6 +733,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id'            => 'w2',
                         'name'          => 'Fetch Web Content',
                         'icon'          => 'arrow.down.doc',
+                        'androidIcon'   => 'download',
                         'gradientStart' => '#007AFF',
                         'gradientEnd'   => '#004999',
                         'inputs'        => [
@@ -650,6 +748,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id'            => 'w3',
                         'name'          => 'Share via',
                         'icon'          => 'square.and.arrow.up',
+                        'androidIcon'   => 'share',
                         'gradientStart' => '#5AC8FA',
                         'gradientEnd'   => '#367896',
                         'inputs'        => [
@@ -670,6 +769,7 @@ class CategoryActionSeeder extends Seeder
                         // 'id'            => 'w4',
                         'name'          => 'Post to Social Media',
                         'icon'          => 'network',
+                        'androidIcon'   => 'share-social',
                         'gradientStart' => '#FF9500',
                         'gradientEnd'   => '#995900',
                         'inputs'        => [
@@ -747,7 +847,7 @@ class CategoryActionSeeder extends Seeder
                             [
                                 'key'      => 'preferred_date',
                                 'label'    => 'Preferred Date',
-                                'type'     => 'text',  // changed from "date"
+                                'type'     => 'text',  // changed from 'date'
                                 'required' => true,
                             ],
                             [
@@ -827,7 +927,7 @@ class CategoryActionSeeder extends Seeder
                             [
                                 'key'      => 'medical_certificate',
                                 'label'    => 'Medical Certificate Required',
-                                'type'     => 'select',  // changed from "checkbox"
+                                'type'     => 'select',  // changed from 'checkbox'
                                 'options'  => [true, false],
                                 'required' => true,
                             ],
@@ -927,8 +1027,9 @@ class CategoryActionSeeder extends Seeder
                     [
                         'name' => $actionData['name'],
                         'icon' => $actionData['icon'],
-                        'gradient_start' => $actionData['gradientStart'] ?? null, // Added null coalescing
-                        'gradient_end' => $actionData['gradientEnd'] ?? null,     // Added null coalescing
+                        'android_icon' => $actionData['androidIcon'] ?? null,
+                        'gradient_start' => $actionData['gradientStart'] ?? null,
+                        'gradient_end' => $actionData['gradientEnd'] ?? null,
                         'inputs' => isset($actionData['inputs']) ? json_encode($actionData['inputs']) : null
                     ]
                 );

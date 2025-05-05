@@ -21,7 +21,8 @@ return new class extends Migration
                 ->onDelete('cascade');
 
             $table->string('name');
-            $table->string('icon');
+            $table->string('icon')->nullable();
+            $table->string('android_icon')->nullable();
             $table->string('gradient_start')->nullable();
             $table->string('gradient_end')->nullable();
             $table->jsonb('inputs')->nullable();

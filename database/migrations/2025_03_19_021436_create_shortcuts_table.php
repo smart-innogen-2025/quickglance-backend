@@ -28,7 +28,8 @@ return new class extends Migration
             
             $table->integer('order');
             $table->string('name');
-            $table->string('icon');
+            $table->string('icon')->nullable();
+            $table->string('android_icon')->nullable();
             $table->string('description');
             $table->string('gradient_start');
             $table->string('gradient_end');

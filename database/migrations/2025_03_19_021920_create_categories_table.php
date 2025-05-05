@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('icon')->nullable();
+            $table->string('android_icon')->nullable();
             $table->string('image_key')->nullable();
             $table->timestamps();
         });

@@ -19,13 +19,14 @@ class ServicesSeeder extends Seeder
             [
                 'name' => 'NCDA',
                 'description' => 'The National Council on Disability Affairs (NCDA) is the government agency mandated to formulate policies and coordinate the activities of all agencies concerning disability issues and concerns.',
-                'website_link' => 'https://www.ncda.gov.ph',
+                'website_link' => 'https =>//www.ncda.gov.ph',
                 'image' => 'ncda',
                 'shortcuts' => [
                     [
                         'name' => 'PWD ID Application',
                         'description' => 'Apply for Person with Disability Identification Card',
                         'icon' => 'person.crop.circle.badge.checkmark',
+                        'androidIcon' => 'id-card',
                         'gradient_start' => '#FF6B6B',
                         'gradient_end' => '#FF8E8E',
                         'actions' => [
@@ -43,6 +44,7 @@ class ServicesSeeder extends Seeder
                         'name' => 'Disability Certification',
                         'description' => 'Request for disability certification and assessment',
                         'icon' => 'doc.text.fill',
+                        'androidIcon' => 'document-text',
                         'gradient_start' => '#4ECDC4',
                         'gradient_end' => '#45B7AC',
                         'actions' => [
@@ -60,6 +62,7 @@ class ServicesSeeder extends Seeder
                         'name' => 'Assistive Device Support',
                         'description' => 'Apply for assistive technology devices',
                         'icon' => 'accessibility',
+                        'androidIcon' => 'accessibility',
                         'gradient_start' => '#96CEB4',
                         'gradient_end' => '#7AB59B',
                         'actions' => [
@@ -76,6 +79,7 @@ class ServicesSeeder extends Seeder
                         'name' => 'Employment Assistance',
                         'description' => 'Access employment opportunities for PWDs',
                         'icon' => 'briefcase.fill',
+                        'androidIcon' => 'briefcase',
                         'gradient_start' => '#FF9F9F',
                         'gradient_end' => '#FF8787',
                         'actions' => [
@@ -88,19 +92,30 @@ class ServicesSeeder extends Seeder
                                 ]
                             ]
                         ]
+                    ],
+                    [
+                        'name' => 'Disability Benefits',
+                        'description' => 'Learn about available benefits and programs',
+                        'icon' => 'heart.fill',
+                        'androidIcon' => 'heart',
+                        'gradientStart' => '#88D8B0',
+                        'gradientEnd' => '#6FC49A',
+                        'serviceName' => 'NCDA',
+                        'actions' => [],
                     ]
                 ]
             ],
             [
                 'name' => 'DOH',
                 'description' => 'The Department of Health (DOH) is the principal health agency in the Philippines responsible for ensuring access to basic public health services by all Filipinos.',
-                'website_link' => 'https://doh.gov.ph',
+                'website_link' => 'https =>//doh.gov.ph',
                 'image' => 'doh',
                 'shortcuts' => [
                     [
                         'name' => 'Vaccination Schedule',
                         'description' => 'Check and schedule vaccination appointments',
                         'icon' => 'syringe',
+                        'androidIcon' => 'calendar',
                         'gradient_start' => '#6C63FF',
                         'gradient_end' => '#574FCC',
                         'actions' => [
@@ -118,6 +133,7 @@ class ServicesSeeder extends Seeder
                         'name' => 'Medical Assistance',
                         'description' => 'Apply for medical financial assistance',
                         'icon' => 'cross.case.fill',
+                        'androidIcon' => 'medical',
                         'gradient_start' => '#FF6B6B',
                         'gradient_end' => '#FF8E8E',
                         'actions' => [
@@ -134,6 +150,7 @@ class ServicesSeeder extends Seeder
                         'name' => 'Health Facility Finder',
                         'description' => 'Locate nearest health facilities',
                         'icon' => 'building.2.fill',
+                        'androidIcon' => 'search',
                         'gradient_start' => '#4ECDC4',
                         'gradient_end' => '#45B7AC',
                         'actions' => [
@@ -150,6 +167,7 @@ class ServicesSeeder extends Seeder
                         'name' => 'Drug Price Inquiry',
                         'description' => 'Check medication prices and availability',
                         'icon' => 'pills.fill',
+                        'androidIcon' => 'pricetag',
                         'gradient_start' => '#FFD93D',
                         'gradient_end' => '#FFB302',
                         'actions' => [
@@ -161,19 +179,30 @@ class ServicesSeeder extends Seeder
                                 ]
                             ]
                         ]
+                    ],
+                    [
+                        'name' => 'COVID-19 Updates',
+                        'description' => 'Get latest COVID-19 information and guidelines',
+                        'icon' => 'waveform.path.ecg',
+                        'androidIcon' => 'newspaper',
+                        'gradientStart' => '#FF9F9F',
+                        'gradientEnd' => '#FF8787',
+                        'serviceName' => 'DOH',
+                        'actions' => [],
                     ]
                 ]
             ],
             [
                 'name' => 'DSWD',
                 'description' => 'The Department of Social Welfare and Development (DSWD) is the primary government agency mandated to develop, implement and coordinate social protection and poverty-reduction solutions for and with the poor, vulnerable and disadvantaged.',
-                'website_link' => 'https://www.dswd.gov.ph',
+                'website_link' => 'https =>//www.dswd.gov.ph',
                 'image' => 'dswd',
                 'shortcuts' => [
                     [
                         'name' => '4Ps Registration',
                         'description' => 'Register for Pantawid Pamilyang Pilipino Program',
                         'icon' => 'person.3.fill',
+                        'androidIcon' => 'pencil',
                         'gradient_start' => '#6C63FF',
                         'gradient_end' => '#574FCC',
                         'actions' => [
@@ -191,6 +220,7 @@ class ServicesSeeder extends Seeder
                         'name' => 'Food Aid',
                         'description' => 'Request food assistance program',
                         'icon' => 'cart.fill',
+                        'androidIcon' => null,
                         'gradient_start' => '#FFD93D',
                         'gradient_end' => '#FFB302',
                         'actions' => [
@@ -203,6 +233,16 @@ class ServicesSeeder extends Seeder
                                 ]
                             ]
                         ]
+                    ],
+                    [
+                        'name' => 'Social Pension',
+                        'description' => 'Apply for senior citizen social pension',
+                        'icon' => 'banknote.fill',
+                        'androidIcon' => 'cash',
+                        'gradientStart' => '#4ECDC4',
+                        'gradientEnd' => '#45B7AC',
+                        'serviceName' => 'DSWD',
+                        'actions' => [],
                     ],
                     [
                         'name' => 'Crisis Intervention',
@@ -219,19 +259,31 @@ class ServicesSeeder extends Seeder
                                 ]
                             ]
                         ]
+                    ],
+                    [
+                        'name' => 'Child Welfare',
+                        'description' => 'Access child protection services',
+                        'icon' => 'figure.child.circle',
+                        'androidIcon' => 'happy',
+                        'gradientStart' => '#88D8B0',
+                        'gradientEnd' => '#6FC49A',
+                        'serviceName' => 'DSWD',
+                        'actions' => [],
                     ]
+
                 ]
             ],
             [
                 'name' => 'DICT',
                 'description' => 'The Department of Information and Communications Technology (DICT) is the executive department responsible for the planning, development, and promotion of the country\'s ICT agenda.',
-                'website_link' => 'https://dict.gov.ph',
+                'website_link' => 'https =>//dict.gov.ph',
                 'image' => 'dict',
                 'shortcuts' => [
                     [
                         'name' => 'Free WiFi Access',
                         'description' => 'Register for free public WiFi service',
                         'icon' => 'wifi',
+                        'androidIcon' => 'wifi',
                         'gradient_start' => '#6C63FF',
                         'gradient_end' => '#574FCC',
                         'actions' => [
@@ -248,6 +300,7 @@ class ServicesSeeder extends Seeder
                         'name' => 'Digital Skills',
                         'description' => 'Access free digital literacy training',
                         'icon' => 'graduationcap.fill',
+                        'androidIcon' => 'desktop',
                         'gradient_start' => '#4ECDC4',
                         'gradient_end' => '#45B7AC',
                         'actions' => [
@@ -259,6 +312,36 @@ class ServicesSeeder extends Seeder
                                 ]
                             ]
                         ]
+                    ],
+                    [
+                        'name' => 'Tech4ED Centers',
+                        'description' => 'Find nearest Tech4ED center location',
+                        'icon' => 'building.columns.fill',
+                        'androidIcon' => 'school',
+                        'gradientStart' => '#FFD93D',
+                        'gradientEnd' => '#FFB302',
+                        'serviceName' => 'DICT',
+                        'actions' => [],
+                    ],
+                    [
+                        'name' => 'Cybersecurity',
+                        'description' => 'Learn about online safety and security',
+                        'icon' => 'lock.shield.fill',
+                        'androidIcon' => 'lock-closed',
+                        'gradientStart' => '#FF6B6B',
+                        'gradientEnd' => '#FF8E8E',
+                        'serviceName' => 'DICT',
+                        'actions' => [],
+                    ],
+                    [
+                        'name' => 'E-Government',
+                        'description' => 'Access various e-government services',
+                        'icon' => 'network',
+                        'androidIcon' => 'logo-apple-ar',
+                        'gradientStart' => '#88D8B0',
+                        'gradientEnd' => '#6FC49A',
+                        'serviceName' => 'DICT',
+                        'actions' => [],
                     ]
                 ]
             ]
@@ -285,6 +368,7 @@ class ServicesSeeder extends Seeder
                         'order' => $shortcutMaxOrder + 1,
                         'name' => $shortcutData['name'],
                         'icon' => $shortcutData['icon'],
+                        'android_icon' => $shortcutData['androidIcon'],
                         'description' => $shortcutData['description'],
                         'gradient_start' => $shortcutData['gradient_start'],
                         'gradient_end' => $shortcutData['gradient_end'],
@@ -294,7 +378,7 @@ class ServicesSeeder extends Seeder
                         $actionData = Action::find($action['id']);
             
                         if (!$actionData) {
-                            info("Action not found: " . $action['id']);
+                            info('Action not found => ' . $action['id']);
                             continue;
                         }
             
@@ -305,7 +389,7 @@ class ServicesSeeder extends Seeder
                         );
             
                         if (!$validationResult['valid']) {
-                            info("Invalid inputs for action {$actionData->id}: " . json_encode($validationResult['errors']));
+                            info('Invalid inputs for action {$actionData->id} => ' . json_encode($validationResult['errors']));
                             continue;
                         }
             
@@ -320,16 +404,11 @@ class ServicesSeeder extends Seeder
                         ]);
                     }
             
-                    info("Shortcut created for user ID: " . $serviceUser->id);
+                    info('Shortcut created for user ID => ' . $serviceUser->id);
                    
                 } catch (\Exception $e) {
-                    info("Error creating shortcut for user IDs: " . $serviceUser->id . " - " . $e->getMessage());
+                    info('Error creating shortcut for user IDs => ' . $serviceUser->id . ' - ' . $e->getMessage());
                 }
-
-                // Create the user action for the shortcut
-                // Assuming you have a UserAction model and it has a relationship with Shortcut
-                // You can adjust this part based on your actual implementation
-                // UserAction::create([...]);
             }
         }
     }
