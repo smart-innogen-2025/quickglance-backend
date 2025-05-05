@@ -220,7 +220,7 @@ class ServicesSeeder extends Seeder
                         'name' => 'Food Aid',
                         'description' => 'Request food assistance program',
                         'icon' => 'cart.fill',
-                        'androidIcon' => null,
+                        'androidIcon' => 'cart',
                         'gradient_start' => '#FFD93D',
                         'gradient_end' => '#FFB302',
                         'actions' => [
