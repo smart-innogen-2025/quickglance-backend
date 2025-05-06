@@ -434,7 +434,7 @@ class ShortcutController extends Controller
                 'gradient_end' => 'nullable|string',
                 'steps' => 'required|array',
                 'steps.*.actionId' => 'required|string',
-                'steps.*.inputs' => 'required|string'
+                'steps.*.inputs' => 'required|array'
             ]);
 
             $shortcut = Shortcut::where('user_id', $userId)
