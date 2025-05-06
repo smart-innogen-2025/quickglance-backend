@@ -12,6 +12,7 @@ class Action extends Model
     protected $fillable = [
         'name',
         'icon',
+        'android_icon',
         'gradient_start',
         'gradient_end',
         'category_id',
