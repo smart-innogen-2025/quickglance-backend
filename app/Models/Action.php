@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\{HasMany, BelongsTo};
 class Action extends Model
 {
     protected $fillable = [
+        'mobile_key',
         'name',
         'icon',
         'android_icon',

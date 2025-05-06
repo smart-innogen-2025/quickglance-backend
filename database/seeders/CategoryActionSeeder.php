@@ -19,6 +19,7 @@ class CategoryActionSeeder extends Seeder
                 'actions'    => [
                     [
                         'id'            => '9ea3e8b8-2df3-493f-8edd-18f6eb2de8e6',
+                        'mobileKey'    => 'd1',
                         'name'          => 'Call Number',
                         'icon'          => 'phone.fill',
                         'androidIcon'   => 'call',
@@ -43,6 +44,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         'id'            => '9ea3e8b8-2ef4-44b1-a58e-60f8af05f473',
+                        'mobileKey'    => 'd2',
                         'name'          => 'Send Message',
                         'icon'          => 'message.fill',
                         'androidIcon'   => 'chatbubble-ellipses',
@@ -63,6 +65,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         'id'            => '9ea3e8b8-2eb1-4f52-ab16-f5c863a459ee',
+                        'mobileKey'    => 'd3',
                         'name'          => 'Open App',
                         'icon'          => 'app.fill',
                         'androidIcon'   => 'apps',
@@ -78,6 +81,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         // 'id' => 'd4',
+                        'mobileKey'    => 'd4',
                         'name'          => 'Set Brightness',
                         'icon'          => 'sun.max.fill',
                         'androidIcon'   => 'sunny',
@@ -94,7 +98,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         // 'id' => 'd5',
-                        'key'           => 'toggleFlashlight',
+                        'mobileKey'    => 'd5',
                         'name'          => 'Copy to Clipboard',
                         'icon'          => 'doc.on.doc',
                         'androidIcon'   => 'documents-sharp',
@@ -252,7 +256,8 @@ class CategoryActionSeeder extends Seeder
                 'image'   => 'connectivity',
                 'actions' => [
                     [
-                        // 'id'            => 'c1',
+                        // 'id'         => 'c1',
+                        'mobileKey'    => 'c1',
                         'name'          => 'Toggle WiFi',
                         'icon'          => 'wifi',
                         'androidIcon'   => 'wifi',
@@ -261,7 +266,8 @@ class CategoryActionSeeder extends Seeder
                         'inputs'        => [],
                     ],
                     [
-                        // 'id'            => 'c2',
+                        // 'id'         => 'c2',
+                        'mobileKey'    => 'c2',
                         'name'          => 'Toggle Bluetooth',
                         'icon'          => 'antenna.radiowaves.left.and.right',
                         'androidIcon'   => 'bluetooth',
@@ -270,7 +276,8 @@ class CategoryActionSeeder extends Seeder
                         'inputs'        => [],
                     ],
                     [
-                        // 'id'            => 'c3',
+                        // 'id'         => 'c3',
+                        'mobileKey'    => 'c3',
                         'name'          => 'Toggle Airplane Mode',
                         'icon'          => 'airplane',
                         'androidIcon'   => 'airplane',
@@ -287,6 +294,7 @@ class CategoryActionSeeder extends Seeder
                 'actions'     => [
                     [
                         // 'id' => 'm1',
+                        'mobileKey'    => 'm1',
                         'name'          => 'Play Sound',
                         'icon'          => 'speaker.wave.3.fill',
                         'androidIcon'   => 'play-circle-sharp',
@@ -303,6 +311,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         // 'id' => 'm2',
+                        'mobileKey'    => 'm2',
                         'name'          => 'Get Recent Photo',
                         'icon'          => 'photo.fill',
                         'androidIcon'   => 'camera',
@@ -312,6 +321,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         // 'id' => 'm3',
+                        'mobileKey'    => 'm3',
                         'name'          => 'Record Audio',
                         'icon'          => 'mic.fill',
                         'androidIcon'   => 'mic',
@@ -328,6 +338,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         // 'id' => 'm4',
+                        'mobileKey'    => 'm4',
                         'name'          => 'Set Volume',
                         'icon'          => 'speaker.wave.2.fill',
                         'androidIcon'   => 'volume-high',
@@ -353,6 +364,7 @@ class CategoryActionSeeder extends Seeder
                 'actions'     => [
                     [
                         // 'id' => 'l1',
+                        'mobileKey'    => 'l1',
                         'name'          => 'Get Current Location',
                         'icon'          => 'location.fill',
                         'androidIcon'   => 'location',
@@ -362,6 +374,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         // 'id' => 'l2',
+                        'mobileKey'    => 'l2',
                         'name'          => 'Open Maps',
                         'icon'          => 'map.fill',
                         'androidIcon'   => 'map',
@@ -377,6 +390,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         // 'id' => 'l3',
+                        'mobileKey'    => 'l3',
                         'name'          => 'Get Distance Between',
                         'icon'          => 'arrow.triangle.swap',
                         'androidIcon'   => 'git-compare-sharp',
@@ -397,6 +411,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         // 'id' => 'l4',
+                        'mobileKey'    => 'l4',
                         'name'          => 'Get Weather',
                         'icon'          => 'cloud.sun.fill',
                         'androidIcon'   => 'cloudy-night',
@@ -421,6 +436,7 @@ class CategoryActionSeeder extends Seeder
                 'actions' => [
                     [
                         // 'id' => 'da1',
+                        'mobileKey' => 'da1',
                         'name' => 'Get Clipboard',
                         'icon' => 'doc.on.clipboard',
                         'androidIcon' => 'document',
@@ -430,6 +446,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         // 'id' => 'da2',
+                        'mobileKey' => 'da2',
                         'name' => 'Set Clipboard',
                         'icon' => 'clipboard.fill',
                         'androidIcon' => 'clipboard',
@@ -441,6 +458,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         // 'id' => 'da3',
+                        'mobileKey' => 'da3',
                         'name' => 'Get Battery Level',
                         'icon' => 'battery.100',
                         'androidIcon' => 'battery-full',
@@ -450,6 +468,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         // 'id' => 'da4',
+                        'mobileKey' => 'da4',
                         'name' => 'Generate QR Code',
                         'icon' => 'qrcode',
                         'androidIcon' => 'qr-code',
@@ -577,6 +596,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         // 'id' => 'ai1',
+                        'mobileKey'    => 'ai1',
                         'name'          => 'Text Completion',
                         'icon'          => 'text.bubble.fill',
                         'androidIcon'   => 'chatbox',
@@ -599,6 +619,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         // 'id' => 'ai2',
+                        'mobileKey'    => 'ai2',
                         'name'          => 'Summarize Text',
                         'icon'          => 'doc.text.magnifyingglass',
                         'androidIcon'   => 'file-tray-full',
@@ -620,21 +641,7 @@ class CategoryActionSeeder extends Seeder
                         ],
                     ],
                     [
-                        'name' => 'Summarize Text',
-                        'icon' => 'doc.text.magnifyingglass',
-                        'androidIcon' => 'file-tray-full',
-                        'gradientStart' => '#0A84FF',
-                        'gradientEnd' => '#064F99',
-                        'inputs' => [
-                            [
-                                'key' => 'text',
-                                'label' => 'Text',
-                                'type' => 'text',
-                                'multiline' => true,
-                            ],
-                        ],
-                    ],
-                    [
+                        'mobileKey' => 'ai3',
                         'name' => 'Image Description',
                         'icon' => 'photo.fill.on.rectangle.fill',
                         'androidIcon' => 'reader',
@@ -650,6 +657,7 @@ class CategoryActionSeeder extends Seeder
                         ]
                     ],
                     [
+                        'mobileKey' => 'ai4',
                         'name' => 'Sentiment Analysis',
                         'icon' => 'face.smiling',
                         'androidIcon' => 'happy',
@@ -665,6 +673,7 @@ class CategoryActionSeeder extends Seeder
                         ]
                     ],
                     [
+                        'mobileKey' => 'ai5',
                         'name' => 'Language Translation',
                         'icon' => 'globe',
                         'androidIcon' => 'language',
@@ -693,6 +702,7 @@ class CategoryActionSeeder extends Seeder
                         ]
                     ],
                     [
+                        'mobileKey' => 'ai6',
                         'name' => 'Voice Recognition',
                         'icon' => 'waveform',
                         'androidIcon' => 'mic-circle',
@@ -716,6 +726,7 @@ class CategoryActionSeeder extends Seeder
                 'actions'    => [
                     [
                         // 'id'            => 'w1',
+                        'mobileKey'    => 'w1',
                         'name'          => 'Open URL',
                         'icon'          => 'safari',
                         'androidIcon'   => 'globe',
@@ -731,6 +742,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         // 'id'            => 'w2',
+                        'mobileKey'    => 'w2',
                         'name'          => 'Fetch Web Content',
                         'icon'          => 'arrow.down.doc',
                         'androidIcon'   => 'download',
@@ -746,6 +758,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         // 'id'            => 'w3',
+                        'mobileKey'    => 'w3',
                         'name'          => 'Share via',
                         'icon'          => 'square.and.arrow.up',
                         'androidIcon'   => 'share',
@@ -767,6 +780,7 @@ class CategoryActionSeeder extends Seeder
                     ],
                     [
                         // 'id'            => 'w4',
+                        'mobileKey'    => 'w4',
                         'name'          => 'Post to Social Media',
                         'icon'          => 'network',
                         'androidIcon'   => 'share-social',
@@ -1025,6 +1039,7 @@ class CategoryActionSeeder extends Seeder
                 $category->actions()->updateOrCreate(
                     ['id' => $actionId], 
                     [
+                        'mobile_key' => $actionData['mobileKey'] ?? null,
                         'name' => $actionData['name'],
                         'icon' => $actionData['icon'],
                         'android_icon' => $actionData['androidIcon'] ?? null,

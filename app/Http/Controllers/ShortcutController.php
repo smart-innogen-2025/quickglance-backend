@@ -27,7 +27,7 @@ class ShortcutController extends Controller
             // ->whereNotIn('id', $installedShortcutIds) // Exclude already installed
             ->with([
                 'userAction' => function ($query) {
-                    $query->orderBy('order', 'asc')->with('action:id,name');
+                    $query->orderBy('order', 'asc')->with('action:id,name,mobile_key');
                 },
                 'user:id,first_name,middle_name,last_name',
             ])
@@ -39,6 +39,7 @@ class ShortcutController extends Controller
                         'order' => $step->order,
                         'inputs' => $step->inputs,
                         'action_id' => $step->action_id,
+                        'mobileKey' => $step->action?->mobile_key,
                         'actionName' => $step->action?->name,
                     ];
                 });
@@ -174,7 +175,7 @@ class ShortcutController extends Controller
                 ->orderBy('order', 'asc')
                 ->with([
                     'userAction' => function ($query) {
-                        $query->orderBy('order', 'asc')->with('action:id,name');
+                        $query->orderBy('order', 'asc')->with('action:id,name,mobile_key');
                     },
                     'user:id,first_name,middle_name,last_name',
                 ])
@@ -186,6 +187,7 @@ class ShortcutController extends Controller
                             'order' => $step->order,
                             'inputs' => $step->inputs,
                             'action_id' => $step->action_id,
+                            'mobileKey' => $step->action?->mobile_key,
                             'actionName' => $step->action?->name,
                         ];
                     });
@@ -272,6 +274,7 @@ class ShortcutController extends Controller
                 $stepsWithActionNames = $shortcut->userAction->map(function ($step) {
                     return [
                         'userActionId' => $step->id,
+                        'mobileKey' => $step->action?->mobile_key,
                         'actionName' => $step->action?->name,
                         'actionId' => $step->action_id,
                     ];

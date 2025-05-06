@@ -31,7 +31,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('shortcuts')
                 ->onDelete('cascade');
-                
+            
             $table->jsonb('inputs');
             $table->timestamps();
         

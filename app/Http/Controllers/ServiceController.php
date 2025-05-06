@@ -102,6 +102,7 @@ class ServiceController extends Controller
                         'order' => $step->order,
                         'inputs' => $step->inputs,
                         'action_id' => $step->action_id,
+                        'mobile_key' => $step->action?->mobile_key,
                         'actionName' => $step->action?->name,
                     ];
                 });

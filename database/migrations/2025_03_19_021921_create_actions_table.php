@@ -20,6 +20,7 @@ return new class extends Migration
                 ->on('categories')
                 ->onDelete('cascade');
 
+            $table->string('mobile_key')->nullable();
             $table->string('name');
             $table->string('icon')->nullable();
             $table->string('android_icon')->nullable();
