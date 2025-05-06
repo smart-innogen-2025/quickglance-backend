@@ -431,7 +431,7 @@ class CategoryActionSeeder extends Seeder
             [
                 // 'id' => 'data',
                 'name' => 'Data',
-                'image' => 'category-bg/data.jpg',
+                'image' => 'data',
                 'icon' => 'icons/data.svg',
                 'actions' => [
                     [
