@@ -276,6 +276,7 @@ class ShortcutController extends Controller
                         'userActionId' => $step->id,
                         'mobileKey' => $step->action?->mobile_key,
                         'actionName' => $step->action?->name,
+                        'inputs' => $step->inputs,
                         'actionId' => $step->action_id,
                     ];
                 });
