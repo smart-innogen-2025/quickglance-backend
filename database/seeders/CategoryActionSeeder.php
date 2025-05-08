@@ -80,7 +80,7 @@ class CategoryActionSeeder extends Seeder
                         ],
                     ],
                     [
-                        // 'id' => 'd4',
+                        'id' => '9ed7f012-9fd4-46cb-8079-a074e6faf680',
                         'mobileKey'    => 'd4',
                         'name'          => 'Set Brightness',
                         'icon'          => 'sun.max.fill',
@@ -97,7 +97,7 @@ class CategoryActionSeeder extends Seeder
                         ]],
                     ],
                     [
-                        // 'id' => 'd5',
+                        'id' => '9ed7f012-a21b-4c9d-a056-fe6149c40c2a',
                         'mobileKey'    => 'd5',
                         'name'          => 'Copy to Clipboard',
                         'icon'          => 'doc.on.doc',
@@ -256,7 +256,7 @@ class CategoryActionSeeder extends Seeder
                 'image'   => 'connectivity',
                 'actions' => [
                     [
-                        // 'id'         => 'c1',
+                        'id'         => '9ed7f012-a638-4b1e-94a1-7110195a5aa6',
                         'mobileKey'    => 'c1',
                         'name'          => 'Toggle WiFi',
                         'icon'          => 'wifi',
@@ -266,7 +266,7 @@ class CategoryActionSeeder extends Seeder
                         'inputs'        => [],
                     ],
                     [
-                        // 'id'         => 'c2',
+                        'id'         => '9ed7f012-a6a4-417d-8056-cdd08e9cb9f7',
                         'mobileKey'    => 'c2',
                         'name'          => 'Toggle Bluetooth',
                         'icon'          => 'antenna.radiowaves.left.and.right',
@@ -276,7 +276,7 @@ class CategoryActionSeeder extends Seeder
                         'inputs'        => [],
                     ],
                     [
-                        // 'id'         => 'c3',
+                        'id'         => '9ed7f012-a710-45b4-9951-68829a51a14c',
                         'mobileKey'    => 'c3',
                         'name'          => 'Toggle Airplane Mode',
                         'icon'          => 'airplane',
@@ -293,7 +293,7 @@ class CategoryActionSeeder extends Seeder
                 'image'       => 'media',
                 'actions'     => [
                     [
-                        // 'id' => 'm1',
+                        'id' => '9ed7f012-a7e0-4f4c-9d66-d69cfe3b86bd',
                         'mobileKey'    => 'm1',
                         'name'          => 'Play Sound',
                         'icon'          => 'speaker.wave.3.fill',
@@ -310,7 +310,7 @@ class CategoryActionSeeder extends Seeder
                         ],
                     ],
                     [
-                        // 'id' => 'm2',
+                        'id' => '9ed7f012-a863-46f8-8f23-1018b900bae7',
                         'mobileKey'    => 'm2',
                         'name'          => 'Get Recent Photo',
                         'icon'          => 'photo.fill',
@@ -320,7 +320,7 @@ class CategoryActionSeeder extends Seeder
                         'inputs'        => [],         // no inputs
                     ],
                     [
-                        // 'id' => 'm3',
+                        'id' => '9ed7f012-a8e9-4ad2-b1ac-2e12cde0a10d',
                         'mobileKey'    => 'm3',
                         'name'          => 'Record Audio',
                         'icon'          => 'mic.fill',
@@ -337,7 +337,7 @@ class CategoryActionSeeder extends Seeder
                         ],
                     ],
                     [
-                        // 'id' => 'm4',
+                        'id' => '9ed7f012-a959-4871-b037-ba816446712a',
                         'mobileKey'    => 'm4',
                         'name'          => 'Set Volume',
                         'icon'          => 'speaker.wave.2.fill',
@@ -363,7 +363,7 @@ class CategoryActionSeeder extends Seeder
                 'image'       => 'location',
                 'actions'     => [
                     [
-                        // 'id' => 'l1',
+                        'id' => '9ed7f012-aa27-4170-9529-07e4ecb6db4e',
                         'mobileKey'    => 'l1',
                         'name'          => 'Get Current Location',
                         'icon'          => 'location.fill',
@@ -373,7 +373,7 @@ class CategoryActionSeeder extends Seeder
                         'inputs'        => [],
                     ],
                     [
-                        // 'id' => 'l2',
+                        'id' => '9ed7f012-aa94-47a1-871a-a7b41af5e450',
                         'mobileKey'    => 'l2',
                         'name'          => 'Open Maps',
                         'icon'          => 'map.fill',
@@ -389,7 +389,7 @@ class CategoryActionSeeder extends Seeder
                         ],
                     ],
                     [
-                        // 'id' => 'l3',
+                        'id' => '9ed7f012-ab01-4c2e-bec9-8a5bfd9a3f15',
                         'mobileKey'    => 'l3',
                         'name'          => 'Get Distance Between',
                         'icon'          => 'arrow.triangle.swap',
@@ -410,7 +410,7 @@ class CategoryActionSeeder extends Seeder
                         ],
                     ],
                     [
-                        // 'id' => 'l4',
+                        'id' => '9ed7f012-ab82-4a70-ab70-85fca8dc2919',
                         'mobileKey'    => 'l4',
                         'name'          => 'Get Weather',
                         'icon'          => 'cloud.sun.fill',
@@ -435,7 +435,7 @@ class CategoryActionSeeder extends Seeder
                 'icon' => 'icons/data.svg',
                 'actions' => [
                     [
-                        // 'id' => 'da1',
+                        'id' => '9ed7f012-ac55-4a45-bf2e-fe17dd46aad3',
                         'mobileKey' => 'da1',
                         'name' => 'Get Clipboard',
                         'icon' => 'doc.on.clipboard',
@@ -445,7 +445,7 @@ class CategoryActionSeeder extends Seeder
                         'inputs' => [],
                     ],
                     [
-                        // 'id' => 'da2',
+                        'id' => '9ed7f012-acc3-40ea-8a2d-19d724979b2a',
                         'mobileKey' => 'da2',
                         'name' => 'Set Clipboard',
                         'icon' => 'clipboard.fill',
@@ -457,7 +457,7 @@ class CategoryActionSeeder extends Seeder
                         ],
                     ],
                     [
-                        // 'id' => 'da3',
+                        'id' => '9ed7f012-ad2f-4f43-85f6-101ba94c9132',
                         'mobileKey' => 'da3',
                         'name' => 'Get Battery Level',
                         'icon' => 'battery.100',
@@ -467,7 +467,7 @@ class CategoryActionSeeder extends Seeder
                         'inputs' => [],
                     ],
                     [
-                        // 'id' => 'da4',
+                        'id' => '9ed7f012-ada1-48eb-a6ee-cff22ff5390b',
                         'mobileKey' => 'da4',
                         'name' => 'Generate QR Code',
                         'icon' => 'qrcode',
@@ -595,7 +595,7 @@ class CategoryActionSeeder extends Seeder
                         ],
                     ],
                     [
-                        // 'id' => 'ai1',
+                        'id' => '9ed7f012-b1dd-4c45-be0d-69e3e840a6fe',
                         'mobileKey'    => 'ai1',
                         'name'          => 'Text Completion',
                         'icon'          => 'text.bubble.fill',
@@ -618,7 +618,7 @@ class CategoryActionSeeder extends Seeder
                         ],
                     ],
                     [
-                        // 'id' => 'ai2',
+                        'id' => '9ed7f012-b24d-4e8c-9e00-a69ec0001f2b',
                         'mobileKey'    => 'ai2',
                         'name'          => 'Summarize Text',
                         'icon'          => 'doc.text.magnifyingglass',
@@ -641,6 +641,7 @@ class CategoryActionSeeder extends Seeder
                         ],
                     ],
                     [
+                        'id' => '9ed7f012-b2bc-4477-86bd-5cbe01149b4e',
                         'mobileKey' => 'ai3',
                         'name' => 'Image Description',
                         'icon' => 'photo.fill.on.rectangle.fill',
@@ -657,6 +658,7 @@ class CategoryActionSeeder extends Seeder
                         ]
                     ],
                     [
+                        'id' => '9ed7f012-b32a-4538-af77-c908a7ba5beb',
                         'mobileKey' => 'ai4',
                         'name' => 'Sentiment Analysis',
                         'icon' => 'face.smiling',
@@ -673,6 +675,7 @@ class CategoryActionSeeder extends Seeder
                         ]
                     ],
                     [
+                        'id' => '9ed7f012-b397-45c3-a0f7-0d37cd5768e6',
                         'mobileKey' => 'ai5',
                         'name' => 'Language Translation',
                         'icon' => 'globe',
@@ -702,6 +705,7 @@ class CategoryActionSeeder extends Seeder
                         ]
                     ],
                     [
+                        'id' => '9ed7f012-b405-4952-a757-7eb5980bab22',
                         'mobileKey' => 'ai6',
                         'name' => 'Voice Recognition',
                         'icon' => 'waveform',
@@ -725,7 +729,7 @@ class CategoryActionSeeder extends Seeder
                 'image'      => 'web',
                 'actions'    => [
                     [
-                        // 'id'            => 'w1',
+                        'id'            => '9ed7f012-b4de-4fbb-8de1-7b258fdc6688',
                         'mobileKey'    => 'w1',
                         'name'          => 'Open URL',
                         'icon'          => 'safari',
@@ -741,7 +745,7 @@ class CategoryActionSeeder extends Seeder
                         ],
                     ],
                     [
-                        // 'id'            => 'w2',
+                        'id'            => '9ed7f012-b571-4b41-8ab1-1a6d31a61aca',
                         'mobileKey'    => 'w2',
                         'name'          => 'Fetch Web Content',
                         'icon'          => 'arrow.down.doc',
@@ -757,7 +761,7 @@ class CategoryActionSeeder extends Seeder
                         ],
                     ],
                     [
-                        // 'id'            => 'w3',
+                        'id'            => '9ed7f012-b5fe-49b2-8c23-25e252d51f16',
                         'mobileKey'    => 'w3',
                         'name'          => 'Share via',
                         'icon'          => 'square.and.arrow.up',
@@ -779,7 +783,7 @@ class CategoryActionSeeder extends Seeder
                         ],
                     ],
                     [
-                        // 'id'            => 'w4',
+                        'id'            => '9ed7f012-b671-4993-a8ba-f0c58f86d648',
                         'mobileKey'    => 'w4',
                         'name'          => 'Post to Social Media',
                         'icon'          => 'network',

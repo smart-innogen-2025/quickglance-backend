@@ -84,104 +84,156 @@ class UserSeeder extends Seeder
             'gradient_end' => '#991B33',
             'actions' => [
                 [
-                    'id' => '9ea3e8b8-2df3-493f-8edd-18f6eb2de8e6', // Call Number
+                    'id' => '9ea3e8b8-2df3-493f-8edd-18f6eb2de8e6',
                     'inputs' => [
                         'phoneNumber' => '911',
                         'message' => 'Need immediate assistance!',
                     ],
                 ],
-            ],
-        ],
-        [
-            'user_id' => $user1->id,
-            'name' => 'Morning Medication',
-            'icon' => 'pills.fill',
-            'androidIcon' => 'sunny',
-            'description' => 'Reminder to take morning prescription',
-            'gradient_start' => '#FF2D55',
-            'gradient_end' => '#991B33',
-            'actions' => [
                 [
-                    'id' => '9ea403bf-878c-4470-b514-af22633a0ff4', // Medication Reminder
+                    'id' => '9ea3e8b8-2ef4-44b1-a58e-60f8af05f473',
                     'inputs' => [
-                        'medicationName' => 'Blood pressure pills',
-                        'dosage' => '1 tablet',
-                        'time' => '08:00'
+                        'recipient' => 'Emergency Contact',
+                        'message' => 'I need help!',
                     ],
-                ],
+                ]
             ],
         ],
         [
-            'user_id' => $user1->id,
-            'name' => 'Nearest Hospital',
-            'icon' => 'stethoscope',
-            'androidIcon' => 'medical',
-            'description' => 'Get directions to nearest medical facility',
-            'gradient_start' => '#5AC8FA',
-            'gradient_end' => '#367896',
-            'actions' => [
+            'user_id'        => $user1->id,
+            'name'           => 'Toggle Connectivity',
+            'icon'           => 'wifi',
+            'androidIcon'    => 'wifi',
+            'description'    => 'Switch Wi-Fi and Bluetooth on/off',
+            'gradient_start' => '#34AADC',
+            'gradient_end'   => '#1F6583',
+            'actions'        => [
                 [
-                    'id' => '9ea403bf-8810-4983-b96d-eb13d493c14d', // Navigate to Location
-                    'inputs' => [
-                        'location' => 'Nearest hospital',
-                        'mode' => 'driving'
-                    ],
+                    'id'     => '9ed7f012-a638-4b1e-94a1-7110195a5aa6',
+                    'inputs' => [],
                 ],
-            ],
-        ],
-        [
-            'user_id' => $user1->id,
-            'name' => 'Check Vital Signs',
-            'androidIcon' => 'pulse',
-            'icon' => 'heart.fill',
-            'description' => 'Monitor your heart rate and blood pressure',
-            'gradient_start' => '#FF3B30',
-            'gradient_end' => '#992420',
-            'actions' => [
                 [
-                    'id' => '9ea3e8b8-2f78-4d6a-94e7-daa94dc556b4', // Check Heart Rate
+                    'id'     => '9ed7f012-a6a4-417d-8056-cdd08e9cb9f7',
                     'inputs' => [],
                 ],
             ],
         ],
         [
-            'user_id' => $user1->id,
-            'name' => 'Order Medicine',
-            'icon' => 'bag.fill',
-            'androidIcon' => 'bag-add',
-            'description' => 'Reorder prescription medications',
-            'gradient_start' => '#4CD964',
-            'gradient_end' => '#2E823C',
-            'actions' => [
+            'user_id'        => $user1->id,
+            'name'           => 'Audio Reminder & Record',
+            'icon'           => 'speaker.wave.3.fill',
+            'androidIcon'    => 'play-circle-sharp',
+            'description'    => 'Play reminder and record a note',
+            'gradient_start' => '#AF52DE',
+            'gradient_end'   => '#683286',
+            'actions'        => [
                 [
-                    'id' => '9ea403bf-888d-4205-85f3-578b7d30e218', // Order Essentials
+                    'id'     => '9ed7f012-a7e0-4f4c-9d66-d69cfe3b86bd',
                     'inputs' => [
-                        'items' => ['Blood pressure medication', 'Bandages'],
-                        'deliveryAddress' => 'Home address'
+                        'soundFile' => 'reminder.mp3',
+                    ],
+                ],
+                [
+                    'id'     => '9ed7f012-a8e9-4ad2-b1ac-2e12cde0a10d',
+                    'inputs' => [
+                        'duration' => 15,
                     ],
                 ],
             ],
         ],
         [
-            'user_id' => $user1->id,
-            'name' => 'Doctor Appointment Ride',
-            'icon' => 'car.fill',
-            'androidIcon' => 'car',
-            'description' => 'Book transportation for medical appointments',
-            'gradient_start' => '#007AFF',
-            'gradient_end' => '#004999',
-            'actions' => [
+            'user_id'        => $user1->id,
+            'name'           => 'Find Home & My Location',
+            'icon'           => 'location.fill',
+            'androidIcon'    => 'location',
+            'description'    => 'Shows your current location then navigates home',
+            'gradient_start' => '#FF3B30',
+            'gradient_end'   => '#992420',
+            'actions'        => [
                 [
-                    'id' => '9ea403bf-884f-4b96-8663-e6d860a0e337', // Call Transportation
+                    'id'     => '9ed7f012-aa27-4170-9529-07e4ecb6db4e',
+                    'inputs' => [],
+                ],
+                [
+                    'id'     => '9ed7f012-aa94-47a1-871a-a7b41af5e450',
                     'inputs' => [
-                        'pickupLocation' => 'Home',
-                        'destination' => 'Main Street Clinic'
+                        'location' => '123 Main St',
                     ],
                 ],
             ],
-        ]
+        ],
+        [
+            'user_id'        => $user1->id,
+            'name'           => 'Copy Note & QR Code',
+            'icon'           => 'clipboard.fill',
+            'androidIcon'    => 'clipboard',
+            'description'    => 'Copy last note and produce its QR code',
+            'gradient_start' => '#FF9500',
+            'gradient_end'   => '#995900',
+            'actions'        => [
+                [
+                    'id'     => '9ed7f012-acc3-40ea-8a2d-19d724979b2a',
+                    'inputs' => [
+                        'text' => 'Meeting at 3 PM',
+                    ],
+                ],
+                [
+                    'id'     => '9ed7f012-ada1-48eb-a6ee-cff22ff5390b',
+                    'inputs' => [
+                        'content' => 'Meeting at 3 PM',
+                    ],
+                ],
+            ],
+        ],
+        [
+            'user_id'        => $user1->id,
+            'name'           => 'Quick AI Assist',
+            'icon'           => 'text.bubble.fill',
+            'androidIcon'    => 'chatbox',
+            'description'    => 'Summarize text or generate completion',
+            'gradient_start' => '#32D74B',
+            'gradient_end'   => '#1E8A2D',
+            'actions'        => [
+                [
+                    'id'     => '9ed7f012-b24d-4e8c-9e00-a69ec0001f2b',
+                    'inputs' => [
+                        'prompt' => 'Here is my message: …',
+                    ],
+                ],
+                [
+                    'id'     => '9ed7f012-b1dd-4c45-be0d-69e3e840a6fe',
+                    'inputs' => [
+                        'prompt' => 'Draft an email saying:',
+                        'length' => 'Short',
+                    ],
+                ],
+            ],
+        ],
+        [
+            'user_id'        => $user1->id,
+            'name'           => 'Web Browse & Download',
+            'icon'           => 'safari',
+            'androidIcon'    => 'globe',
+            'description'    => 'Open site then fetch its content',
+            'gradient_start' => '#FF2D55',
+            'gradient_end'   => '#991B33',
+            'actions'        => [
+                [
+                    'id'     => '9ed7f012-b4de-4fbb-8de1-7b258fdc6688',
+                    'inputs' => [
+                        'url' => 'https://example.com',
+                    ],
+                ],
+                [
+                    'id'     => '9ed7f012-b571-4b41-8ab1-1a6d31a61aca',
+                    'inputs' => [
+                        'url' => 'https://example.com/data.json',
+                    ],
+                ],
+            ],
+        ],
     ];
-    
+
     foreach ($user1Shortcuts as $shortcut) {
         $this->createShortcut($shortcut);
     }
