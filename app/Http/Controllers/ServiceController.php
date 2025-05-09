@@ -122,6 +122,7 @@ class ServiceController extends Controller
                     'id' => $shortcut->id,
                     'name' => $shortcut->name,
                     'icon' => $shortcut->icon,
+                    'androidIcon' => $shortcut->android_icon,
                     'description' => $shortcut->description,
                     'gradientStart' => $shortcut->gradient_start,
                     'gradientEnd' => $shortcut->gradient_end,
