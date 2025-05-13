@@ -989,7 +989,7 @@ class CategoryActionSeeder extends Seeder
                     [
                         'id'            => '9eadbc35-4439-4465-921c-3ed2effa4607',
                         'name'          => 'Crisis Assistance',
-                        'icon'          => 'exclamationmark.triangle.fill',
+                        'icon'          => 'exclamationmark.triangle',
                         'gradientStart' => '#FF6B6B',
                         'gradientEnd'   => '#FF8E8E',
                         'inputs'        => [
