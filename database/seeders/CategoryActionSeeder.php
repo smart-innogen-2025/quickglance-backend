@@ -67,7 +67,7 @@ class CategoryActionSeeder extends Seeder
                         'id'            => '9ea3e8b8-2eb1-4f52-ab16-f5c863a459ee',
                         'mobileKey'    => 'd3',
                         'name'          => 'Open App',
-                        'icon'          => 'app.fill',
+                        'icon'          => 'square.grid.2x2.fill',
                         'androidIcon'   => 'apps',
                         'gradientStart' => '#53D769',
                         'gradientEnd'   => '#2F7A3B',
@@ -100,7 +100,7 @@ class CategoryActionSeeder extends Seeder
                         'id' => '9ed7f012-a21b-4c9d-a056-fe6149c40c2a',
                         'mobileKey'    => 'd5',
                         'name'          => 'Copy to Clipboard',
-                        'icon'          => 'doc.on.doc',
+                        'icon'          => 'doc.on.doc.fill',
                         'androidIcon'   => 'documents-sharp',
                         'gradientStart' => '#FF3B30',
                         'gradientEnd'   => '#992420',
@@ -115,7 +115,7 @@ class CategoryActionSeeder extends Seeder
                     [
                         'id'            => '9ea3e8b8-2e6c-4cce-8fc8-580cffdcf013',
                         'name'          => 'Lock Phone',
-                        'icon'          => 'test/test-icon.svg',
+                        'icon'          => 'lock.fill',
                         'androidIcon'   => 'lock-closed',
                         'gradientStart' => '#8E8E93',
                         'gradientEnd'   => '#555558',
@@ -124,7 +124,7 @@ class CategoryActionSeeder extends Seeder
                     [
                         'id'            => '9ea3e8b8-2f35-48f1-9006-e20576a2a460',
                         'name'          => 'Check Reminders',
-                        'icon'          => 'test/test-icon.svg',
+                        'icon'          => 'list.bullet',
                         'androidIcon'   => 'list',
                         'gradientStart' => '#FFCC00',
                         'gradientEnd'   => '#997A00',
@@ -138,7 +138,7 @@ class CategoryActionSeeder extends Seeder
                     [
                         'id'            => '9ea403bf-878c-4470-b514-af22633a0ff4',
                         'name'          => 'Medication Reminder',
-                        'icon'          => 'test/test-icon.svg',
+                        'icon'          => 'pills.fill',
                         'androidIcon'   => 'timer',
                         'gradientStart' => '#FF2D55',
                         'gradientEnd'   => '#991B33',
@@ -169,7 +169,7 @@ class CategoryActionSeeder extends Seeder
                     [
                         'id'            => '9ea3e8b8-2f78-4d6a-94e7-daa94dc556b4',
                         'name'          => 'Check Heart Rate',
-                        'icon'          => 'test/test-icon.svg',
+                        'icon'          => 'waveform.path.ecg',
                         'androidIcon'   => 'pulse',
                         'gradientStart' => '#FF3B30',
                         'gradientEnd'   => '#992420',
@@ -178,7 +178,7 @@ class CategoryActionSeeder extends Seeder
                     [
                         'id'            => '9ea403bf-8810-4983-b96d-eb13d493c14d',
                         'name'          => 'Navigate to Location',
-                        'icon'          => 'test/test-icon.svg',
+                        'icon'          => 'map.fill',
                         'androidIcon'   => 'map',
                         'gradientStart' => '#5AC8FA',
                         'gradientEnd'   => '#367896',
@@ -203,7 +203,7 @@ class CategoryActionSeeder extends Seeder
                     [
                         'id'            => '9ea403bf-884f-4b96-8663-e6d860a0e337',
                         'name'          => 'Call Transportation',
-                        'icon'          => 'test/test-icon.svg',
+                        'icon'          => 'car.fill',
                         'androidIcon'   => 'car',
                         'gradientStart' => '#007AFF',
                         'gradientEnd'   => '#004999',
@@ -227,7 +227,7 @@ class CategoryActionSeeder extends Seeder
                     [
                         'id'            => '9ea403bf-888d-4205-85f3-578b7d30e218',
                         'name'          => 'Order Essentials',
-                        'icon'          => 'test/test-icon.svg',
+                        'icon'          => 'cart.fill',
                         'androidIcon'   => 'cart',
                         'gradientStart' => '#4CD964',
                         'gradientEnd'   => '#2E823C',
@@ -279,7 +279,7 @@ class CategoryActionSeeder extends Seeder
                         'id'         => '9ed7f012-a710-45b4-9951-68829a51a14c',
                         'mobileKey'    => 'c3',
                         'name'          => 'Toggle Airplane Mode',
-                        'icon'          => 'airplane',
+                        'icon'          => 'airplane.circle.fill',
                         'androidIcon'   => 'airplane',
                         'gradientStart' => '#FF9500',
                         'gradientEnd'   => '#995900',
@@ -304,7 +304,7 @@ class CategoryActionSeeder extends Seeder
                             [
                                 'key'       => 'soundFile',
                                 'label'     => 'Sound File',
-                                'type'      => 'file',       // allowed
+                                'type'      => 'file',
                                 'fileTypes' => ['mp3', 'wav'],
                             ],
                         ],
@@ -317,7 +317,7 @@ class CategoryActionSeeder extends Seeder
                         'androidIcon'   => 'camera',
                         'gradientStart' => '#64D2FF',
                         'gradientEnd'   => '#3C7E99',
-                        'inputs'        => [],         // no inputs
+                        'inputs'        => [],
                     ],
                     [
                         'id' => '9ed7f012-a8e9-4ad2-b1ac-2e12cde0a10d',
@@ -331,7 +331,7 @@ class CategoryActionSeeder extends Seeder
                             [
                                 'key'     => 'duration',
                                 'label'   => 'Duration (seconds)',
-                                'type'    => 'number',     // allowed
+                                'type'    => 'number',
                                 'default' => 10,
                             ],
                         ],
@@ -348,7 +348,7 @@ class CategoryActionSeeder extends Seeder
                             [
                                 'key'     => 'volumeLevel',
                                 'label'   => 'Volume Level',
-                                'type'    => 'slider',     // allowed
+                                'type'    => 'slider',
                                 'min'     => 0,
                                 'max'     => 100,
                                 'default' => 50,
@@ -392,7 +392,7 @@ class CategoryActionSeeder extends Seeder
                         'id' => '9ed7f012-ab01-4c2e-bec9-8a5bfd9a3f15',
                         'mobileKey'    => 'l3',
                         'name'          => 'Get Distance Between',
-                        'icon'          => 'arrow.triangle.swap',
+                        'icon'          => 'arrow.left.arrow.right',
                         'androidIcon'   => 'git-compare-sharp',
                         'gradientStart' => '#5AC8FA',
                         'gradientEnd'   => '#367896',
@@ -421,7 +421,7 @@ class CategoryActionSeeder extends Seeder
                             [
                                 'key'     => 'location',
                                 'label'   => 'Location',
-                                'type'    => 'text',   // added to conform
+                                'type'    => 'text',
                                 'default' => 'Current',
                             ],
                         ],
@@ -438,7 +438,7 @@ class CategoryActionSeeder extends Seeder
                         'id' => '9ed7f012-ac55-4a45-bf2e-fe17dd46aad3',
                         'mobileKey' => 'da1',
                         'name' => 'Get Clipboard',
-                        'icon' => 'doc.on.clipboard',
+                        'icon' => 'doc.on.clipboard.fill',
                         'androidIcon' => 'document',
                         'gradientStart' => '#8E8E93',
                         'gradientEnd' => '#555558',
@@ -453,14 +453,18 @@ class CategoryActionSeeder extends Seeder
                         'gradientStart' => '#FF9500',
                         'gradientEnd' => '#995900',
                         'inputs' => [
-                            ['name' => 'Text'],
+                            [
+                                'key' => 'text',
+                                'label' => 'Text',
+                                'type' => 'text',
+                            ],
                         ],
                     ],
                     [
                         'id' => '9ed7f012-ad2f-4f43-85f6-101ba94c9132',
                         'mobileKey' => 'da3',
                         'name' => 'Get Battery Level',
-                        'icon' => 'battery.100',
+                        'icon' => 'battery.100percent',
                         'androidIcon' => 'battery-full',
                         'gradientStart' => '#4CD964',
                         'gradientEnd' => '#2E823C',
@@ -470,12 +474,16 @@ class CategoryActionSeeder extends Seeder
                         'id' => '9ed7f012-ada1-48eb-a6ee-cff22ff5390b',
                         'mobileKey' => 'da4',
                         'name' => 'Generate QR Code',
-                        'icon' => 'qrcode',
+                        'icon' => 'qrcode.viewfinder',
                         'androidIcon' => 'qr-code',
                         'gradientStart' => '#5856D6',
                         'gradientEnd' => '#353480',
                         'inputs' => [
-                            ['name' => 'Content'],
+                            [
+                                'key' => 'content',
+                                'label' => 'Content',
+                                'type' => 'text',
+                            ],
                         ],
                     ],
                 ],
@@ -488,7 +496,7 @@ class CategoryActionSeeder extends Seeder
                     [
                         'id'            => '9ea3e8b8-2ff6-4438-af78-06fbdbf9eb9d',
                         'name'          => 'Describe Surroundings',
-                        'icon'          => 'test/test-icon.svg',
+                        'icon'          => 'binoculars.fill',
                         'androidIcon'   => 'earth',
                         'gradientStart' => '#32D74B',
                         'gradientEnd'   => '#1E8A2D',
@@ -502,7 +510,7 @@ class CategoryActionSeeder extends Seeder
                     [
                         'id'            => '9ea3e8b8-3034-4ad0-90c9-60006cfe4979',
                         'name'          => 'Translate Sign Language',
-                        'icon'          => 'test/test-icon.svg',
+                        'icon'          => 'hand.raised.fill',
                         'androidIcon'   => 'thumbs-up',
                         'gradientStart' => '#BF5AF2',
                         'gradientEnd'   => '#733291',
@@ -516,7 +524,7 @@ class CategoryActionSeeder extends Seeder
                     [
                         'id'            => '9ea3e8b8-3071-410e-b77c-987612162a5b',
                         'name'          => 'Generate Visual Instructions',
-                        'icon'          => 'test/test-icon.svg',
+                        'icon'          => 'list.bullet.rectangle.portrait',
                         'androidIcon'   => 'sync',
                         'gradientStart' => '#0A84FF',
                         'gradientEnd'   => '#064F99',
@@ -530,7 +538,7 @@ class CategoryActionSeeder extends Seeder
                     [
                         'id'            => '9ea3e8b8-30af-4397-a3bb-e2580b81fd96',
                         'name'          => 'Predict Next Behavior',
-                        'icon'          => 'test/test-icon.svg',
+                        'icon'          => 'chart.line.uptrend.xyaxis',
                         'androidIcon'   => 'scan',
                         'gradientStart' => '#FF9F0A',
                         'gradientEnd'   => '#995F06',
@@ -544,7 +552,7 @@ class CategoryActionSeeder extends Seeder
                     [
                         'id'            => '9ea3e8b8-30ec-438e-9a8d-f964c7129ecc',
                         'name'          => 'Simplify Complex Text',
-                        'icon'          => 'test/test-icon.svg',
+                        'icon'          => 'text.redaction',
                         'androidIcon'   => 'document-text',
                         'gradientStart' => '#30B0C7',
                         'gradientEnd'   => '#1D6B77',
@@ -558,21 +566,21 @@ class CategoryActionSeeder extends Seeder
                     [
                         'id'            => '9ea3e8b8-313b-4302-b31c-92e302c812f4',
                         'name'          => 'Assist with Voice',
-                        'icon'          => 'test/test-icon.svg',
+                        'icon'          => 'ear.and.waveform',
                         'androidIcon'   => 'volume-high',
                         'gradientStart' => '#FF9500',
                         'gradientEnd'   => '#995900',
                         'inputs'        => [[
                             'key'       => 'voiceCommand',
                             'label'     => 'Voice Command',
-                            'type'      => 'file',        // changed from 'audio'
+                            'type'      => 'file',
                             'fileTypes' => ['wav', 'm4a'],
                         ]],
                     ],
                     [
                         'id'            => '9ea403bf-8a90-4f15-baad-ae747d839c82',
                         'name'          => 'Voice to Text Message',
-                        'icon'          => 'test/test-icon.svg',
+                        'icon'          => 'mic.fill',
                         'androidIcon'   => 'mic',
                         'gradientStart' => '#5856D6',
                         'gradientEnd'   => '#AF52DE',
@@ -639,23 +647,6 @@ class CategoryActionSeeder extends Seeder
                                 'options' => ['Short', 'Medium', 'Long'],
                             ],
                         ],
-                    ],
-                    [
-                        'id' => '9ed7f012-b2bc-4477-86bd-5cbe01149b4e',
-                        'mobileKey' => 'ai3',
-                        'name' => 'Image Description',
-                        'icon' => 'photo.fill.on.rectangle.fill',
-                        'androidIcon' => 'reader',
-                        'gradientStart' => '#BF5AF2',
-                        'gradientEnd' => '#733291',
-                        'inputs' => [
-                            [
-                                'key' => 'image',
-                                'label' => 'Image',
-                                'type' => 'file',
-                                'fileTypes' => ['jpg', 'png', 'heic'],
-                            ],
-                        ]
                     ],
                     [
                         'id' => '9ed7f012-b32a-4538-af77-c908a7ba5beb',
@@ -954,7 +945,7 @@ class CategoryActionSeeder extends Seeder
                     [
                         'id'            => '9eadbc35-435f-4b72-b52f-2abc5ee1c838',
                         'name'          => 'Medical Assistance Request',
-                        'icon'          => 'cross.case.fill',
+                        'icon'          => 'cross.circle',
                         'gradientStart' => '#FF6B6B',
                         'gradientEnd'   => '#FF8E8E',
                         'inputs'        => [
