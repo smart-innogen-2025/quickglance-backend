@@ -46,7 +46,7 @@ class AutomationController extends Controller
                 ->toArray();
 
             return response()->json([
-                "automations" => $automations,
+                convertKeysToCamelCase($automations),
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -112,7 +112,7 @@ class AutomationController extends Controller
         try {
             $request->validate([
                 'title' => 'required|string|max:255',
-                'automation_condition_id' => 'required|uuid',
+                'automationConditionId' => 'required|uuid',
                 'shortcuts' => 'array',
                 'shortcuts.*.id' => 'required|uuid',
                 'shortcuts.*.order' => 'required|integer',
@@ -164,14 +164,14 @@ class AutomationController extends Controller
             $automation = UserAutomation::where('user_id', operator: $userId)
                 ->where('id', operator: $id)
                 ->with([
-                    'userAutomationShortcut' => function ($query) {
-                        $query->orderBy('order', 'asc')->with('shortcut:id,name,icon,gradient_start,gradient_end');
-                    },
                     'automationCondition:id,name,emoji',
+                    'userAutomationShortcut' => function ($query) {
+                        $query->orderBy('order', 'asc')->with(['shortcut:id,name,icon,gradient_start,gradient_end']);
+                    },
                 ])
                 ->firstOrFail();
 
-            return response()->json($automation);
+            return response()->json(convertKeysToCamelCase($automation->toArray()));
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error fetching automation',
@@ -190,28 +190,29 @@ class AutomationController extends Controller
         try {
             $request->validate([
                 'title' => 'required|string|max:255',
-                'userShortcuts' => 'array',
-                'userShortcuts.*.id' => 'required|uuid',
-                'userShortcuts.*.order' => 'required|integer',
+                'steps' => 'array',
+                'steps.*.id' => 'required|uuid',
+                'steps.*.order' => 'required|integer',
             ]);
 
             $userAutomation = UserAutomation::where('user_id', operator: $userId)
                 ->where('id', operator: $id)
                 ->firstOrFail();
-
+            
             $userAutomation->update([
                 'title' => $request->title,
             ]);
-
+            // return $userAutomation;
             // Update shortcuts
-            foreach($request->shortcuts as $shortcut) {
+            foreach($request->steps as $step) {
                 UserAutomationShortcut::updateOrCreate(
                     [
+
                         'user_automation_id' => $userAutomation->id,
-                        'shortcut_id' => $shortcut['id'],
+                        'shortcut_id' => $step['id'],
                     ],
                     [
-                        'order' => $shortcut['order'],
+                        'order' => $step['order'],
                     ]
                 );
             }

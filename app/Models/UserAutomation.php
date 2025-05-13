@@ -18,6 +18,7 @@ class UserAutomation extends Model
     ];
 
     protected $hidden = [
+        'automation_condition_id',
         'created_at',
         'updated_at',
     ];

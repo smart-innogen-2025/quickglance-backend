@@ -11,9 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Shortcut,
-    App\Models\Action,
-    App\Models\UserAction;
+use App\Models\{Shortcut, Action, UserAction, UserAutomation, UserAutomationShortcut};
 
 
 class UserSeeder extends Seeder
@@ -75,7 +73,7 @@ class UserSeeder extends Seeder
     $user1->assignRole($userRole);
     $user1Shortcuts = [
         [
-            'user_id' => $user1->id,
+            'userId' => $user1->id,
             'name' => 'Call Emergency Services',
             'icon' => 'cross.case.fill',
             'androidIcon' => 'medkit',
@@ -100,7 +98,7 @@ class UserSeeder extends Seeder
             ],
         ],
         [
-            'user_id'        => $user1->id,
+            'userId'        => $user1->id,
             'name'           => 'Toggle Connectivity',
             'icon'           => 'wifi',
             'androidIcon'    => 'wifi',
@@ -119,7 +117,7 @@ class UserSeeder extends Seeder
             ],
         ],
         [
-            'user_id'        => $user1->id,
+            'userId'        => $user1->id,
             'name'           => 'Audio Reminder & Record',
             'icon'           => 'speaker.wave.3.fill',
             'androidIcon'    => 'play-circle-sharp',
@@ -142,7 +140,7 @@ class UserSeeder extends Seeder
             ],
         ],
         [
-            'user_id'        => $user1->id,
+            'userId'        => $user1->id,
             'name'           => 'Find Home & My Location',
             'icon'           => 'location.fill',
             'androidIcon'    => 'location',
@@ -163,7 +161,7 @@ class UserSeeder extends Seeder
             ],
         ],
         [
-            'user_id'        => $user1->id,
+            'userId'        => $user1->id,
             'name'           => 'Copy Note & QR Code',
             'icon'           => 'clipboard.fill',
             'androidIcon'    => 'clipboard',
@@ -186,7 +184,7 @@ class UserSeeder extends Seeder
             ],
         ],
         [
-            'user_id'        => $user1->id,
+            'userId'        => $user1->id,
             'name'           => 'Quick AI Assist',
             'icon'           => 'text.bubble.fill',
             'androidIcon'    => 'chatbox',
@@ -210,7 +208,7 @@ class UserSeeder extends Seeder
             ],
         ],
         [
-            'user_id'        => $user1->id,
+            'userId'        => $user1->id,
             'name'           => 'Web Browse & Download',
             'icon'           => 'safari',
             'androidIcon'    => 'globe',
@@ -238,6 +236,58 @@ class UserSeeder extends Seeder
         $this->createShortcut($shortcut);
     }
 
+    $user1Automation = [
+        [
+            'userId' => $user1->id,
+            'title' => 'When the user feels happy 😀',
+            'automationConditionId' => '9ee5da75-b09b-4f44-a356-71f4f6f1503a',
+            'shortcuts' => [
+                [
+                    'order' => 1,
+                    'shortcutName' => 'Quick AI Assist'
+                ],
+                [
+                    'order' => 2,
+                    'shortcutName' => 'Web Browse & Download'
+                ]
+            ]
+        ],
+        [
+            'userId' => $user1->id,
+            'title' => 'Afternoon Routine ☀️',
+            'automationConditionId' => '9ee65ac7-fe7b-4e29-8c4b-2918e11c4533',
+            'shortcuts' => [
+                [
+                    'order' => 1,
+                    'shortcutName' => 'Find Home & My Location'
+                ],
+                [
+                    'order' => 2,
+                    'shortcutName' => 'Audio Reminder & Record'
+                ]
+            ]
+        ],
+        [
+            'userId' => $user1->id,
+            'title' => 'Browsing through the web 🌐',
+            'automationConditionId' => '9ee65ac8-0008-4b79-ae25-1366f842d097',
+            'shortcuts' => [
+                [
+                    'order' => 1,
+                    'shortcutName' => 'Toggle Connectivity'
+                ],
+                [
+                    'order' => 2,
+                    'shortcutName' => 'Web Browse & Download'
+                ]
+            ]
+        ]
+    ];
+
+    foreach ($user1Automation as $automation) {
+        $this->createAutomation($automation);
+    }
+
     $user2 = User::create([
         'first_name' => 'Alex',
         'middle_name' => 'M.',
@@ -247,7 +297,7 @@ class UserSeeder extends Seeder
     ]);
     $user2->assignRole($userRole);
     $this->createShortcut([
-        'user_id' => $user2->id,
+        'userId' => $user2->id,
         'name' => 'Navigate to Doctor',
         'icon' => 'stethoscope',
         'androidIcon' => 'map',
@@ -274,7 +324,7 @@ class UserSeeder extends Seeder
     ]);
     $user3->assignRole($userRole);
     $this->createShortcut([
-        'user_id' => $user3->id,
+        'userId' => $user3->id,
         'name' => 'Medication Reminder',
         'icon' => 'pills.fill',
         'androidIcon' => 'timer',
@@ -302,7 +352,7 @@ class UserSeeder extends Seeder
     ]);
     $user4->assignRole($userRole);
     $this->createShortcut([
-        'user_id' => $user4->id,
+        'userId' => $user4->id,
         'name' => 'Start voice-to-text message',
         'icon' => 'microphone.fill',
         'androidIcon' => 'mic',
@@ -329,7 +379,7 @@ class UserSeeder extends Seeder
     ]);
     $user5->assignRole($userRole);
     $this->createShortcut([
-        'user_id' => $user5->id,
+        'userId' => $user5->id,
         'name' => 'Order Groceries/Essentials',
         'icon' => 'cart.fill',
         'androidIcon' => 'cart',
@@ -356,7 +406,7 @@ class UserSeeder extends Seeder
     ]);
     $user6->assignRole($userRole);
     $this->createShortcut([
-        'user_id' => $user6->id,
+        'userId' => $user6->id,
         'name' => 'Call for Transportation',
         'icon' => 'car.fill',
         'androidIcon' => 'car',
@@ -377,9 +427,9 @@ class UserSeeder extends Seeder
 
 protected function createShortcut($data) {
     try {
-        $shortcutMaxOrder = Shortcut::where('user_id', $data['user_id'])->max('order') ?? 0;
+        $shortcutMaxOrder = Shortcut::where('user_id', $data['userId'])->max('order') ?? 0;
         $shortcut = Shortcut::create([
-            'user_id' => $data['user_id'],
+            'user_id' => $data['userId'],
             'order' => $shortcutMaxOrder + 1,
             'name' => $data['name'],
             'icon' => $data['icon'],
@@ -412,18 +462,47 @@ protected function createShortcut($data) {
 
             UserAction::create([
                 'order' => $maxOrder + 1,
-                'user_id' => $data['user_id'],
+                'user_id' => $data['userId'],
                 'action_id' => $actionData->id,
                 'shortcut_id' => $shortcut->id,
                 'inputs' => $validationResult['validated_inputs'],
             ]);
         }
 
-        info("Shortcut created for user ID: " . $data['user_id']);
+        info("Shortcut created for user ID: " . $data['userId']);
        
     } catch (\Exception $e) {
-        info("Error creating shortcut for user ID: " . $data['user_id'] . " - " . $e->getMessage());
+        info("Error creating shortcut for user ID: " . $data['userId'] . " - " . $e->getMessage());
     }
 }
+
+protected function createAutomation($data) {
+        try {
+
+            $userAutomation = UserAutomation::create([
+                'title' => $data['title'],
+                'user_id' => $data['userId'],
+                'automation_condition_id' => $data['automationConditionId'],
+            ]);
+
+            foreach($data['shortcuts'] as $shortcut) {
+                $userShortcut = Shortcut::where('name', $shortcut['shortcutName'])
+                ->where('user_id', $data['userId'])
+                ->first();
+
+                UserAutomationShortcut::create([
+                    'order' => $shortcut['order'],
+                    'user_automation_id' => $userAutomation->id,
+                    'shortcut_id' => $userShortcut->id,
+                ]);
+            }
+
+            info("User Automation created for user ID: " . $data['userId']);
+
+        } catch (\Exception $e) {
+            info("Error creating User Automation for user ID: " . $data['userId'] . " - " . $e->getMessage());
+        }
+}
+
 
 }
