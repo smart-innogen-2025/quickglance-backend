@@ -22,7 +22,7 @@ class AutomationController extends Controller
                     'userAutomationShortcut' => function ($query) {
                         $query->orderBy('order', 'asc')->with('shortcut:id,name');
                     },
-                    'automationCondition:id,name,icon',
+                    'automationCondition:id,name,emoji',
                 ])
                 ->get()
                 ->map(function ($automation) {
@@ -38,7 +38,7 @@ class AutomationController extends Controller
                     return [
                         'id' => $automation->id,
                         'title' => $automation->title,
-                        'icon' => $automation->icon,
+                        'emoji' => $automation->emoji,
                         'automation_condition_id' => $automation->automation_condition_id,
                         'steps' => $stepsWithActionNames,
                     ];
@@ -110,7 +110,6 @@ class AutomationController extends Controller
         try {
             $request->validate([
                 'title' => 'required|string|max:255',
-                'icon' => 'nullable|string|max:255',
                 'automation_condition_id' => 'required|uuid',
                 'shortcuts' => 'array',
                 'shortcuts.*.id' => 'required|uuid',
@@ -119,7 +118,6 @@ class AutomationController extends Controller
 
             $userAutomation = UserAutomation::create([
                 'title' => $request->title,
-                'icon' => $request->icon,
                 'user_id' => $userId,
                 'automation_condition_id' => $request->automation_condition_id,
             ]);
@@ -167,7 +165,7 @@ class AutomationController extends Controller
                     'userAutomationShortcut' => function ($query) {
                         $query->orderBy('order', 'asc')->with('shortcut:id,name,icon,gradient_start,gradient_end');
                     },
-                    'automationCondition:id,name,icon',
+                    'automationCondition:id,name,emoji',
                 ])
                 ->firstOrFail();
 
@@ -190,7 +188,6 @@ class AutomationController extends Controller
         try {
             $request->validate([
                 'title' => 'required|string|max:255',
-                'icon' => 'nullable|string|max:255',
                 'userShortcuts' => 'array',
                 'userShortcuts.*.id' => 'required|uuid',
                 'userShortcuts.*.order' => 'required|integer',
@@ -202,7 +199,6 @@ class AutomationController extends Controller
 
             $userAutomation->update([
                 'title' => $request->title,
-                'icon' => $request->icon,
             ]);
 
             // Update shortcuts

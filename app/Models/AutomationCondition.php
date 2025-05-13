@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 class AutomationCondition extends Model
 {
     protected $fillable = [
-        'icon',
+        'emoji',
         'name',
         'description',
         'type',

@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('user_automations', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('title');
-            $table->string('icon')->nullable();
 
             $table->uuid('user_id');
             $table->uuid('automation_condition_id');

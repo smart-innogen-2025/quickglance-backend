@@ -16,25 +16,25 @@ class AutomationConditionSeeder extends Seeder
         $conditions = [
             // Emotion
             [
-                'icon' => 'icons/emotion.svg',
+                'emoji' => 'icons/emotion.svg',
                 'name' => 'Happy',
                 'description' => 'Smiling, etc.',
                 'type' => 'emotion',
             ],
             [
-                'icon' => 'icons/emotion.svg',
+                'emoji' => 'icons/emotion.svg',
                 'name' => 'Sad',
                 'description' => 'Frowning, etc.',
                 'type' => 'emotion',
             ],
             [
-                'icon' => 'icons/emotion.svg',
+                'emoji' => 'icons/emotion.svg',
                 'name' => 'Scared',
                 'description' => 'Trembling, etc.',
                 'type' => 'emotion',
             ],
             [
-                'icon' => 'icons/emotion.svg',
+                'emoji' => 'icons/emotion.svg',
                 'name' => 'Surprised',
                 'description' => 'In Shock, etc.',
                 'type' => 'emotion',
@@ -42,25 +42,25 @@ class AutomationConditionSeeder extends Seeder
 
             // Time
             [
-                'icon' => 'icons/time.svg',
+                'emoji' => 'icons/time.svg',
                 'name' => 'Morning',
                 'description' => 'Triggers based on time of day',
                 'type' => 'time',
             ],
             [
-                'icon' => 'icons/time.svg',
+                'emoji' => 'icons/time.svg',
                 'name' => 'Afternoon',
                 'description' => 'Triggers based on time of day',
                 'type' => 'time',
             ],
             [
-                'icon' => 'icons/time.svg',
+                'emoji' => 'icons/time.svg',
                 'name' => 'Evening',
                 'description' => 'Triggers based on time of day',
                 'type' => 'time',
             ],
             [
-                'icon' => 'icons/time.svg',
+                'emoji' => 'icons/time.svg',
                 'name' => 'Custom',
                 'description' => 'Triggers based on time of day',
                 'type' => 'time',
@@ -68,25 +68,25 @@ class AutomationConditionSeeder extends Seeder
 
             // Device
             [
-                'icon' => 'icons/device.svg',
+                'emoji' => 'icons/device.svg',
                 'name' => 'Battery Low',
                 'description' => 'Triggers based on device status',
                 'type' => 'device',
             ],
             [
-                'icon' => 'icons/device.svg',
+                'emoji' => 'icons/device.svg',
                 'name' => 'Wifi',
                 'description' => 'Triggers based on device status',
                 'type' => 'device',
             ],
             [
-                'icon' => 'icons/device.svg',
+                'emoji' => 'icons/device.svg',
                 'name' => 'Bluetooth',
                 'description' => 'Triggers based on device status',
                 'type' => 'device',
             ],
             [
-                'icon' => 'icons/device.svg',
+                'emoji' => 'icons/device.svg',
                 'name' => 'Smart Watch',
                 'description' => 'Triggers based on device status',
                 'type' => 'device',
@@ -97,7 +97,7 @@ class AutomationConditionSeeder extends Seeder
         foreach ($conditions as $conditionData) {
             // Create the automation condition
             AutomationCondition::create([
-                'icon' => $conditionData['icon'],
+                'emoji' => $conditionData['emoji'],
                 'name' => $conditionData['name'],
                 'description' => $conditionData['description'],
                 'type' => $conditionData['type'],

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('automation_conditions', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('icon');
+            $table->string('emoji');
             $table->string('name');
             $table->string('description');
             $table->enum('type', ['emotion', 'time', 'device']);
