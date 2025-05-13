@@ -38,7 +38,6 @@ class AutomationController extends Controller
                     return [
                         'id' => $automation->id,
                         'title' => $automation->title,
-                        'emoji' => $automation->emoji,
                         'automation_condition_id' => $automation->automation_condition_id,
                         'steps' => $stepsWithActionNames,
                     ];

@@ -18,82 +18,108 @@ class AutomationConditionSeeder extends Seeder
             // Emotion
             [
                 'id' => '9ee5da75-b09b-4f44-a356-71f4f6f1503a',
-                'emoji' => 'icons/emotion.svg',
+                'emoji' => '😄',
                 'name' => 'Happy',
                 'description' => 'Smiling, etc.',
                 'type' => 'emotion',
             ],
             [
-                'emoji' => 'icons/emotion.svg',
+                'emoji' => '😢',
                 'name' => 'Sad',
                 'description' => 'Frowning, etc.',
                 'type' => 'emotion',
             ],
             [
-                'emoji' => 'icons/emotion.svg',
+                'emoji' => '😱',
                 'name' => 'Scared',
-                'description' => 'Trembling, etc.',
+                'description' => 'Trembled, etc.',
                 'type' => 'emotion',
             ],
             [
-                'emoji' => 'icons/emotion.svg',
+                'emoji' => '😲',
                 'name' => 'Surprised',
-                'description' => 'In Shock, etc.',
+                'description' => 'Eyes wide open, etc.',
                 'type' => 'emotion',
             ],
 
             // Time
             [
-                'emoji' => 'icons/time.svg',
+                'emoji' => '🌅',
                 'name' => 'Morning',
-                'description' => 'Triggers based on time of day',
+                'description' => '6 AM - 12 PM',
                 'type' => 'time',
             ],
             [
                 'id' => '9ee65ac7-fe7b-4e29-8c4b-2918e11c4533',
-                'emoji' => 'icons/time.svg',
+                'emoji' => '🌞',
                 'name' => 'Afternoon',
-                'description' => 'Triggers based on time of day',
+                'description' => '12 PM - 6 PM',
                 'type' => 'time',
             ],
             [
-                'emoji' => 'icons/time.svg',
+                'emoji' => '🌇',
                 'name' => 'Evening',
-                'description' => 'Triggers based on time of day',
+                'description' => '6 PM - 12 AM',
                 'type' => 'time',
             ],
             [
-                'emoji' => 'icons/time.svg',
-                'name' => 'Custom',
-                'description' => 'Triggers based on time of day',
+                'emoji' => '🌙',
+                'name' => 'Night',
+                'description' => '12 AM - 6 AM',
                 'type' => 'time',
             ],
 
             // Device
             [
-                'emoji' => 'icons/device.svg',
-                'name' => 'Battery Low',
-                'description' => 'Triggers based on device status',
+                'emoji' => '🔋',
+                'name' => 'Battery low',
+                'description' => 'Less than 20%',
                 'type' => 'device',
             ],
             [
                 'id' => '9ee65ac8-0008-4b79-ae25-1366f842d097',
-                'emoji' => 'icons/device.svg',
+                'emoji' => '📶',
                 'name' => 'Wifi & Browse',
                 'description' => 'Triggers based on device status',
                 'type' => 'device',
             ],
             [
-                'emoji' => 'icons/device.svg',
-                'name' => 'Bluetooth',
-                'description' => 'Triggers based on device status',
+                'emoji' => '⚡',
+                'name' => 'Charging',
+                'description' => 'Device is charging',
                 'type' => 'device',
             ],
             [
-                'emoji' => 'icons/device.svg',
-                'name' => 'Smart Watch',
-                'description' => 'Triggers based on device status',
+                'emoji' => '❌',
+                'name' => 'Not charging',
+                'description' => 'Device is not charging',
                 'type' => 'device',
+            ],
+            
+            // Location
+            [
+                'emoji' => '🏠',
+                'name' => 'Home',
+                'description' => 'At home',
+                'type' => 'location',
+            ],
+            [
+                'emoji' => '💼',
+                'name' => 'Work',
+                'description' => 'At work',
+                'type' => 'location',
+            ],
+            [
+                'emoji' => '🏋️',
+                'name' => 'Gym',
+                'description' => 'At the gym',
+                'type' => 'location',
+            ],
+            [
+                'emoji' => '🌳',
+                'name' => 'Park',
+                'description' => 'At the park',
+                'type' => 'location',
             ],
         ];
 
