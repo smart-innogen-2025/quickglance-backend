@@ -67,6 +67,7 @@ class ShortcutController extends Controller
                     'userName' => $userName,
                     'name' => $shortcut->name,
                     'icon' => $shortcut->icon,
+                    'androidIcon' => $shortcut->android_icon,                    
                     'description' => $shortcut->description,
                     'gradient_start' => $shortcut->gradient_start,
                     'gradient_end' => $shortcut->gradient_end,
