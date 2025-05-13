@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('emoji');
             $table->string('name');
             $table->string('description');
-            $table->enum('type', ['emotion', 'time', 'device']);
+            $table->enum('type', ['emotion', 'time', 'device', 'location']);
             $table->timestamps();
         });
     }
