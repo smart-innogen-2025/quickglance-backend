@@ -46,7 +46,7 @@ class AutomationController extends Controller
                 ->toArray();
 
             return response()->json([
-                "automations" => $automations
+                "automations" => $automations,
             ]);
         } catch (\Exception $e) {
             return response()->json([
