@@ -45,7 +45,9 @@ class AutomationController extends Controller
                 })
                 ->toArray();
 
-            return response()->json($automations);
+            return response()->json([
+                "automations" => $automations
+            ]);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Failed fetching automations',
