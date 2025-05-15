@@ -336,6 +336,7 @@ class ShortcutController extends Controller
                 'order' => $shortcutMaxOrder + 1,
                 'name' => $shortcut->name,
                 'icon' => $shortcut->icon,
+                'android_icon' => $shortcut->android_icon,
                 'description' => $shortcut->description,
                 'gradient_start' => $shortcut->gradient_start,
                 'gradient_end' => $shortcut->gradient_end,
