@@ -45,7 +45,7 @@ class AutomationController extends Controller
                 ->toArray();
 
             return response()->json([
-                convertKeysToCamelCase($automations),
+                "automations" => convertKeysToCamelCase($automations),
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -120,7 +120,7 @@ class AutomationController extends Controller
             $userAutomation = UserAutomation::create([
                 'title' => $request->title,
                 'user_id' => $userId,
-                'automation_condition_id' => $request->automation_condition_id,
+                'automation_condition_id' => $request->automationConditionId,
             ]);
 
             foreach($request->shortcuts as $shortcut) {
