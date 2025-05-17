@@ -507,6 +507,33 @@ class ShortcutController extends Controller
         }
     }
 
+    public function updateOrder(Request $request)
+    {
+        $userId = Auth::id();
+        try {
+            $request->validate([
+                'shortcuts' => 'required|array',
+                'shortcuts.*.id' => 'required|string',
+                'shortcuts.*.order' => 'required|integer'
+            ]);
+
+            foreach ($request->shortcuts as $shortcutData) {
+                Shortcut::where('user_id', $userId)
+                    ->where('id', $shortcutData['id'])
+                    ->update(['order' => $shortcutData['order']]);
+            }
+
+            return response()->json([
+                'message' => 'Shortcut order updated successfully.',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred while updating the shortcut order.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      */
