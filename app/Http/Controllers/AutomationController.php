@@ -59,7 +59,21 @@ class AutomationController extends Controller
         try{
             $authUser = Auth::id();
 
-            $automationConditions = AutomationCondition::all();
+            $userAutomationConditionIds = UserAutomation::where('user_id', $authUser)
+                ->pluck('automation_condition_id')
+                ->unique();
+
+            $automationConditions = AutomationCondition::all()
+                ->map(function ($condition) use ($userAutomationConditionIds) {
+                    return [
+                        'id' => $condition->id,
+                        'emoji' => $condition->emoji,
+                        'name' => $condition->name,
+                        'description' => $condition->description,
+                        'type' => $condition->type,
+                        'is_active' => $userAutomationConditionIds->contains($condition->id),
+                    ];
+                });
             $userShortcuts = Shortcut::where('user_id', operator: $authUser)
                 ->with([
                     'userAction' => function ($query) {
@@ -145,6 +159,101 @@ class AutomationController extends Controller
     }
 
     /**
+     * Trigger shortcuts for an emotion-based automation.
+     */
+    public function triggerByEmotion(Request $request)
+    {
+        $userId = Auth::id();
+
+        try {
+            $request->validate([
+                'emotion' => 'required|string',
+            ]);
+
+            $emotion = trim($request->emotion);
+
+            $condition = AutomationCondition::where('type', 'emotion')
+                ->where(function ($query) use ($emotion) {
+                    $query->whereRaw('lower(name) = ?', [strtolower($emotion)])
+                        ->orWhere('emoji', $emotion);
+                })
+                ->first();
+
+            if (!$condition) {
+                return response()->json([
+                    'message' => 'Emotion condition not found.',
+                ], 404);
+            }
+
+            $automations = UserAutomation::where('user_id', $userId)
+                ->where('automation_condition_id', $condition->id)
+                ->with([
+                    'automationCondition:id,name,emoji,type',
+                    'userAutomationShortcut' => function ($query) {
+                        $query->orderBy('order', 'asc')
+                            ->with([
+                                'shortcut.userAction' => function ($subQuery) {
+                                    $subQuery->orderBy('order', 'asc')
+                                        ->with('action:id,name,mobile_key');
+                                },
+                            ]);
+                    },
+                ])
+                ->get();
+
+            if ($automations->isEmpty()) {
+                return response()->json([
+                    'message' => 'No automations found for this emotion.',
+                ], 404);
+            }
+
+            $payload = $automations->map(function ($automation) {
+                $shortcuts = $automation->userAutomationShortcut->map(function ($step) {
+                    $shortcut = $step->shortcut;
+
+                    $steps = $shortcut?->userAction?->map(function ($actionStep) {
+                        return [
+                            'id' => $actionStep->id,
+                            'order' => $actionStep->order,
+                            'inputs' => $actionStep->inputs,
+                            'action_id' => $actionStep->action_id,
+                            'mobile_key' => $actionStep->action?->mobile_key,
+                            'actionName' => $actionStep->action?->name,
+                        ];
+                    }) ?? collect();
+
+                    return [
+                        'id' => $shortcut?->id,
+                        'name' => $shortcut?->name,
+                        'icon' => $shortcut?->icon,
+                        'androidIcon' => $shortcut?->android_icon,
+                        'description' => $shortcut?->description,
+                        'gradientStart' => $shortcut?->gradient_start,
+                        'gradientEnd' => $shortcut?->gradient_end,
+                        'steps' => $steps,
+                    ];
+                })->values();
+
+                return [
+                    'id' => $automation->id,
+                    'title' => $automation->title,
+                    'automationCondition' => $automation->automationCondition,
+                    'shortcuts' => $shortcuts,
+                ];
+            })->toArray();
+
+            return response()->json([
+                'automations' => convertKeysToCamelCase($payload),
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error triggering automation.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
      * Display the specified resource.
      */
     public function show(string $id)
@@ -189,9 +298,11 @@ class AutomationController extends Controller
         try {
             $request->validate([
                 'title' => 'required|string|max:255',
-                'steps' => 'array',
-                'steps.*.id' => 'required|uuid',
-                'steps.*.order' => 'required|integer',
+                'shortcuts' => 'nullable|array',
+                'shortcuts.*' => 'required|uuid',
+                'arrangement' => 'nullable|array',
+                'arrangement.*.id' => 'required|uuid',
+                'arrangement.*.order' => 'required|integer',
             ]);
 
             $userAutomation = UserAutomation::where('user_id', operator: $userId)
@@ -201,19 +312,42 @@ class AutomationController extends Controller
             $userAutomation->update([
                 'title' => $request->title,
             ]);
-            // return $userAutomation;
-            // Update shortcuts
-            foreach($request->steps as $step) {
-                UserAutomationShortcut::updateOrCreate(
-                    [
+            $shortcuts = collect($request->input('shortcuts', []));
+            $arrangement = collect($request->input('arrangement', []));
+            if ($shortcuts->isEmpty() && $arrangement->isNotEmpty()) {
+                $shortcuts = $arrangement->pluck('id')->unique()->values();
+            }
 
-                        'user_automation_id' => $userAutomation->id,
-                        'shortcut_id' => $step['id'],
-                    ],
-                    [
-                        'order' => $step['order'],
-                    ]
-                );
+            if ($arrangement->isEmpty() && $shortcuts->isNotEmpty()) {
+                $arrangement = $shortcuts->values()->map(function ($id, $index) {
+                    return ['id' => $id, 'order' => $index + 1];
+                });
+            }
+
+            $shouldSyncShortcuts = $request->has('shortcuts') || $request->has('arrangement');
+
+            if ($shouldSyncShortcuts) {
+                $shortcutIds = $shortcuts->values();
+
+                if ($shortcutIds->isEmpty()) {
+                    UserAutomationShortcut::where('user_automation_id', $userAutomation->id)->delete();
+                } else {
+                    UserAutomationShortcut::where('user_automation_id', $userAutomation->id)
+                        ->whereNotIn('shortcut_id', $shortcutIds)
+                        ->delete();
+                }
+
+                foreach ($arrangement as $step) {
+                    UserAutomationShortcut::updateOrCreate(
+                        [
+                            'user_automation_id' => $userAutomation->id,
+                            'shortcut_id' => $step['id'],
+                        ],
+                        [
+                            'order' => $step['order'],
+                        ]
+                    );
+                }
             }
 
             return response()->json([
